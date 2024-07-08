@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
+const WebpackAssetsManifest = require("webpack-assets-manifest");
 
 module.exports = {
     watch: false,
@@ -11,6 +13,14 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Output Management',
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: ".htaccess", to: "./" },
+            ],
+        }),
+        new WebpackAssetsManifest({
+            enabled: true
         }),
     ],
     output: {
