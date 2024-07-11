@@ -21,9 +21,7 @@
         foreach ($script_paths as $path) {
             echo '<script src="' . $path . '"></script>';
         }
-        echo $script;
     ?>
-    <script src="./js/react.test.js"></script>
 </head>
 <body></body>
 </html>
