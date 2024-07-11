@@ -13,13 +13,17 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: "JC",
             template: "./index.php",
+            filename: "index.php"
         }),
         new CopyPlugin({
             patterns: [
                 { from: ".htaccess", to: "./" },
                 { from: "./js/react.development.js", to: "./js/" },
                 { from: "./js/react-dom.development.js", to: "./js/" },
-                { from: "./public/favicon.ico", to: "./public/favicon.ico" }
+                { from: "./js/react.production.min.js", to: "./js/" },
+                { from: "./js/react-dom.production.min.js", to: "./js/" },
+                { from: "./public/favicon.ico", to: "./public/favicon.ico" },
+                { from: "./api", to: "./api/" },
             ],
         }),
     ],

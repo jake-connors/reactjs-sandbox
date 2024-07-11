@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="icon" href="./public/favicon.ico">
     <?php
-        $isProd = true; // testing prod. Use $_SERVER once dev server is set up
+        $isProd = false; // testing prod. Use $_SERVER once dev server is set up
         $js_default = [
             "production" => [
                 "./js/react.production.min.js",
@@ -23,5 +23,12 @@
         }
     ?>
 </head>
-<body></body>
+<body>
+    <div id="root" style="min-height:200px;">
+        <!-- react will fill in the HTML -->
+    </div>
+    <div id="portal">
+        <!-- used by popper elements -->
+    </div>
+</body>
 </html>

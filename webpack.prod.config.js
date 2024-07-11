@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
     watch: false,
@@ -18,9 +19,12 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: ".htaccess", to: "./" },
+                { from: "./js/react.development.js", to: "./js/" },
+                { from: "./js/react-dom.development.js", to: "./js/" },
                 { from: "./js/react.production.min.js", to: "./js/" },
                 { from: "./js/react-dom.production.min.js", to: "./js/" },
-                { from: "./public/favicon.ico", to: "./public/favicon.ico" }
+                { from: "./public/favicon.ico", to: "./public/favicon.ico" },
+                { from: "./api", to: "./api/" },
             ],
         }),
     ],
@@ -60,5 +64,13 @@ module.exports = {
         $: "jQuery",
         moment: "moment",
         "react-bootstrap": "ReactBootstrap", // needs to be this exact spelling -- ReactBootstrap
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                extractComments: false
+            })
+        ]
     }
 };
