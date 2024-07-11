@@ -13,6 +13,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: "JC",
             template: "./index.php",
+            filename: "index.php"
         }),
         new CopyPlugin({
             patterns: [
