@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
     watch: false,
@@ -63,5 +64,13 @@ module.exports = {
         $: "jQuery",
         moment: "moment",
         "react-bootstrap": "ReactBootstrap", // needs to be this exact spelling -- ReactBootstrap
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                extractComments: false
+            })
+        ]
     }
 };
