@@ -12,13 +12,16 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: "JC",
-            favicon: "./public/favicon.ico"
+            template: "./index.php",
         }),
         new CopyPlugin({
             patterns: [
                 { from: ".htaccess", to: "./" },
+                { from: "./js/react.development.js", to: "./js/" },
+                { from: "./js/react-dom.development.js", to: "./js/" },
+                { from: "./public/favicon.ico", to: "./public/favicon.ico" }
             ],
-        })
+        }),
     ],
     output: {
         filename: "[name].bundle.js",
