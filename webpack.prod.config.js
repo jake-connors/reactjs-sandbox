@@ -1,7 +1,6 @@
 const path = require("path");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-const WebpackAssetsManifest = require("webpack-assets-manifest");
 
 module.exports = {
     watch: false,
@@ -12,15 +11,15 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Output Management',
+            title: "JC",
+            template: "./index.html",
         }),
         new CopyPlugin({
             patterns: [
                 { from: ".htaccess", to: "./" },
+                { from: "./js/react.test.js", to: "./js/" },
+                { from: "./public/favicon.ico", to: "./public/favicon.ico" }
             ],
-        }),
-        new WebpackAssetsManifest({
-            enabled: true
         }),
     ],
     output: {
@@ -59,10 +58,5 @@ module.exports = {
         $: "jQuery",
         moment: "moment",
         "react-bootstrap": "ReactBootstrap", // needs to be this exact spelling -- ReactBootstrap
-    },
-    // optimization: {
-    //     splitChunks: {
-    //         chunks: "all",
-    //     },
-    // },
+    }
 };

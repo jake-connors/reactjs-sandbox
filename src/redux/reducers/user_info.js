@@ -11,6 +11,6 @@ function user_info(state = [], action) {
         default:
             return state;
         }
-};
+}
 
 export default user_info;

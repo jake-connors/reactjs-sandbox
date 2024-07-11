@@ -1,17 +1,24 @@
 const path = require("path");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-    watch: true,
-    mode: "development",
+    watch: false,
+    mode: "production",
     devtool: "source-map",
     entry: {
         index: ["./src/index.js"],
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Output Management',
+            title: "JC",
+            favicon: "./public/favicon.ico"
         }),
+        new CopyPlugin({
+            patterns: [
+                { from: ".htaccess", to: "./" },
+            ],
+        })
     ],
     output: {
         filename: "[name].bundle.js",
@@ -49,5 +56,5 @@ module.exports = {
         $: "jQuery",
         moment: "moment",
         "react-bootstrap": "ReactBootstrap", // needs to be this exact spelling -- ReactBootstrap
-    },
+    }
 };
