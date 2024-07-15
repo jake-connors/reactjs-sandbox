@@ -1,3 +1,4 @@
+import { connect } from "react-redux";
 import { useState, useEffect } from "react";
 import NavbarItem from "../components/navbar/NavbarItem";
 import SearchBar from "../components/navbar/SearchBar";

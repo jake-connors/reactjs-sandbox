@@ -39,4 +39,4 @@ function NavbarItem({ title, url, children }) {
     );
 }
 
-export default connect()(NavbarItem);
+export default NavbarItem;

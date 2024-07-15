@@ -1,8 +1,10 @@
+import { connect } from "react-redux";
+
 function SearchBar() {
 
     return (
         <>
-        <span>search bar</span>
+        <input type="text" placeholder="search bar..." />
         </>
     );
 }
