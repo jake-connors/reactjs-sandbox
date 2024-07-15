@@ -8,15 +8,15 @@ import App from './App';
 import "./styles/styles.css";
 
 const store = createStore(
-  rootReducer,
-  initial,
-  applyMiddleware(
-    thunkMiddleware
-  )
+    rootReducer,
+    initial,
+    applyMiddleware(
+        thunkMiddleware
+    )
 );
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+    <Provider store={store}>
+        <App />
+    </Provider>
 );

@@ -19,11 +19,11 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: ".htaccess", to: "./" },
-                { from: "./js/react.development.js", to: "./js/" },
-                { from: "./js/react-dom.development.js", to: "./js/" },
-                { from: "./js/react.production.min.js", to: "./js/" },
-                { from: "./js/react-dom.production.min.js", to: "./js/" },
-                { from: "./public/favicon.ico", to: "./public/favicon.ico" },
+                { from: "./dist/js/react.development.js", to: "./js/" },
+                { from: "./dist/js/react-dom.development.js", to: "./js/" },
+                { from: "./dist/js/react.production.min.js", to: "./js/" },
+                { from: "./dist/js/react-dom.production.min.js", to: "./js/" },
+                { from: "./assets", to: "./assets" },
                 { from: "./api", to: "./api/" },
             ],
         }),

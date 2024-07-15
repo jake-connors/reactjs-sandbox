@@ -1,0 +1,42 @@
+import Popper from "../Popper";
+
+function NavbarItem({ title, url, children }) {
+
+    return (
+        <>
+        {
+            children.length ?
+                <>
+                    <Popper 
+                        ref={ref}
+                        popperPlacement="bottom-start"
+                        referenceElement={
+                            <div className="dropdown">
+                                <span className="dropdown-toggle-groupie">
+                                    {menuItem.parent.title}
+                                    <span className="fa fa-chevron-down"></span>
+                                </span>
+                            </div>
+                        }
+                    >
+                        <ul>
+                            {children.map((child, i) => (
+                                <li key={i}>
+                                    <a href={child.url}>
+                                        {child.title}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </Popper>
+                </>
+            :
+            <a className="navbar-item-nochild" href={url}>
+                {title}
+            </a>
+        }
+        </>
+    );
+}
+
+export default connect()(NavbarItem);

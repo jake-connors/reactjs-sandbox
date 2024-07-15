@@ -4,22 +4,29 @@
     <meta charset="utf-8">
     <title>JC</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="icon" href="./public/favicon.ico">
+    <link href="./assets/favicon.ico" rel="icon" type="image/x-icon">
     <?php
-        $isProd = false; // testing prod. Use $_SERVER once dev server is set up
+        $isProd = $_SERVER["SERVER_NAME"] === "jacobconnors.com";
         $js_default = [
             "production" => [
-                "./js/react.production.min.js",
-                "./js/react-dom.production.min.js"
+                "./dist/js/react.production.min.js",
+                "./dist/js/react-dom.production.min.js"
             ],
             "development" => [
-                "./js/react.development.js",
-                "./js/react-dom.development.js"
+                "./dist/js/react.development.js",
+                "./dist/js/react-dom.development.js"
             ]
         ];
-        $script_paths = $isProd ? $js_default["production"] : $js_default["development"];
-        foreach ($script_paths as $path) {
-            echo '<script src="' . $path . '"></script>';
+        $css_default = [
+            "./dist/css/bootstrap.min.css",
+            "./dist/css/fontawesome.all.min.css"
+        ];
+        $js_paths = $isProd ? $js_default["production"] : $js_default["development"];
+        foreach ($js_paths as $src_path) {
+            echo '<script src="' . $src_path . '"></script>';
+        }
+        foreach ($css_default as $href_link) {
+            echo '<link href="' . $href_link . '" rel="stylesheet">' . "\n";
         }
     ?>
 </head>
