@@ -19,10 +19,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: ".htaccess", to: "./" },
-                { from: "./dist/js/react.development.js", to: "./js/" },
-                { from: "./dist/js/react-dom.development.js", to: "./js/" },
-                { from: "./dist/js/react.production.min.js", to: "./js/" },
-                { from: "./dist/js/react-dom.production.min.js", to: "./js/" },
+                { from: "./dist", to: "./dist/" },
                 { from: "./assets", to: "./assets" },
                 { from: "./api", to: "./api/" },
             ],
