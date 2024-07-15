@@ -1,6 +1,8 @@
+import { useRef } from "react";
 import Popper from "../Popper";
 
 function NavbarItem({ title, url, children }) {
+    const ref = useRef(null);
 
     return (
         <>
