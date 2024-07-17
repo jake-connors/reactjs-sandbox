@@ -15,7 +15,7 @@ function NavbarItem({ title, url, children }) {
                         referenceElement={
                             <div className="dropdown">
                                 <span className="dropdown-toggle-groupie">
-                                    {menuItem.parent.title}
+                                    {title}
                                     <span className="fa fa-chevron-down"></span>
                                 </span>
                             </div>

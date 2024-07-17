@@ -19,7 +19,7 @@
         ];
         $css_default = [
             "./dist/css/bootstrap.min.css",
-            "./dist/css/fontawesome.all.min.css"
+            "./dist/css/fontawesome/css/all.min.css"
         ];
         $js_paths = $isProd ? $js_default["production"] : $js_default["development"];
         foreach ($js_paths as $src_path) {
