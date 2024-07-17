@@ -34,7 +34,7 @@ function Navbar() {
                 <div className="row" id="navbar-upper">
                     <div className="col-sm-2">
                         <a
-                            href="/home"
+                            href="/"
                             title="Click to view Home"
                             id="logo-anchor"
                         >

@@ -12,6 +12,7 @@ function NavbarItem({ title, url, children }) {
                     <Popper 
                         ref={ref}
                         popperPlacement="bottom-start"
+                        portalId="navbar-popper"
                         referenceElement={
                             <div className="dropdown">
                                 <span className="dropdown-toggle-groupie">

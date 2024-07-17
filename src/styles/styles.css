@@ -1,6 +1,69 @@
-#nav-desktop {
-    display: flex;
-    margin-left: 25px;
-    margin-top: 25px;
+#navbar-desktop {    
+    #navbar-upper {
+        margin: 0;
+        position: relative;
+        z-index: 1000;
+        height: 70px;
+        padding: 12px 15px 0;
+        background-color: #393d56;
+
+        #logo-anchor {
+            display: block;
+            img {
+                max-height: 45px;
+            }
+        }
+
+        #navbar-extras {
+            position: relative;
+        }
+
+    }
+
+    #navbar-lower {
+        display: block;
+        padding: 0 15px;
+        background-color: #000;
+        height: 35px;
+
+        #navbar-popper {
+            position: relative;
+            z-index: 100000;
+        }
+
+        #navbar-item-nochild, .dropdown-toggle-groupie {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            padding: 0px 8px;
+            line-height: 36px;
+            font-size: 14px;
+            margin-right: 10px;
+            cursor: pointer;
+            &:hover {
+                background-color: #333;
+            }
+            .fa-chevron-down {
+                padding-left: 8px;
+                display: inline-block;
+            }
+        }
+
+        .fa-chevron-down {
+            vertical-align: middle;
+        }
+
+        .dropdown {
+            display: inline-block;
+            a.navbar-item-nochild {
+                margin-right: 0;
+            }
+
+            li {
+                padding-bottom: 0;
+            }
+        }
+    }
+    
 }
 
