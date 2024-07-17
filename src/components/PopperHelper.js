@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from "react";
-// put this after semicolon above if node error: // eslint-disable-line no-unused-vars
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
 
-function Popper(
+function PopperHelper(
     {
         referenceElement, // the "anchor" element the popper will position itself to
         children, // contents of the pop up
@@ -25,7 +24,6 @@ function Popper(
     const [isOpen, setIsOpen] = useState(-1);
     const [innerReferenceElement, setInnerReferenceElement] = useState(null);
     const [popperElement, setPopperElement] = useState(null);
-    const [arrowElement, setArrowElement] = useState(null);
 
     const { styles: generatedStyles, attributes: generatedAttributes } = usePopper(
         innerReferenceElement,
@@ -148,4 +146,4 @@ function Popper(
     );
 }
 
-export default forwardRef(Popper);
+export default forwardRef(PopperHelper);

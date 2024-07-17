@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import Popper from "../Popper";
+import PopperHelper from "../PopperHelper";
 
 function NavbarItem({ title, url, children }) {
     const ref = useRef(null);
@@ -9,7 +9,7 @@ function NavbarItem({ title, url, children }) {
         {
             children.length ?
                 <>
-                    <Popper 
+                    <PopperHelper
                         ref={ref}
                         popperPlacement="bottom-start"
                         portalId="navbar-popper"
@@ -31,7 +31,7 @@ function NavbarItem({ title, url, children }) {
                                 </li>
                             ))}
                         </ul>
-                    </Popper>
+                    </PopperHelper>
                 </>
             :
             <a className="navbar-item-nochild" href={url}>

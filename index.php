@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>JC</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta http-equiv="Cache-control" content="no-cache">
     <link href="./assets/favicon.ico" rel="icon" type="image/x-icon">
     <?php
         $isProd = $_SERVER["SERVER_NAME"] === "jacobconnors.com";
