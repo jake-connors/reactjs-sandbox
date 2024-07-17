@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import { test_api_get, test_api_post } from "../api/api";
-import Navbar from "./Navbar";
 
 function Main() {
 
@@ -20,13 +19,11 @@ function Main() {
     }
 
     return (
-        <div className="container">
-            <Navbar />
-            <div id="header"></div>
-            <h1>Main</h1>
-            <button className="btn btn-primary" onClick={() => { handleTest("get"); }}>Test Get</button>
-            <button className="btn btn-primary" onClick={() => { handleTest("post"); }}>Test Post</button>
-        </div>
+        <>
+            <h1 className="col-sm-12">Main</h1>
+            <button className="btn btn-primary col-sm-3" onClick={() => { handleTest("get"); }}>Test Get</button>
+            <button className="btn btn-primary col-sm-3" onClick={() => { handleTest("post"); }}>Test Post</button>
+        </>
     );
 }
 

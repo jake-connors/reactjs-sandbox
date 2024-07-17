@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useRef } from "react";
 import PopperHelper from "../PopperHelper";
 
@@ -13,6 +14,7 @@ function NavbarItem({ title, url, children }) {
                         ref={ref}
                         popperPlacement="bottom-start"
                         portalId="navbar-popper"
+                        popperClassName="navbar-item-child"
                         referenceElement={
                             <div className="dropdown">
                                 <span className="dropdown-toggle-groupie">
@@ -25,18 +27,18 @@ function NavbarItem({ title, url, children }) {
                         <ul>
                             {children.map((child, i) => (
                                 <li key={i}>
-                                    <a href={child.url}>
+                                    <Link to={child.url}>
                                         {child.title}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
                     </PopperHelper>
                 </>
             :
-            <a className="navbar-item-nochild" href={url}>
+            <Link className="navbar-item-nochild" to={url}>
                 {title}
-            </a>
+            </Link>
         }
         </>
     );

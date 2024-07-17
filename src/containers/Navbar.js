@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavbarItem from "../components/navbar/NavbarItem";
 import SearchBar from "../components/navbar/SearchBar";
@@ -12,43 +13,42 @@ function Navbar() {
     }, []);
 
     const frontendChildren = [
-        { title: "Popper", url: "popper" },
-        { title: "Popup Notify", url: "popup_notify" },
-        { title: "Drag & Drop", url: "drag_and_drop" },
+        { title: "Popper", url: "/popper" },
+        { title: "Popup Notify", url: "/popup_notify" },
+        { title: "Drag & Drop", url: "/drag_and_drop" },
     ];
     const backendChildren = [
-        { title: "Email", url: "email" },
-        { title: "Excel", url: "excel" },
+        { title: "Email", url: "/email" },
+        { title: "Excel", url: "/excel" },
     ];
-    
     const navbarItems = [
         { title: "Frontend", url: "", children: frontendChildren },
         { title: "Backend", url: "", children: backendChildren },
-        { title: "Other", url: "", children: [] },
+        { title: "Other", url: "other", children: [] },
     ];
 
     return (
-        <>
+        <div className="navbar">
         {isDesktop && 
             <div className="container-fluid" id="navbar-desktop">
                 <div className="row" id="navbar-upper">
                     <div className="col-sm-2">
-                        <a
-                            href="/"
+                        <Link
+                            to="/"
                             title="Click to view Home"
-                            id="logo-anchor"
+                            id="logo-link"
                         >
                             <img src="/assets/logo.svg" />
-                        </a>
+                        </Link>
                     </div>
                     <div className="col-sm-8">
                         <SearchBar />
                     </div>
                     <div className="col-sm-2" id="navbar-extras">
-                        <a href="/about">About</a>
-                        <a href="/documentation">Documentation</a>
-                        <a href="/settings">Settings</a>
-                        <a href="/contact">Contact</a>
+                        <Link to="/about">About</Link>
+                        <Link to="/documentation">Documentation</Link>
+                        <Link to="/settings">Settings</Link>
+                        <Link to="/contact">Contact</Link>
                     </div>
                 </div>
                 <div className="row" id="navbar-lower">
@@ -63,7 +63,7 @@ function Navbar() {
                 </div>
             </div>
         }
-        </>
+        </div>
     );
 }
 
