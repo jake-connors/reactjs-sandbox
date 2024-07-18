@@ -27,7 +27,7 @@ function NavbarItem({ title, url, children }) {
                         <ul>
                             {children.map((child, i) => (
                                 <li key={i}>
-                                    <Link to={child.url}>
+                                    <Link to={child.url} onClick={() => ref.current.close()}>
                                         {child.title}
                                     </Link>
                                 </li>
