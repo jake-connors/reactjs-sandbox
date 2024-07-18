@@ -12,13 +12,16 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "JC",
+            title: "JC Website",
             template: "./index.php",
             filename: "index.php"
         }),
         new CopyPlugin({
             patterns: [
                 { from: ".htaccess", to: "./" },
+                { from: "./package.json", to: "./package.json" },
+                { from: "./package-lock.json", to: "./package-lock.json" },
+                { from: "./README.md", to: "./README.md" },
                 { from: "./dist", to: "./dist/" },
                 { from: "./assets", to: "./assets" },
                 { from: "./api", to: "./api/" },
