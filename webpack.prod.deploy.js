@@ -1,6 +1,4 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
@@ -10,30 +8,9 @@ module.exports = {
     entry: {
         index: ["./src/index.js"],
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: "JC",
-            template: "./index.php",
-            filename: "index.php"
-        }),
-        new CopyPlugin({
-            patterns: [
-                { from: ".htaccess", to: "./" },
-                { from: "./package.json", to: "./package.json" },
-                { from: "./webpack.dev.config.js", to: "./webpack.dev.config.js" },
-                { from: "./webpack.prod.config.js", to: "./webpack.prod.config.js" },
-                { from: "./webpack.prod.deploy.js", to: "./webpack.prod.deploy.js" },
-                { from: "./README.md", to: "./README.md" },
-                { from: "./dist", to: "./dist/" },
-                { from: "./assets", to: "./assets" },
-                { from: "./api", to: "./api/" },
-                { from: "./src", to: "./src/" },
-            ],
-        }),
-    ],
     output: {
         filename: "[name].bundle.js",
-        path: path.resolve(__dirname, "../build_dev/"),
+        path: path.resolve(__dirname, "./"),
     },
     module: {
         rules: [
