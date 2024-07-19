@@ -18,7 +18,7 @@ function App() {
 
     useEffect(() => {
         // console.clear();
-        console.log('app loaded');
+        console.log('app loaded v4.0');
     }, []);
 
     return (

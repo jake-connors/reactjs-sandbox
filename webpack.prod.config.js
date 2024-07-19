@@ -19,15 +19,10 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: ".htaccess", to: "./" },
-                { from: "./package.json", to: "./package.json" },
-                { from: "./webpack.dev.config.js", to: "./webpack.dev.config.js" },
-                { from: "./webpack.prod.config.js", to: "./webpack.prod.config.js" },
-                { from: "./webpack.prod.deploy.js", to: "./webpack.prod.deploy.js" },
                 { from: "./README.md", to: "./README.md" },
                 { from: "./dist", to: "./dist/" },
                 { from: "./assets", to: "./assets" },
                 { from: "./api", to: "./api/" },
-                { from: "./src", to: "./src/" },
             ],
         }),
     ],
@@ -73,7 +68,6 @@ module.exports = {
         minimizer: [
             new TerserPlugin({
                 extractComments: false,
-                exclude: /src/,
             })
         ]
     }
