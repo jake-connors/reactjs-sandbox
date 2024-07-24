@@ -7,6 +7,7 @@
     <link href="./assets/favicon.ico" rel="icon" type="image/x-icon">
     <?php
         $isProd = $_SERVER["SERVER_NAME"] === "jacobconnors.com";
+        $isProd = false; // testing w/ dev builds
         $js_default = [
             "production" => [
                 "./dist/js/react.production.min.js",

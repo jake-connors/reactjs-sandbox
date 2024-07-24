@@ -12,17 +12,12 @@ function Navbar() {
         setIsDesktop(true);
     }, []);
 
-    const frontendChildren = [
-        { title: "Popper", url: "/popper" },
-        { title: "Popup Notify", url: "/popup_notify" },
-        { title: "Drag & Drop", url: "/drag_and_drop" },
-    ];
     const backendChildren = [
-        { title: "Email", url: "/email" },
-        { title: "Excel", url: "/excel" },
+        { title: "Email", url: "/backend/email" },
+        { title: "Excel", url: "/backend/excel" },
     ];
     const navbarItems = [
-        { title: "Frontend", url: "", children: frontendChildren },
+        { title: "Frontend", url: "frontend", children: [] },
         { title: "Backend", url: "", children: backendChildren },
         { title: "Other", url: "other", children: [] },
     ];
