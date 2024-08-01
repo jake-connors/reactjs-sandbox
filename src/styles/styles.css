@@ -1,12 +1,11 @@
 #navbar-desktop {
+    margin: 0 !important;
+    position: relative;
+    z-index: 1000;
+    height: 70px;
+    padding: 12px 15px 0;
+    background-color: #393d56;
     #navbar-upper {
-        margin: 0;
-        position: relative;
-        z-index: 1000;
-        height: 70px;
-        padding: 12px 15px 0;
-        background-color: #393d56;
-
         #logo-link {
             display: block;
             img {
@@ -16,6 +15,13 @@
 
         #navbar-extras {
             position: relative;
+            a {
+                color: #fff;
+                font-size: 12px;
+                margin-right: 15px;
+                white-space: nowrap;
+                cursor: pointer;
+            }
         }
 
     }

@@ -1,5 +1,4 @@
-import { connect } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, forwardRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from "./containers/Navbar";
 import Main from "./containers/Main";
@@ -7,9 +6,9 @@ import About from "./containers/About";
 import Documentation from "./containers/Documentation";
 import Settings from "./containers/Settings";
 import Contact from "./containers/Contact";
-import Frontend from "./containers/Frontend";
-import Email from "./containers/backend/Email";
-import Excel from "./containers/backend/Excel";
+import JsExamples from "./containers/JsExamples";
+import Email from "./containers/php_examples/Email";
+import Excel from "./containers/php_examples/Excel";
 import Other from "./containers/Other";
 
 function App() {
@@ -21,17 +20,17 @@ function App() {
 
     return (
         <Router>
+            <Navbar />
             <div className="container">
-                <Navbar />
                 <Routes>
                     <Route path="/" exact Component={Main} />
                     <Route path="/about" exact Component={About} />
                     <Route path="/documentation" exact Component={Documentation} />
                     <Route path="/settings" exact Component={Settings} />
                     <Route path="/contact" exact Component={Contact} />
-                    <Route path="/frontend" exact Component={Frontend} />
-                    <Route path="/backend/email" exact Component={Email} />
-                    <Route path="/backend/excel" exact Component={Excel} />
+                    <Route path="/js_examples" exact Component={JsExamples} />
+                    <Route path="/php_examples/email" exact Component={Email} />
+                    <Route path="/php_examples/excel" exact Component={Excel} />
                     <Route path="/other" exact Component={Other} />
                 </Routes>
             </div>
@@ -39,4 +38,4 @@ function App() {
     );
 }
 
-export default connect()(App);
+export default forwardRef(App);

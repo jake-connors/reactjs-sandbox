@@ -1,13 +1,11 @@
-import { connect } from "react-redux";
-import { forwardRef } from "react";
-import PopupNotify from "../components/frontend/PopupNotify";
-import DragAndDrop from "../components/frontend/DragAndDrop";
+import PopupNotify from "../components/js_examples/PopupNotify";
+import DragAndDrop from "../components/js_examples/DragAndDrop";
 
-function Frontend() {
+function JsExamples() {
     return (
         <div>
             <div className="row">
-                <h2 className="col-sm-12">Frontend</h2>
+                <h2 className="col-sm-12">JS Examples</h2>
             </div>
             <div className="row">
                 <div className="col-sm-6">
@@ -54,4 +52,4 @@ function Table() {
     );
 }
 
-export default forwardRef(connect()(Frontend));
+export default JsExamples;

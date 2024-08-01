@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PopupNotifyHelper from "../PopupNotifyHelper";
 
 function PopupNotify() {
     const [activeOption, setActiveOption] = useState({});
-
     const popupNotifyOptions = [
         { id: 1, display: "Primary", popupClassName: "text-primary", buttonClassName: "btn btn-outline-primary" },
         { id: 2, display: "Success", popupClassName: "text-success", buttonClassName: "btn btn-outline-success" },
@@ -14,6 +13,11 @@ function PopupNotify() {
         { id: 7, display: "Light", popupClassName: "text-light bg-dark", buttonClassName: "btn btn-outline-light" },
         { id: 8, display: "Dark", popupClassName: "text-dark", buttonClassName: "btn btn-outline-dark" },
     ];
+
+    useEffect(() => {
+        setActiveOption(popupNotifyOptions[0]);
+    }, []);
+    
 
     function handlePopupNotifyDropdownChange(e) {
         let thisOpt = {};

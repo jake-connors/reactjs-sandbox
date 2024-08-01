@@ -1,5 +1,6 @@
 # Notes:
 - React v18
+- react-router-dom v6
 - bootstrap v5
 - PHP v8
 - MySQL database
