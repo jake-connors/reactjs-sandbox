@@ -1,5 +1,3 @@
-import { connect } from "react-redux";
-
 function About() {
 
     return (
@@ -9,4 +7,4 @@ function About() {
     );
 }
 
-export default connect()(About);
+export default About;

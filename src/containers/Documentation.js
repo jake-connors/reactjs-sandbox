@@ -1,5 +1,3 @@
-import { connect } from "react-redux";
-
 function Documentation() {
 
     return (
@@ -9,4 +7,4 @@ function Documentation() {
     );
 }
 
-export default connect()(Documentation);
+export default Documentation;

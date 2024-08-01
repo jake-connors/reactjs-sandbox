@@ -1,5 +1,3 @@
-import { connect } from "react-redux";
-
 function Other() {
 
     return (
@@ -9,4 +7,4 @@ function Other() {
     );
 }
 
-export default connect()(Other);
+export default Other;

@@ -1,10 +1,12 @@
+@header-bg: #393d56;
+
 #navbar-desktop {
     margin: 0 !important;
     position: relative;
     z-index: 1000;
     height: 70px;
     padding: 12px 15px 0;
-    background-color: #393d56;
+    background-color: @header-bg;
     #navbar-upper {
         #logo-link {
             display: block;
@@ -15,6 +17,7 @@
 
         #navbar-extras {
             position: relative;
+            margin-left: auto;
             a {
                 color: #fff;
                 font-size: 12px;
@@ -66,7 +69,113 @@
             }
         }
     }
-    
+}
+
+#navbar-mobile {
+    height: 50px;
+    background-color: @header-bg;
+    #logo-link-mobile {
+        img {
+            height: 34px;
+        }
+    }
+    #mobile-menu {
+        position: relative;
+
+        /* Position and sizing of burger button */
+        .bm-burger-button {
+            position: absolute;
+            width: 28px;
+            height: 22px;
+            right: 5px;
+            top: 6px;
+        }
+
+        /* Color/shape of burger icon bars */
+        .bm-burger-bars {
+            background: #fff;
+        }
+
+        /* Color/shape of burger icon bars on hover*/
+        .bm-burger-bars-hover {
+            background: #828282;
+        }
+
+        /* Position and sizing of clickable cross button */
+        .bm-cross-button {
+            height: 24px;
+            width: 24px;
+        }
+
+        /* Color/shape of close button cross */
+        .bm-cross {
+            background: #bdc3c7;
+        }
+
+        /*
+        Sidebar wrapper styles
+        Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+        */
+        .bm-menu-wrap {
+            position: fixed;
+            height: 100%;
+            min-width: 400px;
+        }
+
+        /* General sidebar styles */
+        .bm-menu {
+            background: @header-bg;
+            padding: 5px;
+            font-size: 1.15em;
+        }
+
+        /* Morph shape necessary with bubble or elastic */
+        .bm-morph-shape {
+            fill: #373a47;
+        }
+
+        /* Wrapper for item list */
+        .bm-item-list {
+            color: #2e2e2e;
+            padding: 0.8em;
+        }
+
+        /* Styling of overlay */
+        .bm-overlay {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-item-label {
+            display: block;
+            font-size: 14px;
+            font-weight: normal;
+            color: #ccc;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        a.menu-item-child {
+            font-size: 14px;
+            display: block;
+        }
+
+        #menu-item-child,
+        #menu-item-nochild,
+        #navbar-extras a {
+            color: #fff;
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin: 0 10px 10px 0;
+            text-align: center;
+            background: #000;
+        }
+        
+    }
+    #navbar-extras {
+        padding: 20px 0 10px 0;
+        border-top: 1px solid #000;
+    }
 }
 
 #navbar-popper {

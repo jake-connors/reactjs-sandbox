@@ -1,5 +1,3 @@
-import { connect } from "react-redux";
-
 function Excel() {
 
     return (
@@ -9,4 +7,4 @@ function Excel() {
     );
 }
 
-export default connect()(Excel);
+export default Excel;

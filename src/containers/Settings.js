@@ -1,5 +1,3 @@
-import { connect } from "react-redux";
-
 function Settings() {
 
     return (
@@ -9,4 +7,4 @@ function Settings() {
     );
 }
 
-export default connect()(Settings);
+export default Settings;

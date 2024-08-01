@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from "react-dom/client";
+import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import { rootReducer, initial } from "./redux/reducers";
 import thunkMiddleware from "redux-thunk";
 import App from './App';
-import "./styles/styles.css";
+import "./styles/styles.less";
 
 const store = createStore(
     rootReducer,
@@ -14,9 +14,9 @@ const store = createStore(
         thunkMiddleware
     )
 );
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+render(
     <Provider store={store}>
         <App />
-    </Provider>
+    </Provider>,
+    document.getElementById("root")
 );

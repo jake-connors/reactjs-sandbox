@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavbarItem from "../components/navbar/NavbarItem";
 import SearchBar from "../components/navbar/SearchBar";
+import MobileMenu from "../components/navbar/MobileMenu";
 
 function Navbar() {
 
@@ -15,10 +16,11 @@ function Navbar() {
     });
 
     function updateMedia() {
-        // const desktopMinSize = 991;
+        const desktopMinSize = 991;
         // console.log('is desktop ? ', window.innerWidth > desktopMinSize);
-        // setIsDesktop(window.innerWidth > desktopMinSize);
-        setIsDesktop(true);
+        // console.log('window.innerWidth: ', window.innerWidth);
+        // setIsDesktop(true);
+        setIsDesktop(window.innerWidth > desktopMinSize);
     }
 
     // useEffect(() => {
@@ -37,8 +39,8 @@ function Navbar() {
 
     return (
         <div className="navbar-all">
-        {isDesktop && 
-            <div id="navbar-desktop" class="container-fluid">
+        {isDesktop && (
+            <div id="navbar-desktop" className="container-fluid">
                 <div className="row" id="navbar-upper">
                     <div className="col-sm-2">
                         <Link
@@ -49,14 +51,23 @@ function Navbar() {
                             <img src="/assets/logo.svg" />
                         </Link>
                     </div>
-                    <div className="col-sm-7">
+                    <div className="col-sm-8">
                         <SearchBar />
                     </div>
-                    <div className="col-sm-3" id="navbar-extras">
-                        <Link to="/about">About</Link>
-                        <Link to="/documentation">Documentation</Link>
-                        <Link to="/settings">Settings</Link>
-                        <Link to="/contact">Contact</Link>
+                    <div className="col-sm-2" id="navbar-extras">
+                        <Link to="/about">
+                            <i className="fa fa-info-circle"></i>About
+                        </Link>
+                        <Link to="/contact">
+                            <i className="fa fa-envelope"></i>Contact
+                        </Link>
+                        <br />
+                        <Link to="/settings">
+                            <i className="fa fa-cog"></i>Settings
+                        </Link>
+                        <Link to="/documentation">
+                            <i className="fa fa-code"></i>Code
+                        </Link>
                     </div>
                 </div>
                 <div className="row" id="navbar-lower">
@@ -70,7 +81,32 @@ function Navbar() {
                     ))}
                 </div>
             </div>
-        }
+        )}
+        {!isDesktop && (
+            <div id="navbar-mobile" className="container-fluid">
+                <div className="row">
+                    <div className="col-xs-8">
+                        <Link
+                            to="/"
+                            title="Click to view Home"
+                            id="logo-link-mobile"
+                        >
+                            <img 
+                                src="/assets/logo.svg" 
+                                alt="IMG NOT FOUND" 
+                                viewBox="0 0 134 36"
+                                preserveAspectRatio="xMinYMin meet"
+                            />
+                        </Link>
+                    </div>
+                    <div className="col-xs-4">
+                        <MobileMenu 
+                            menuItems={navbarItems}
+                        />
+                    </div>
+                </div>
+            </div>
+        )}
         </div>
     );
 }

@@ -1,5 +1,3 @@
-import { connect } from "react-redux";
-
 function Contact() {
 
     return (
@@ -9,4 +7,4 @@ function Contact() {
     );
 }
 
-export default connect()(Contact);
+export default Contact;

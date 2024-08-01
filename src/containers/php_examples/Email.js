@@ -1,5 +1,3 @@
-import { connect } from "react-redux";
-
 function Email() {
 
     return (
@@ -9,4 +7,4 @@ function Email() {
     );
 }
 
-export default connect()(Email);
+export default Email;
