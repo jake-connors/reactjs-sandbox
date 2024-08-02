@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import NavbarItem from "../components/navbar/NavbarItem";
 import SearchBar from "../components/navbar/SearchBar";
 import MobileMenu from "../components/navbar/MobileMenu";
+import StylePicker from "../components/navbar/StylePicker";
 
 function Navbar() {
 
@@ -79,6 +80,7 @@ function Navbar() {
                             children={item.children}
                         />
                     ))}
+                    <StylePicker isDesktop={isDesktop} />
                 </div>
             </div>
         )}
@@ -99,6 +101,7 @@ function Navbar() {
                             />
                         </Link>
                     </div>
+                    <StylePicker isDesktop={isDesktop} />
                     <div className="col-xs-4">
                         <MobileMenu 
                             menuItems={navbarItems}

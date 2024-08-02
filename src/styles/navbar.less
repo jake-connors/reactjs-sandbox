@@ -1,0 +1,245 @@
+@header-bg: #393d56;
+
+#navbar-desktop {
+    margin: 0 !important;
+    position: relative;
+    z-index: 1000;
+    height: 70px;
+    padding: 12px 15px 0;
+    background-color: @header-bg;
+    #navbar-upper {
+        #logo-link {
+            display: block;
+            img {
+                max-height: 45px;
+            }
+        }
+
+        #navbar-extras {
+            position: relative;
+            margin-left: auto;
+            a {
+                color: #fff;
+                font-size: 12px;
+                margin-right: 15px;
+                white-space: nowrap;
+                cursor: pointer;
+            }
+        }
+    }
+
+    #navbar-lower {
+        display: block;
+        padding: 0 15px;
+        background-color: #000;
+        height: 35px;
+
+        .navbar-item-nochild, .dropdown-toggle-groupie {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            padding: 0px 8px;
+            line-height: 36px;
+            font-size: 14px;
+            margin-right: 10px;
+            cursor: pointer;
+            width: unset;
+            &:hover {
+                background-color: #333;
+            }
+            .fa-chevron-down {
+                padding-left: 8px;
+                display: inline-block;
+            }
+        }
+
+        .fa-chevron-down {
+            vertical-align: middle;
+        }
+
+        .dropdown {
+            display: inline-block;
+            a.navbar-item-nochild {
+                margin-right: 0;
+            }
+
+            li {
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+
+#navbar-mobile {
+    height: 50px;
+    background-color: @header-bg;
+    #logo-link-mobile {
+        img {
+            height: 34px;
+        }
+    }
+    #mobile-menu {
+        position: relative;
+
+        /* Position and sizing of burger button */
+        .bm-burger-button {
+            position: absolute;
+            width: 28px;
+            height: 22px;
+            right: 5px;
+            top: 6px;
+        }
+
+        /* Color/shape of burger icon bars */
+        .bm-burger-bars {
+            background: #fff;
+        }
+
+        /* Color/shape of burger icon bars on hover*/
+        .bm-burger-bars-hover {
+            background: #828282;
+        }
+
+        /* Position and sizing of clickable cross button */
+        .bm-cross-button {
+            height: 24px;
+            width: 24px;
+        }
+
+        /* Color/shape of close button cross */
+        .bm-cross {
+            background: #bdc3c7;
+        }
+
+        /*
+        Sidebar wrapper styles
+        Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+        */
+        .bm-menu-wrap {
+            position: fixed;
+            height: 100%;
+            min-width: 400px;
+        }
+
+        /* General sidebar styles */
+        .bm-menu {
+            background: @header-bg;
+            padding: 5px;
+            font-size: 1.15em;
+        }
+
+        /* Morph shape necessary with bubble or elastic */
+        .bm-morph-shape {
+            fill: #373a47;
+        }
+
+        /* Wrapper for item list */
+        .bm-item-list {
+            color: #2e2e2e;
+            padding: 0.8em;
+        }
+
+        /* Styling of overlay */
+        .bm-overlay {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-item-label {
+            display: block;
+            font-size: 14px;
+            font-weight: normal;
+            color: #ccc;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        a.menu-item-child {
+            font-size: 14px;
+            display: block;
+        }
+
+        #menu-item-child,
+        #menu-item-nochild,
+        #navbar-extras a {
+            color: #fff;
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin: 0 10px 10px 0;
+            text-align: center;
+            background: #000;
+        }
+        
+    }
+    #navbar-extras {
+        padding: 20px 0 10px 0;
+        border-top: 1px solid #000;
+    }
+}
+
+#navbar-popper {
+    position: relative;
+    z-index: 100000;
+    .navbar-item-child {
+        min-width: 160px;
+        margin: 0px 0 0;
+        font-size: 14px;
+        text-align: left;
+        background-color: #fff;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 0px 0px 4px 4px;
+        -webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+        box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+        ul {
+            list-style: none;
+            padding: 5px 0;
+            margin: 0;
+            li {
+                padding-bottom: 0;
+                a {
+                    display: block;
+                    padding: 3px 20px;
+                    clear: both;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 1.42857143;
+                    color: #333;
+                    white-space: nowrap;
+                    &:hover,
+                    &:focus {
+                        color: #262626;
+                        text-decoration: none;
+                        background-color: #f5f5f5;
+                    }
+                }
+            }
+            li.divider {
+                height: 1px;
+                margin: 7px 0;
+                overflow: hidden;
+                background-color: #e5e5e5;
+            }
+        }
+        p {
+            padding: 0 20px;
+            margin: 0;
+        }
+    }
+}
+
+#style-picker-all {
+    #style-picker-option {
+        height: 50px;
+        width: 50px;
+        overflow: hidden;
+        background-color: orange;
+    }
+    #style-picker-option-primary {
+        height: 0;
+        width: 0;
+        border-top: 50px solid gray;
+        border-right: 50px solid transparent;
+    }
+}

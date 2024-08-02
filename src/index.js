@@ -6,6 +6,7 @@ import { rootReducer, initial } from "./redux/reducers";
 import thunkMiddleware from "redux-thunk";
 import App from './App';
 import "./styles/styles.less";
+import "./styles/navbar.less";
 
 const store = createStore(
     rootReducer,

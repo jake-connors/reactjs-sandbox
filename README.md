@@ -19,3 +19,4 @@ Webpack outputs prod files to `build_prod/` folder.\
 
 Deploys to git repo & prod site.
 
+## Source code in repo `jake_app/`
