@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { slide as Burger } from "react-burger-menu";
 import SearchBar from "./SearchBar";
+import { useEffect } from "react";
 
 const styles = {
     bmMenuWrap: {
@@ -10,26 +11,15 @@ const styles = {
 
 function MobileMenu({ menuItems }) {
 
+    useEffect(() => {
+        console.log('use effect mobile menu . menuItems (navItems) : ', menuItems);
+    }, []);
+
     return (
         <div id="mobile-menu">
             <Burger right width={"100%"} styles={styles}>
                 <SearchBar />
                 <div className="clear10" />
-                <div className="col-sm-2" id="navbar-extras">
-                    <Link to="/about">
-                        <i className="fa fa-info-circle"></i>About
-                    </Link>
-                    <Link to="/contact">
-                        <i className="fa fa-envelope"></i>Contact
-                    </Link>
-                    <br />
-                    <Link to="/settings">
-                        <i className="fa fa-cog"></i>Settings
-                    </Link>
-                    <Link to="/documentation">
-                        <i className="fa fa-code"></i>Code
-                    </Link>
-                </div>
                 {menuItems.map((item, i) => {
                     <React.Fragment key={i}>
                         {item.children.length ? 
@@ -47,6 +37,21 @@ function MobileMenu({ menuItems }) {
                         }
                     </React.Fragment>
                 })}
+                <div className="col-sm-2" id="navbar-extras">
+                    <Link to="/about">
+                        <i className="fa fa-info-circle"></i>About
+                    </Link>
+                    <Link to="/contact">
+                        <i className="fa fa-envelope"></i>Contact
+                    </Link>
+                    <br />
+                    <Link to="/settings">
+                        <i className="fa fa-cog"></i>Settings
+                    </Link>
+                    <Link to="/documentation">
+                        <i className="fa fa-code"></i>Code
+                    </Link>
+                </div>
                 <div className="clear20" />
                 <div className="clear20" />
             </Burger>

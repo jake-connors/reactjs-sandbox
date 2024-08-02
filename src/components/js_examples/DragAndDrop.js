@@ -5,6 +5,7 @@ import PopupNotifyHelper from "../PopupNotifyHelper";
 function DragAndDrop() {
     const [draggableItems1, setDraggableItems1] = useState([]);
     const [draggableItems2, setDraggableItems2] = useState([]);
+    const [option, setOption] = useState({});
 
     useEffect(() => {
         const tempDraggableItems1 = [
