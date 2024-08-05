@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { slide as Burger } from "react-burger-menu";
 import SearchBar from "./SearchBar";
 import { useEffect } from "react";
+import StylePicker from "./StylePicker";
 
 const styles = {
     bmMenuWrap: {
@@ -9,15 +10,21 @@ const styles = {
     },
 };
 
-function MobileMenu({ menuItems }) {
+function MobileMenu({ menuItems, isDesktop }) {
+
+    const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     useEffect(() => {
         console.log('use effect mobile menu . menuItems (navItems) : ', menuItems);
     }, []);
 
+    function handleCloseMenu() {
+        setMenuIsOpen(false);
+    }
+    
     return (
         <div id="mobile-menu">
-            <Burger right width={"100%"} styles={styles}>
+            <Burger right width={"100%"} styles={styles} isOpen={menuIsOpen}>
                 <SearchBar />
                 <div className="clear10" />
                 {menuItems.map((item, i) => {
@@ -26,7 +33,7 @@ function MobileMenu({ menuItems }) {
                             <>
                                 <span className="menu-item-label">{item.title}</span>
                                 {item.children.map((child, ii) => {
-                                    <Link key={ii} to={child.url} className="menu-item-child">{child.title}</Link>
+                                    <Link key={ii} to={child.url} className="menu-item-child" onClick={handleCloseMenu}>{child.title}</Link>
                                 })}
                             </>
                             
@@ -38,20 +45,21 @@ function MobileMenu({ menuItems }) {
                     </React.Fragment>
                 })}
                 <div className="col-sm-2" id="navbar-extras">
-                    <Link to="/about">
+                    <Link to="/about" onClick={handleCloseMenu}>
                         <i className="fa fa-info-circle"></i>About
                     </Link>
-                    <Link to="/contact">
+                    <Link to="/contact" onClick={handleCloseMenu}>
                         <i className="fa fa-envelope"></i>Contact
                     </Link>
                     <br />
-                    <Link to="/settings">
+                    <Link to="/settings" onClick={handleCloseMenu}>
                         <i className="fa fa-cog"></i>Settings
                     </Link>
-                    <Link to="/documentation">
+                    <Link to="/documentation" onClick={handleCloseMenu}>
                         <i className="fa fa-code"></i>Code
                     </Link>
                 </div>
+                <StylePicker isDesktop={isDesktop}/>
                 <div className="clear20" />
                 <div className="clear20" />
             </Burger>

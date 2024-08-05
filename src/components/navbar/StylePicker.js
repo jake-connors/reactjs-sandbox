@@ -15,25 +15,25 @@ function StylePicker({ isDesktop }) {
     ];
 
     return (
-        <div id="style-picker-all">
+        <span id="style-picker-all" className="navbar-item-nochild">
         {isDesktop ? 
             <>
             {styleOptions.map((option, i) => (
-                <div key={i} className={"style-picker-option " + option.className}>
-                    <div className="style-picker-option-primary"></div>
-                </div>
+                <span key={i} className={"style-picker-option " + option.className}>
+                    <span className="style-picker-option-primary"></span>
+                </span>
             ))}
             </> 
         : 
             <>
             {styleOptions.map((option, i) => (
-                <div key={i} className={"style-picker-option " + option.className}>
-                    <div className="style-picker-option-primary"></div>
-                </div>
+                <span key={i} className={"style-picker-option " + option.className}>
+                    <span className="style-picker-option-primary"></span>
+                </span>
             ))}
             </>
         }
-        </div>
+        </span>
     );
 }
 

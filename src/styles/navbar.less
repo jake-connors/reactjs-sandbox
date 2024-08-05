@@ -5,7 +5,7 @@
     position: relative;
     z-index: 1000;
     height: 70px;
-    padding: 12px 15px 0;
+    padding: 12px 12px 0;
     background-color: @header-bg;
     #navbar-upper {
         #logo-link {
@@ -32,7 +32,7 @@
         display: block;
         padding: 0 15px;
         background-color: #000;
-        height: 35px;
+        height: 36px;
 
         .navbar-item-nochild, .dropdown-toggle-groupie {
             display: inline-block;
@@ -230,16 +230,17 @@
 }
 
 #style-picker-all {
-    #style-picker-option {
-        height: 50px;
-        width: 50px;
+    vertical-align: middle;
+    .style-picker-option {
+        height: 17px;
+        width: 17px;
         overflow: hidden;
         background-color: orange;
     }
-    #style-picker-option-primary {
+    .style-picker-option-primary {
         height: 0;
         width: 0;
-        border-top: 50px solid gray;
-        border-right: 50px solid transparent;
+        border-top: 17px solid gray;
+        border-right: 30px solid transparent;
     }
 }
