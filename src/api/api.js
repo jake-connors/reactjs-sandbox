@@ -14,3 +14,10 @@ export function test_api_post() {
     };
     return go.post("/api/test", postObj);
 }
+
+export function get_user_info_cookie() {
+    var getObj = {
+        mode: "getUserInfo"
+    };
+    return go.get("/api/user/user_info_cookie", getObj);
+}

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import NavbarItem from "../components/navbar/NavbarItem";
 import SearchBar from "../components/navbar/SearchBar";
 import MobileMenu from "../components/navbar/MobileMenu";
+import StylePicker from "../components/navbar/StylePicker";
 
 function Navbar() {
 

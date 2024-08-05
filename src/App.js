@@ -10,13 +10,23 @@ import JsExamples from "./containers/JsExamples";
 import Email from "./containers/php_examples/Email";
 import Excel from "./containers/php_examples/Excel";
 import Other from "./containers/Other";
+import { setUserInfo } from "./redux/actions/";
+import { get_user_info_cookie } from "./api/api";
 
-function App() {
+function App({ dispatch }) {
 
     useEffect(() => {
         // console.clear();
         console.log('app loaded v4.0');
+        init();
     }, []);
+
+    async function init() {
+        let resp = await get_user_info_cookie();
+        console.log('resp : ', resp);
+        let userInfo = resp.user_info;
+        dispatch(setUserInfo(userInfo));
+    }
 
     return (
         <Router>

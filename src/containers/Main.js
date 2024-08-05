@@ -1,10 +1,12 @@
+import { connect } from "react-redux";
 import { useEffect } from "react";
 import { test_api_get, test_api_post } from "../api/api";
 
-function Main() {
+function Main({ user_info }) {
 
     useEffect(() => {
         console.log('main loaded');
+        console.log('redux-state: user_info: ', user_info);
     }, []);
 
     async function handleTest(method) {
@@ -26,4 +28,10 @@ function Main() {
     );
 }
 
-export default Main;
+function mapStateToProps(state) {
+    return {
+        user_info: state.user_info
+    }
+} 
+
+export default connect(mapStateToProps)(Main);
