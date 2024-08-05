@@ -4,16 +4,17 @@ import { slide as Burger } from "react-burger-menu";
 import SearchBar from "./SearchBar";
 import StylePicker from "./StylePicker";
 
-const styles = {
-    bmMenuWrap: {
-        transition: "all 0.25s ease 0s",
-    },
-};
 
 function MobileMenu({ menuItems, isDesktop }) {
-
+    
     const [menuIsOpen, setMenuIsOpen] = useState(false);
-
+    
+    const styles = {
+        bmMenuWrap: {
+            transition: "all 0.25s ease 0s",
+        },
+    };
+    
     useEffect(() => {
         console.log('use effect mobile menu . menuItems (navItems) : ', menuItems);
     }, []);
@@ -44,6 +45,7 @@ function MobileMenu({ menuItems, isDesktop }) {
                         }
                     </React.Fragment>
                 })}
+                <StylePicker isDesktop={isDesktop}/>
                 <div className="col-sm-2" id="navbar-extras">
                     <Link to="/about" onClick={handleCloseMenu}>
                         <i className="fa fa-info-circle"></i>About
@@ -59,7 +61,8 @@ function MobileMenu({ menuItems, isDesktop }) {
                         <i className="fa fa-code"></i>Code
                     </Link>
                 </div>
-                <StylePicker isDesktop={isDesktop}/>
+                <div className="clear20" />
+                <div className="clear20" />
                 <div className="clear20" />
                 <div className="clear20" />
             </Burger>

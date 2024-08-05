@@ -1,4 +1,5 @@
 function user_info(state = [], action) {
+    console.log('user info , action : ' , action);
     switch (action.type) {
         case "SET_USER_INFO":
             var userInfo = {

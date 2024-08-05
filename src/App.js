@@ -1,4 +1,5 @@
-import { useEffect, forwardRef } from "react";
+import { connect } from "react-redux";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from "./containers/Navbar";
 import Main from "./containers/Main";
@@ -13,7 +14,7 @@ import Other from "./containers/Other";
 import { setUserInfo } from "./redux/actions/";
 import { get_user_info_cookie } from "./api/api";
 
-function App({ dispatch }) {
+function App({ dispatch, user_info }) {
 
     useEffect(() => {
         // console.clear();
@@ -24,14 +25,14 @@ function App({ dispatch }) {
     async function init() {
         let resp = await get_user_info_cookie();
         console.log('resp : ', resp);
-        let userInfo = resp.user_info;
+        let userInfo = resp.data.user_info_cookie;
         dispatch(setUserInfo(userInfo));
     }
 
     return (
         <Router>
             <Navbar />
-            <div className="container">
+            <div id="app-container" className={"container " + user_info.style}>
                 <Routes>
                     <Route path="/" exact Component={Main} />
                     <Route path="/about" exact Component={About} />
@@ -48,4 +49,10 @@ function App({ dispatch }) {
     );
 }
 
-export default forwardRef(App);
+function mapStateToProps(state) {
+    return {
+        user_info: state.user_info
+    }
+} 
+
+export default connect(mapStateToProps)(App);

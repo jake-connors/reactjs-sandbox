@@ -6,7 +6,7 @@
     z-index: 1000;
     height: 70px;
     padding: 12px 12px 0;
-    background-color: @header-bg;
+    // background-color: @header-bg;
     #navbar-upper {
         #logo-link {
             display: block;
@@ -72,7 +72,7 @@
 
 #navbar-mobile {
     height: 50px;
-    background-color: @header-bg;
+    // background-color: @header-bg;
     #logo-link-mobile {
         img {
             height: 34px;
@@ -84,10 +84,10 @@
         /* Position and sizing of burger button */
         .bm-burger-button {
             position: absolute;
-            width: 28px;
-            height: 22px;
+            width: 25px;
+            height: 20px;
             right: 5px;
-            top: 6px;
+            top: -30px;
         }
 
         /* Color/shape of burger icon bars */
@@ -123,7 +123,7 @@
 
         /* General sidebar styles */
         .bm-menu {
-            background: @header-bg;
+            // background: @header-bg;
             padding: 5px;
             font-size: 1.15em;
         }
@@ -232,15 +232,111 @@
 #style-picker-all {
     vertical-align: middle;
     .style-picker-option {
+        display: inline-block;
         height: 17px;
         width: 17px;
         overflow: hidden;
-        background-color: orange;
+        margin-right: 2px;
+        margin-left: 2px;
+        border: 1px solid white;
+        &:hover,
+        &:focus {
+            color: #262626;
+            text-decoration: none;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            transform: scale(1.35);
+            transition: .25s;
+        }
+        .style-picker-option-primary {
+            height: 0;
+            width: 0;
+            border-right: 24px solid transparent;
+            display: inline-block;
+        }
+        /* each option */
+        &.asi-main {
+            background-color: yellow;
+            .style-picker-option-primary {
+                border-top: 24px solid #393d56;
+            }
+        }
+        &.asi-alt {
+            background-color: yellow;
+            .style-picker-option-primary {
+                border-top: 24px solid #393d56;
+            }
+        }
+        &.asi-csgo {
+            background-color: orange;
+            .style-picker-option-primary {
+                border-top: 24px solid whitesmoke;
+            }
+        }
+        &.asi-csgo-alt {
+            background-color: whitesmoke;
+            .style-picker-option-primary {
+                border-top: 24px solid orange;
+            }
+        }
     }
-    .style-picker-option-primary {
-        height: 0;
-        width: 0;
-        border-top: 17px solid gray;
-        border-right: 30px solid transparent;
+}
+
+#navbar-all {
+    &.asi-main {
+        background-color: yellow;
+        #navbar-mobile {
+            #mobile-menu {
+                .bm-menu {
+                    background: yellow;
+                }
+            }
+        }
+    }
+    &.asi-alt {
+        background-color: #393d56;
+        #navbar-mobile {
+            #mobile-menu {
+                .bm-menu {
+                    background: #393d56;
+                }
+            }
+        }
+    }
+    &.asi-csgo {
+        background-color: orange;
+        #navbar-mobile {
+            #mobile-menu {
+                .bm-menu {
+                    background: orange;
+                }
+            }
+        }
+    }
+    &.asi-csgo-alt {
+        background-color: whitesmoke;
+        #navbar-mobile {
+            #mobile-menu {
+                .bm-menu {
+                    background: whitesmoke;
+                }
+            }
+        }
+    }
+
+}
+
+#app-container {
+    &.asi-main {
+        background-color: yellow;
+    }
+    &.asi-alt {
+        background-color: #393d56;
+    }
+    &.asi-csgo {
+        background-color: whitesmoke;
+    }
+    &.asi-csgo-alt {
+        background-color: orange;
     }
 }

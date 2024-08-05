@@ -1,3 +1,4 @@
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavbarItem from "../components/navbar/NavbarItem";
@@ -5,7 +6,7 @@ import SearchBar from "../components/navbar/SearchBar";
 import MobileMenu from "../components/navbar/MobileMenu";
 import StylePicker from "../components/navbar/StylePicker";
 
-function Navbar() {
+function Navbar({ user_info }) {
 
     const [isDesktop, setIsDesktop] = useState(false);
 
@@ -39,7 +40,7 @@ function Navbar() {
     ];
 
     return (
-        <div className="navbar-all">
+        <div id="navbar-all" className={user_info.style}>
         {isDesktop && (
             <div id="navbar-desktop" className="container-fluid">
                 <div className="row" id="navbar-upper">
@@ -114,4 +115,10 @@ function Navbar() {
     );
 }
 
-export default Navbar;
+function mapStateToProps(state) {
+    return {
+        user_info: state.user_info
+    }
+} 
+
+export default connect(mapStateToProps)(Navbar);
