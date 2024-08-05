@@ -1,7 +1,7 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { slide as Burger } from "react-burger-menu";
 import SearchBar from "./SearchBar";
-import { useEffect } from "react";
 import StylePicker from "./StylePicker";
 
 const styles = {
