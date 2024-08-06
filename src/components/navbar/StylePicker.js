@@ -27,7 +27,7 @@ function StylePicker({ isDesktop, dispatch, user_info }) {
         {isDesktop ? 
             <>
             {styleOptions.map((option, i) => (
-                <span key={i} className={"style-picker-option " + option.className + user_info.style == option.className ? " active" : ""} 
+                <span key={i} className={`style-picker-option ${option.className} ${user_info.style == option.className ? " active" : ""}`} 
                     onClick={() => {
                         handleStyleClicked(option.className);
                     }}
@@ -39,7 +39,7 @@ function StylePicker({ isDesktop, dispatch, user_info }) {
         : 
             <>
             {styleOptions.map((option, i) => (
-                <span key={i} className={"style-picker-option " + option.className + user_info.style == option.className ? " active" : ""} 
+                <span key={i} className={`style-picker-option ${option.className} ${user_info.style == option.className ? " active" : ""}`} 
                     onClick={() => {
                         handleStyleClicked(option.className);
                     }}
