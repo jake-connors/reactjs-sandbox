@@ -2,11 +2,10 @@ import { connect } from "react-redux";
 import { useEffect } from "react";
 import { setUserInfo } from "../../redux/actions";
 
-function StylePicker({ isDesktop, dispatch }) {
+function StylePicker({ isDesktop, dispatch, user_info }) {
 
     useEffect(() => {
         console.log('StylePicker isDesktop : ', isDesktop);
-        // dispatch style type to redux ?
     }, []);
 
     const styleOptions = [
@@ -28,7 +27,7 @@ function StylePicker({ isDesktop, dispatch }) {
         {isDesktop ? 
             <>
             {styleOptions.map((option, i) => (
-                <span key={i} className={"style-picker-option " + option.className} 
+                <span key={i} className={"style-picker-option " + option.className + user_info.style == option.className ? " active" : ""} 
                     onClick={() => {
                         handleStyleClicked(option.className);
                     }}
@@ -40,7 +39,7 @@ function StylePicker({ isDesktop, dispatch }) {
         : 
             <>
             {styleOptions.map((option, i) => (
-                <span key={i} className={"style-picker-option " + option.className} 
+                <span key={i} className={"style-picker-option " + option.className + user_info.style == option.className ? " active" : ""} 
                     onClick={() => {
                         handleStyleClicked(option.className);
                     }}
@@ -54,4 +53,10 @@ function StylePicker({ isDesktop, dispatch }) {
     );
 }
 
-export default connect()(StylePicker);
+function mapStateToProps(state) {
+    return {
+        user_info: state.user_info
+    }
+}
+
+export default connect(mapStateToProps)(StylePicker);

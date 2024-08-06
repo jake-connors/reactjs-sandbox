@@ -123,22 +123,22 @@ function DragAndDrop() {
                         >
                             {draggableItems2.map((item, i) => (
                                 <Draggable key={i} index={parseInt(item.id)} draggableId={item.id.toString()}>
-                                    {(providedDraggable, snapshotDraggable) => (
+                                    {(providedDraggable2, snapshotDraggable2) => (
                                         <div
-                                            ref={providedDraggable.innerRef}
-                                            {...providedDraggable.draggableProps}
-                                            {...providedDraggable.dragHandleProps}
+                                            ref={providedDraggable2.innerRef}
+                                            {...providedDraggable2.draggableProps}
+                                            {...providedDraggable2.dragHandleProps}
                                             style={{
                                                 // some basic styles to make the items look a bit nicer
                                                 userSelect: "none",
 
                                                 // change background colour if dragging
-                                                background: snapshotDraggable.isDragging
+                                                background: snapshotDraggable2.isDragging
                                                     ? "lightgreen"
                                                     : "grey",
 
                                                 // styles we need to apply on draggables
-                                                ...providedDraggable.draggableProps.style,
+                                                ...providedDraggable2.draggableProps.style,
                                                 left:"auto !important",
                                                 top:"auto !important"
                                             }}

@@ -20,6 +20,7 @@ function MobileMenu({ menuItems, isDesktop }) {
     }, []);
 
     function handleCloseMenu() {
+        console.log('setting menu isOpen to false');
         setMenuIsOpen(false);
     }
     
@@ -28,23 +29,22 @@ function MobileMenu({ menuItems, isDesktop }) {
             <Burger right width={"100%"} styles={styles} isOpen={menuIsOpen}>
                 <SearchBar />
                 <div className="clear10" />
-                {menuItems.map((item, i) => {
+                {menuItems.map((item, i) => (
                     <React.Fragment key={i}>
                         {item.children.length ? 
                             <>
                                 <span className="menu-item-label">{item.title}</span>
-                                {item.children.map((child, ii) => {
+                                {item.children.map((child, ii) => (
                                     <Link key={ii} to={child.url} className="menu-item-child" onClick={handleCloseMenu}>{child.title}</Link>
-                                })}
+                                ))}
                             </>
-                            
                         :
                         <Link className="navbar-item-nochild" to={item.url}>
                             {item.title}
                         </Link>
                         }
                     </React.Fragment>
-                })}
+                ))}
                 <StylePicker isDesktop={isDesktop}/>
                 <div className="col-sm-2" id="navbar-extras">
                     <Link to="/about" onClick={handleCloseMenu}>
