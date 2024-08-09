@@ -1,37 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import PopupNotifyHelper from "../PopupNotifyHelper";
 
 function DragAndDrop() {
     const [option, setOption] = useState({});
-    // const [draggableItems1, setDraggableItems1] = useState([]);
-    // const [draggableItems2, setDraggableItems2] = useState([]);
+    const [draggableItems1, setDraggableItems1] = useState([]);
+    const [draggableItems2, setDraggableItems2] = useState([]);
 
-    // useEffect(() => {
-    //     const tempDraggableItems1 = [
-    //         { id: "1", name: "123" },
-    //         { id: "2", name: "593" },
-    //         { id: 3, name: "xyz" }
-    //     ];
-    //     const tempDraggableItems2 = [
-    //         { id: "4", name: "1111" },
-    //         { id: "5", name: "999" },
-    //         { id: 6, name:"abc" }
-    //     ];
-    //     setDraggableItems1(tempDraggableItems1);
-    //     setDraggableItems2(tempDraggableItems2);
-    // }, []);
-
-    // const draggableItems1 = [
-    //     { id: "1", name: "123" },
-    //     { id: "2", name: "593" },
-    //     { id: 3, name: "xyz" }
-    // ];
-    // const draggableItems2 = [
-    //     { id: "4", name: "1111" },
-    //     { id: "5", name: "999" },
-    //     { id: 6, name:"abc" }
-    // ];
+    useEffect(() => {
+        setDraggableItems1([{ id: "1", name: "123" },{ id: "2", name: "593" },{ id: "3", name: "3293" }]);
+        setDraggableItems2([{ id: "4", name: "ABC" },{ id: "5", name: "99_777" },{ id: "6", name: "ZYZ" }]);
+    }, []);
 
     function handleDropdownChange(opt) {
         console.log('opt ', opt);
@@ -49,30 +28,49 @@ function DragAndDrop() {
 
     function onDragEnd(result) {
         console.log('result : ' ,result);
-        if (
-            !result.destination ||
-            (result.source.index == result.destination.index &&
-                result.source.droppableId == result.destination.droppableId)
-        ) {
+        const startDroppableId = result.source.droppableId;
+        const endDroppableId = result.destination.droppableId;
+        const startIndex = result.source.index;
+        const endIndex = result.source.index;
+        const endDraggableId = result.destination.index;
+        if (!result.destination || (startIndex == endIndex && startDroppableId == endDroppableId)) {
             // if dropped outside the list
             return;
         }
+        reorderItems(startDroppableId, endDroppableId, endDraggableId, startIndex, endIndex);
+    }
 
-        const start = result.source.droppableId;
-        const end = result.destination.droppableId;
-        // If start is the same as end, we're in the same column
-        if (start === end) {
-            if (start == "droppable-1") {
-                console.log('start 1 (start == end)');
-            } else if (start == "droppable-2") {
-                console.log('start 2 (start == end)');
+    function reorderItems(startDroppableId, endDroppableId, endDraggableId, startIndex, endIndex) {       
+        var tempDraggableItems1 = [...draggableItems1];
+        var tempDraggableItems2 = [...draggableItems2];
+        if (startDroppableId === endDroppableId) {
+            if (startIndex == "droppable-1") {
+                // UPPER to UPPER 
+                let tempMoved = tempDraggableItems1[endDraggableId];
+                tempDraggableItems1.splice(startIndex, 1);
+                tempDraggableItems1.splice(endIndex, 0, tempMoved);
+                setDraggableItems1[tempDraggableItems1];
+            } else if (startIndex == "droppable-2") {
+                // LOWER to LOWER
+                let tempMoved = tempDraggableItems2[endDraggableId];
+                tempDraggableItems2.splice(startIndex, 1);
+                tempDraggableItems2.splice(endIndex, 0, tempMoved);
+                setDraggableItems2[tempDraggableItems2];
             }
         } else {
-            if (start == "droppable-1") {
-                console.log('start 1 (start != end)');
-            } else if (start == "droppable-2") {
-                console.log('start 2 (start != end)');
+            if (startIndex == "droppable-1") {
+                // UPPER to LOWER
+                let tempMoved = tempDraggableItems1[endDraggableId];
+                tempDraggableItems1.splice(startIndex, 1);
+                tempDraggableItems2.splice(endIndex, 0, tempMoved);
+            } else if (startIndex == "droppable-2") {
+                // LOWER to UPPER
+                let tempMoved = tempDraggableItems2[endDraggableId];
+                tempDraggableItems1.splice(endIndex, 0, tempMoved);
+                tempDraggableItems2.splice(startIndex, 1);
             }
+            setDraggableItems1[tempDraggableItems1];
+            setDraggableItems2[tempDraggableItems2];
         }
     }
 
@@ -91,7 +89,7 @@ function DragAndDrop() {
                                 border: "1px solid black"
                             }}
                         >
-                            {[{ id: "1", name: "123" },{ id: "2", name: "593" },{ id: 3, name: "xyz" }].map((item, i) => (
+                            {draggableItems1.map((item, i) => (
                                 <Draggable key={i} index={parseInt(item.id)} draggableId={item.id.toString()}>
                                     {(providedDraggable, snapshotDraggable) => (
                                         <div
@@ -132,7 +130,7 @@ function DragAndDrop() {
                                 border: "1px solid black"
                             }}
                         >
-                            {[{ id: "4", name: "1111" },{id: "5", name: "999" },{ id: 6, name:"abc" }].map((item, i) => (
+                            {draggableItems2.map((item, i) => (
                                 <Draggable key={i} index={parseInt(item.id)} draggableId={item.id.toString()}>
                                     {(providedDraggable2, snapshotDraggable2) => (
                                         <div
