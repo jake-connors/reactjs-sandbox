@@ -1,26 +1,37 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import PopupNotifyHelper from "../PopupNotifyHelper";
 
 function DragAndDrop() {
-    const [draggableItems1, setDraggableItems1] = useState([]);
-    const [draggableItems2, setDraggableItems2] = useState([]);
     const [option, setOption] = useState({});
+    // const [draggableItems1, setDraggableItems1] = useState([]);
+    // const [draggableItems2, setDraggableItems2] = useState([]);
 
-    useEffect(() => {
-        const tempDraggableItems1 = [
-            { id: "1", name: "123" },
-            { id: "2", name: "593" },
-            { id: 3, name: "xyz" }
-        ];
-        const tempDraggableItems2 = [
-            { id: "4", name: "1111" },
-            { id: "5", name: "999" },
-            { id: 6, name:"abc" }
-        ];
-        setDraggableItems1(tempDraggableItems1);
-        setDraggableItems2(tempDraggableItems2);
-    }, []);
+    // useEffect(() => {
+    //     const tempDraggableItems1 = [
+    //         { id: "1", name: "123" },
+    //         { id: "2", name: "593" },
+    //         { id: 3, name: "xyz" }
+    //     ];
+    //     const tempDraggableItems2 = [
+    //         { id: "4", name: "1111" },
+    //         { id: "5", name: "999" },
+    //         { id: 6, name:"abc" }
+    //     ];
+    //     setDraggableItems1(tempDraggableItems1);
+    //     setDraggableItems2(tempDraggableItems2);
+    // }, []);
+
+    // const draggableItems1 = [
+    //     { id: "1", name: "123" },
+    //     { id: "2", name: "593" },
+    //     { id: 3, name: "xyz" }
+    // ];
+    // const draggableItems2 = [
+    //     { id: "4", name: "1111" },
+    //     { id: "5", name: "999" },
+    //     { id: 6, name:"abc" }
+    // ];
 
     function handleDropdownChange(opt) {
         console.log('opt ', opt);
@@ -66,7 +77,7 @@ function DragAndDrop() {
     }
 
     return (
-        <div className="form-group">
+        <div id="drag-and-drop-container" className="form-group">
             <label>DragAndDrop</label>
             {dropdownReact}
             <DragDropContext onDragEnd={onDragEnd}>
@@ -80,7 +91,7 @@ function DragAndDrop() {
                                 border: "1px solid black"
                             }}
                         >
-                            {draggableItems1.map((item, i) => (
+                            {[{ id: "1", name: "123" },{ id: "2", name: "593" },{ id: 3, name: "xyz" }].map((item, i) => (
                                 <Draggable key={i} index={parseInt(item.id)} draggableId={item.id.toString()}>
                                     {(providedDraggable, snapshotDraggable) => (
                                         <div
@@ -98,8 +109,8 @@ function DragAndDrop() {
 
                                                 // styles we need to apply on draggables
                                                 ...providedDraggable.draggableProps.style,
-                                                left:"auto !important",
-                                                top:"auto !important"
+                                                // left:"auto !important",
+                                                // top:"auto !important"
                                             }}
                                         >
                                             {"Name: " + item.name}
@@ -121,7 +132,7 @@ function DragAndDrop() {
                                 border: "1px solid black"
                             }}
                         >
-                            {draggableItems2.map((item, i) => (
+                            {[{ id: "4", name: "1111" },{id: "5", name: "999" },{ id: 6, name:"abc" }].map((item, i) => (
                                 <Draggable key={i} index={parseInt(item.id)} draggableId={item.id.toString()}>
                                     {(providedDraggable2, snapshotDraggable2) => (
                                         <div
@@ -139,8 +150,8 @@ function DragAndDrop() {
 
                                                 // styles we need to apply on draggables
                                                 ...providedDraggable2.draggableProps.style,
-                                                left:"auto !important",
-                                                top:"auto !important"
+                                                // left:"auto !important",
+                                                // top:"auto !important"
                                             }}
                                         >
                                             {"Name: " + item.name}

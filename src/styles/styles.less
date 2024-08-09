@@ -28,8 +28,16 @@
     display: none;
 }
 
-.drag {
-    /* for react-beautiful-dnd when in react-modal */
-    top: auto !important;
-    left: auto !important;
+
+#drag-and-drop-container {
+    /* for react-beautiful-dnd, draggables won't jump away from mouse */
+    transform: none !important; 
+    div[data-rbd-draggable-context-id], div[data-rbd-droppable-context-id] {
+        margin: 0px !important;
+        padding: 0px !important;
+        
+        /* set these when in react-modal */
+        // top: auto !important;
+        // left: auto !important;
+    }
 }
