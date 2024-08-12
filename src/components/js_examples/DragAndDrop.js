@@ -41,16 +41,18 @@ function DragAndDrop() {
     }
 
     function reorderItems(startDroppableId, endDroppableId, endDraggableId, startIndex, endIndex) {       
+        console.log('start drop id ', startDroppableId);
+        console.log('end drop id ', endDraggableId);
         var tempDraggableItems1 = [...draggableItems1];
         var tempDraggableItems2 = [...draggableItems2];
         if (startDroppableId === endDroppableId) {
-            if (startIndex == "droppable-1") {
+            if (startDroppableId == "1") {
                 // UPPER to UPPER 
                 let tempMoved = tempDraggableItems1[endDraggableId];
                 tempDraggableItems1.splice(startIndex, 1);
                 tempDraggableItems1.splice(endIndex, 0, tempMoved);
                 setDraggableItems1[tempDraggableItems1];
-            } else if (startIndex == "droppable-2") {
+            } else if (startDroppableId == "2") {
                 // LOWER to LOWER
                 let tempMoved = tempDraggableItems2[endDraggableId];
                 tempDraggableItems2.splice(startIndex, 1);
@@ -58,12 +60,12 @@ function DragAndDrop() {
                 setDraggableItems2[tempDraggableItems2];
             }
         } else {
-            if (startIndex == "droppable-1") {
+            if (startDroppableId == "1") {
                 // UPPER to LOWER
                 let tempMoved = tempDraggableItems1[endDraggableId];
                 tempDraggableItems1.splice(startIndex, 1);
                 tempDraggableItems2.splice(endIndex, 0, tempMoved);
-            } else if (startIndex == "droppable-2") {
+            } else if (startDroppableId == "2") {
                 // LOWER to UPPER
                 let tempMoved = tempDraggableItems2[endDraggableId];
                 tempDraggableItems1.splice(endIndex, 0, tempMoved);

@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import { setUserInfo } from "../../redux/actions";
+import { save_user_info_cookie } from "../../api/api";
 
 function StylePicker({ isDesktop, dispatch, user_info }) {
 
@@ -15,11 +16,14 @@ function StylePicker({ isDesktop, dispatch, user_info }) {
         { id: 4, className: "asi-csgo-alt" },
     ];
 
-    function handleStyleClicked(className) {
-        let newUserInfoStyle = {
+    async function handleStyleClicked(className) {
+        let newUserInfo = {
+            ...user_info,
             style: className
         };
-        dispatch(setUserInfo(newUserInfoStyle));
+        dispatch(setUserInfo(newUserInfo));
+        let resp = await save_user_info_cookie(newUserInfo);
+        console.log('resp (save user info) ', resp);
     }
 
     return (

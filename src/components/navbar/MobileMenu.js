@@ -19,14 +19,18 @@ function MobileMenu({ menuItems, isDesktop }) {
         console.log('use effect mobile menu . menuItems (navItems) : ', menuItems);
     }, []);
 
+    function handleOpenMenu() {
+        setMenuIsOpen(true);
+    }
+
     function handleCloseMenu() {
-        console.log('setting menu isOpen to false');
         setMenuIsOpen(false);
     }
     
+    
     return (
         <div id="mobile-menu">
-            <Burger right width={"100%"} styles={styles} isOpen={menuIsOpen}>
+            <Burger right width={"100%"} styles={styles} onOpen={handleOpenMenu} onClose={handleCloseMenu} isOpen={menuIsOpen}>
                 <SearchBar />
                 <div className="clear10" />
                 {menuItems.map((item, i) => (
