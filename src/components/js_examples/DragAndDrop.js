@@ -63,9 +63,9 @@ function DragAndDrop() {
     }
 
     return (
-        <div id="drag-and-drop-container" className="form-group">
-            <label className="col-sm-12">DragAndDrop
-                <button className="btn btn-primary" onClick={initDraggableLists} style={{ marginLeft: "15px" }}>Reset</button>
+        <div id="drag-and-drop-container" className="row form-group">
+            <label className="col-sm-12" style={{ marginBottom: "10px" }}>DragAndDrop
+                <button className="btn btn-primary" onClick={initDraggableLists} style={{ marginLeft: "15px", fontSize: "12px" }}>Reset</button>
             </label>
             <DragDropContext onDragEnd={onDragEnd} onDragStart={() => { setIsDragging(true); }}>
                 <div className="col-sm-6 droppable-block">
