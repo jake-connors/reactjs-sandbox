@@ -4,6 +4,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 function DragAndDrop() {
     const [draggableItems1, setDraggableItems1] = useState([]);
     const [draggableItems2, setDraggableItems2] = useState([]);
+    const [isDragging, setIsDragging] = useState(false);
 
     useEffect(() => {
         initDraggableLists();
@@ -25,6 +26,7 @@ function DragAndDrop() {
 
     function onDragEnd(result) {
         console.log('result : ' ,result);
+        setIsDragging(false);
         if (!result.destination || 
             (result.source.index == result.destination.index &&
                 result.source.droppableId == result.destination.droppableId)
@@ -62,15 +64,18 @@ function DragAndDrop() {
 
     return (
         <div id="drag-and-drop-container" className="form-group">
-            <label>DragAndDrop</label>
-            <DragDropContext onDragEnd={onDragEnd}>
+            <label className="col-sm-12">DragAndDrop
+                <button className="btn btn-primary" onClick={initDraggableLists} style={{ marginLeft: "15px" }}>Reset</button>
+            </label>
+            <DragDropContext onDragEnd={onDragEnd} onDragStart={() => { setIsDragging(true); }}>
+                <div className="col-sm-6 droppable-block">
                 <Droppable droppableId="1">
                     {(providedDroppable, snapshotDroppable) => (
                         <div
                             {...providedDroppable.droppableProps}
                             ref={providedDroppable.innerRef}
                             style={{
-                                background: snapshotDroppable.isDraggingOver ? "lightblue" : "lightgrey",
+                                background: snapshotDroppable.isDraggingOver || isDragging ? "lightblue" : "lightgrey",
                                 border: "1px solid black"
                             }}
                         >
@@ -95,7 +100,7 @@ function DragAndDrop() {
                                             }}
                                         >
                                             <div className="draggable-block">
-                                                <span>{"Name: " + item.name}</span>
+                                                <span>{item.name}</span>
                                             </div>
                                         </div>
                                     )}
@@ -105,13 +110,15 @@ function DragAndDrop() {
                         </div>
                     )}
                 </Droppable>
+                </div>
+                <div className="col-sm-6 droppable-block">
                 <Droppable droppableId="2">
                     {(providedDroppable2, snapshotDroppable2) => (
                         <div
                             {...providedDroppable2.droppableProps}
                             ref={providedDroppable2.innerRef}
                             style={{
-                                background: snapshotDroppable2.isDraggingOver ? "lightblue" : "lightgrey",
+                                background: snapshotDroppable2.isDraggingOver || isDragging ? "lightblue" : "lightgrey",
                                 border: "1px solid black"
                             }}
                         >
@@ -136,7 +143,7 @@ function DragAndDrop() {
                                             }}
                                         >
                                             <div className="draggable-block">
-                                                <span>{"Name: " + item.name}</span>
+                                                <span>{item.name}</span>
                                             </div>
                                         </div>
                                     )}
@@ -146,6 +153,7 @@ function DragAndDrop() {
                         </div>
                     )}
                 </Droppable>
+                </div>
             </DragDropContext>
         </div>
     );
