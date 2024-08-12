@@ -15,18 +15,22 @@ function MobileMenu({ menuItems, isDesktop }) {
         },
     };
     
-    function handleOpenMenu() {
-        setMenuIsOpen(true);
-    }
-
     function handleCloseMenu() {
         setMenuIsOpen(false);
     }
-    
+
+    function onStateChange(state) {
+        console.log('on state change, state : ', state);
+        setMenuIsOpen(state.isOpen);
+    }
     
     return (
         <div id="mobile-menu">
-            <Burger right width={"100%"} styles={styles} onOpen={handleOpenMenu} onClose={handleCloseMenu} isOpen={menuIsOpen}>
+            <Burger right width={"100%"} 
+                styles={styles}
+                isOpen={menuIsOpen}
+                onStateChange={onStateChange}
+            >
                 <SearchBar />
                 <div className="clear10" />
                 {menuItems.map((item, i) => (
@@ -62,8 +66,7 @@ function MobileMenu({ menuItems, isDesktop }) {
                     </Link>
                 </div>
                 <div className="clear20" />
-                <div className="clear20" />
-                <div className="clear20" />
+                <br/>
                 <div className="clear20" />
             </Burger>
         </div>
