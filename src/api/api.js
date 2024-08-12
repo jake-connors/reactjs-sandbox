@@ -12,5 +12,5 @@ export function save_user_info_cookie(newUserInfo) {
         mode: "saveUserInfo",
         newUserInfo
     };
-    return go.get("/api/user/user_info_cookie", postObj);
+    return go.post("/api/user/user_info_cookie", postObj);
 }

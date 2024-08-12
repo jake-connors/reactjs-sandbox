@@ -33,7 +33,7 @@ class User_User_Info_Cookie extends API_Endpoint
     }
 
     private function _getUserInfo() {
-        $user_info_cookie = $_COOKIE["user_info"] ? json_decode($_COOKIE["user_info"], 1) : ["style" => "asi-main"];
+        $user_info_cookie = isset($_COOKIE["user_info"]) ? json_decode($_COOKIE["user_info"], 1) : ["style" => "asi-main"];
         echo json_encode(["success" => 1, "user_info_cookie" => $user_info_cookie]);
     }
 }
