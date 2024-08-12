@@ -1,37 +1,34 @@
 import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import PopupNotifyHelper from "../PopupNotifyHelper";
 
 function DragAndDrop() {
-    const [option, setOption] = useState({});
     const [draggableItems1, setDraggableItems1] = useState([]);
     const [draggableItems2, setDraggableItems2] = useState([]);
 
     useEffect(() => {
-        setDraggableItems1([{ id: "1", name: "123" },{ id: "2", name: "593" },{ id: "3", name: "3293" }]);
-        setDraggableItems2([{ id: "4", name: "ABC" },{ id: "5", name: "99_777" },{ id: "6", name: "ZYZ" }]);
+        initDraggableLists();
     }, []);
 
-    function handleDropdownChange(opt) {
-        console.log('opt ', opt);
-        setOption(opt.target.value);
-        PopupNotifyHelper.create_notification("test", "text-success");
+    function initDraggableLists() {
+        let list1 = [
+            { id: "1", name: "1" },
+            { id: "2", name: "2" },
+            { id: "3", name: "3" }
+        ];
+        let list2 = [
+            { id: "4", name: "ABC" },
+            { id: "5", name: "XYZ" }
+        ];
+        setDraggableItems1(list1);
+        setDraggableItems2(list2);
     }
-
-    const dropdownReact = (
-        <select onChange={handleDropdownChange} value={option.value}>
-            <option value={"123"}>{"123 dis"}</option>
-            <option value={"456"}>{"456 dis"}</option>
-            <option value={"789"}>{"789 dis"}</option>
-        </select>
-    );
 
     function onDragEnd(result) {
         console.log('result : ' ,result);
         const startDroppableId = result.source.droppableId;
         const endDroppableId = result.destination.droppableId;
         const startIndex = result.source.index;
-        const endIndex = result.source.index;
+        const endIndex = result.destination.index;
         const endDraggableId = result.destination.index;
         if (!result.destination || (startIndex == endIndex && startDroppableId == endDroppableId)) {
             // if dropped outside the list
@@ -79,7 +76,6 @@ function DragAndDrop() {
     return (
         <div id="drag-and-drop-container" className="form-group">
             <label>DragAndDrop</label>
-            {dropdownReact}
             <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId="1">
                     {(providedDroppable, snapshotDroppable) => (
@@ -109,11 +105,11 @@ function DragAndDrop() {
 
                                                 // styles we need to apply on draggables
                                                 ...providedDraggable.draggableProps.style,
-                                                // left:"auto !important",
-                                                // top:"auto !important"
                                             }}
                                         >
-                                            {"Name: " + item.name}
+                                            <div className="draggable-block">
+                                                <span>{"Name: " + item.name}</span>
+                                            </div>
                                         </div>
                                     )}
                                 </Draggable>
@@ -150,11 +146,11 @@ function DragAndDrop() {
 
                                                 // styles we need to apply on draggables
                                                 ...providedDraggable2.draggableProps.style,
-                                                // left:"auto !important",
-                                                // top:"auto !important"
                                             }}
                                         >
-                                            {"Name: " + item.name}
+                                            <div className="draggable-block">
+                                                <span>{"Name: " + item.name}</span>
+                                            </div>
                                         </div>
                                     )}
                                 </Draggable>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { slide as Burger } from "react-burger-menu";
 import SearchBar from "./SearchBar";
@@ -15,10 +15,6 @@ function MobileMenu({ menuItems, isDesktop }) {
         },
     };
     
-    useEffect(() => {
-        console.log('use effect mobile menu . menuItems (navItems) : ', menuItems);
-    }, []);
-
     function handleOpenMenu() {
         setMenuIsOpen(true);
     }
@@ -43,7 +39,7 @@ function MobileMenu({ menuItems, isDesktop }) {
                                 ))}
                             </>
                         :
-                        <Link className="navbar-item-nochild" to={item.url}>
+                        <Link to={item.url} className="navbar-item-nochild" onClick={handleCloseMenu}>
                             {item.title}
                         </Link>
                         }
