@@ -25,52 +25,39 @@ function DragAndDrop() {
 
     function onDragEnd(result) {
         console.log('result : ' ,result);
-        const startDroppableId = result.source.droppableId;
-        const endDroppableId = result.destination.droppableId;
-        const startIndex = result.source.index;
-        const endIndex = result.destination.index;
-        const endDraggableId = result.destination.index;
-        if (!result.destination || (startIndex == endIndex && startDroppableId == endDroppableId)) {
+        if (!result.destination || 
+            (result.source.index == result.destination.index &&
+                result.source.droppableId == result.destination.droppableId)
+            ) {
             // if dropped outside the list
             return;
         }
-        reorderItems(startDroppableId, endDroppableId, endDraggableId, startIndex, endIndex);
+        reorder(result);
     }
 
-    function reorderItems(startDroppableId, endDroppableId, endDraggableId, startIndex, endIndex) {       
-        console.log('start drop id ', startDroppableId);
-        console.log('end drop id ', endDraggableId);
+    function reorder(result) {
+        const startDroppableId = result.source.droppableId;
+        const endDroppableId = result.destination.droppableId;
+        const startIndex = result.source.index ;
+        const endIndex = result.destination.index;
         var tempDraggableItems1 = [...draggableItems1];
         var tempDraggableItems2 = [...draggableItems2];
-        if (startDroppableId === endDroppableId) {
-            if (startDroppableId == "1") {
-                // UPPER to UPPER 
-                let tempMoved = tempDraggableItems1[endDraggableId];
-                tempDraggableItems1.splice(startIndex, 1);
-                tempDraggableItems1.splice(endIndex, 0, tempMoved);
-                setDraggableItems1[tempDraggableItems1];
-            } else if (startDroppableId == "2") {
-                // LOWER to LOWER
-                let tempMoved = tempDraggableItems2[endDraggableId];
-                tempDraggableItems2.splice(startIndex, 1);
-                tempDraggableItems2.splice(endIndex, 0, tempMoved);
-                setDraggableItems2[tempDraggableItems2];
-            }
-        } else {
-            if (startDroppableId == "1") {
-                // UPPER to LOWER
-                let tempMoved = tempDraggableItems1[endDraggableId];
-                tempDraggableItems1.splice(startIndex, 1);
-                tempDraggableItems2.splice(endIndex, 0, tempMoved);
-            } else if (startDroppableId == "2") {
-                // LOWER to UPPER
-                let tempMoved = tempDraggableItems2[endDraggableId];
-                tempDraggableItems1.splice(endIndex, 0, tempMoved);
-                tempDraggableItems2.splice(startIndex, 1);
-            }
-            setDraggableItems1[tempDraggableItems1];
-            setDraggableItems2[tempDraggableItems2];
+        
+        var tempMovedArray = [];
+        if (startDroppableId == "1") {
+            tempMovedArray = tempDraggableItems1.splice(startIndex, 1);
+        } else if (startDroppableId == "2") {
+            tempMovedArray = tempDraggableItems2.splice(startIndex, 1);
         }
+        let tempMoved = tempMovedArray.length ? tempMovedArray[0] : {};
+        if (endDroppableId == "1") {
+            tempDraggableItems1.splice(endIndex, 0, tempMoved);
+        } else if (endDroppableId == "2") {
+            tempDraggableItems2.splice(endIndex, 0, tempMoved);
+        }
+        
+        setDraggableItems1(tempDraggableItems1);
+        setDraggableItems2(tempDraggableItems2);
     }
 
     return (
@@ -88,7 +75,7 @@ function DragAndDrop() {
                             }}
                         >
                             {draggableItems1.map((item, i) => (
-                                <Draggable key={i} index={parseInt(item.id)} draggableId={item.id.toString()}>
+                                <Draggable key={item.id} index={i} draggableId={item.id.toString()}>
                                     {(providedDraggable, snapshotDraggable) => (
                                         <div
                                             ref={providedDraggable.innerRef}
@@ -129,7 +116,7 @@ function DragAndDrop() {
                             }}
                         >
                             {draggableItems2.map((item, i) => (
-                                <Draggable key={i} index={parseInt(item.id)} draggableId={item.id.toString()}>
+                                <Draggable key={item.id} index={i} draggableId={item.id.toString()}>
                                     {(providedDraggable2, snapshotDraggable2) => (
                                         <div
                                             ref={providedDraggable2.innerRef}

@@ -1,3 +1,4 @@
+import Typeahead from "../components/js_examples/Typeahead";
 import PopupNotify from "../components/js_examples/PopupNotify";
 import DragAndDrop from "../components/js_examples/DragAndDrop";
 
@@ -25,14 +26,6 @@ function JsExamples() {
                 <Table />
             </div>
         </div>
-    );
-}
-
-function Typeahead() {
-    return (
-        <>
-            <label>Typeahead</label>
-        </>
     );
 }
 
