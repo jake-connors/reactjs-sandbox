@@ -68,7 +68,7 @@ function DragAndDrop() {
                 <button className="btn btn-primary" onClick={initDraggableLists} style={{ marginLeft: "15px", fontSize: "12px" }}>Reset</button>
             </label>
             <DragDropContext onDragEnd={onDragEnd} onDragStart={() => { setIsDragging(true); }}>
-                <div className="col-sm-6 droppable-block">
+                <div className="col-sm-6">
                 <Droppable droppableId="1">
                     {(providedDroppable, snapshotDroppable) => (
                         <div
@@ -93,15 +93,15 @@ function DragAndDrop() {
                                                 // change background colour if dragging
                                                 background: snapshotDraggable.isDragging
                                                     ? "lightgreen"
-                                                    : "grey",
+                                                    : "transparent",
 
                                                 // styles we need to apply on draggables
                                                 ...providedDraggable.draggableProps.style,
+
+                                                border: "2px solid"
                                             }}
                                         >
-                                            <div className="draggable-block">
-                                                <span>{item.name}</span>
-                                            </div>
+                                            <span>{item.name}</span>
                                         </div>
                                     )}
                                 </Draggable>
@@ -111,7 +111,7 @@ function DragAndDrop() {
                     )}
                 </Droppable>
                 </div>
-                <div className="col-sm-6 droppable-block">
+                <div className="col-sm-6">
                 <Droppable droppableId="2">
                     {(providedDroppable2, snapshotDroppable2) => (
                         <div
@@ -136,15 +136,15 @@ function DragAndDrop() {
                                                 // change background colour if dragging
                                                 background: snapshotDraggable2.isDragging
                                                     ? "lightgreen"
-                                                    : "grey",
+                                                    : "transparent",
 
                                                 // styles we need to apply on draggables
                                                 ...providedDraggable2.draggableProps.style,
+
+                                                border: "2px solid"
                                             }}
                                         >
-                                            <div className="draggable-block">
-                                                <span>{item.name}</span>
-                                            </div>
+                                            <span style={{ padding: "4px", margin: "2px" }}>{item.name}</span>
                                         </div>
                                     )}
                                 </Draggable>
