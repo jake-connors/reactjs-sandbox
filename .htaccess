@@ -1,5 +1,5 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine On
+    RewriteEngine On 
 
     # for the API
     RewriteCond %{REQUEST_FILENAME} !-f
@@ -9,7 +9,9 @@
 
     # for main area
     RewriteBase /
+    RewriteRule ^index\.php$ - [L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
     RewriteRule . /index.php [L]
 </IfModule>

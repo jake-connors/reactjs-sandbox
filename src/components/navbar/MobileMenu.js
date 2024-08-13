@@ -37,9 +37,9 @@ function MobileMenu({ menuItems, isDesktop }) {
                     <React.Fragment key={i}>
                         {item.children.length ? 
                             <>
-                                <span className="menu-item-label">{item.title}</span>
+                                <span className="navbar-item-label">{item.title}</span>
                                 {item.children.map((child, ii) => (
-                                    <Link key={ii} to={child.url} className="menu-item-child" onClick={handleCloseMenu}>{child.title}</Link>
+                                    <Link key={ii} to={child.url} className="navbar-item-child" onClick={handleCloseMenu}>{child.title}</Link>
                                 ))}
                             </>
                         :
@@ -66,7 +66,7 @@ function MobileMenu({ menuItems, isDesktop }) {
                     </Link>
                 </div>
                 <div className="clear20" />
-                <br/>
+                <br></br>
                 <div className="clear20" />
             </Burger>
         </div>

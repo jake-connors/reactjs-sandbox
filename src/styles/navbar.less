@@ -104,6 +104,7 @@
         .bm-cross-button {
             height: 24px;
             width: 24px;
+            top: -2px !important;
         }
 
         /* Color/shape of close button cross */
@@ -144,22 +145,21 @@
             background: rgba(0, 0, 0, 0.3);
         }
 
-        .menu-item-label {
+        .navbar-item-label {
             display: block;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: normal;
             color: #ccc;
             margin-bottom: 10px;
             text-transform: uppercase;
         }
 
-        a.menu-item-child {
+        a.navbar-item-child {
             font-size: 14px;
-            display: block;
         }
 
-        #menu-item-child,
-        #menu-item-nochild,
+        a.navbar-item-child,
+        a.navbar-item-nochild,
         #navbar-extras a {
             color: #fff;
             display: inline-block;
@@ -174,6 +174,12 @@
     #navbar-extras {
         padding: 20px 0 10px 0;
         border-top: 1px solid #000;
+        width: 160px;
+        a {
+            i {
+                margin-right: 5px;
+            }
+        }
     }
 }
 
