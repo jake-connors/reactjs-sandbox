@@ -6,15 +6,11 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-l
     RewriteRule ^api/(.*)$ api/api.php?request=$1 [QSA,NC,L]
-
-    # for php_examples
-    RewriteCond %{REQUEST_FILENAME} !-f [OR]
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ - [QSA,NC,L]
-    RewriteRule /php_examples/(.*)$ /index.php [L]
-
-    # for main area
+    
     RewriteBase /
+    # for php_examples
+    RewriteRule ^php_examples/(.*)$ /index.php?orig_path=$1 [QSA,NC,L] [L]
+    # for main area
     RewriteRule ^index\.php$ - [L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d

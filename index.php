@@ -4,23 +4,23 @@
     <meta charset="utf-8">
     <title>JC</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link href="./assets/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="/assets/favicon.ico" rel="icon" type="image/x-icon">
     <?php
         $isProd = $_SERVER["SERVER_NAME"] === "jacobconnors.com";
         $isProd = false; // test w/ dev builds to see more descriptive console messages
         $js_default = [
             "production" => [
-                "./dist/js/react.production.min.js",
-                "./dist/js/react-dom.production.min.js"
+                "/dist/js/react.production.min.js",
+                "/dist/js/react-dom.production.min.js"
             ],
             "development" => [
-                "./dist/js/react.development.js",
-                "./dist/js/react-dom.development.js"
+                "/dist/js/react.development.js",
+                "/dist/js/react-dom.development.js"
             ]
         ];
         $css_default = [
-            "./dist/css/bootstrap.min.css",
-            "./dist/css/fontawesome/css/all.min.css"
+            "/dist/css/bootstrap.min.css",
+            "/dist/css/fontawesome/css/all.min.css"
         ];
         $js_paths = $isProd ? $js_default["production"] : $js_default["development"];
         foreach ($js_paths as $src_path) {
