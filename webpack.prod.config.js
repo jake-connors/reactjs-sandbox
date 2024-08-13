@@ -12,7 +12,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "JC Website",
+            title: "JC",
             template: "./index.php",
             filename: "index.php"
         }),
@@ -29,6 +29,7 @@ module.exports = {
     output: {
         filename: "[name].bundle.js",
         path: path.resolve(__dirname, "../build_prod/"),
+        publicPath: "/",
     },
     module: {
         rules: [

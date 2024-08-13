@@ -14,7 +14,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: "JC",
             template: "./index.php",
-            filename: "index.php"
+            filename: "index.php",
         }),
         new CopyPlugin({
             patterns: [
@@ -29,6 +29,7 @@ module.exports = {
     output: {
         filename: "[name].bundle.js",
         path: path.resolve(__dirname, "../build_dev/"),
+        publicPath: "/",
     },
     module: {
         rules: [

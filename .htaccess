@@ -9,7 +9,11 @@
     
     RewriteBase /
     # for php_examples
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
     RewriteRule ^php_examples/(.*)$ /index.php?orig_path=$1 [QSA,NC,L] [L]
+    
     # for main area
     RewriteRule ^index\.php$ - [L]
     RewriteCond %{REQUEST_FILENAME} !-f
