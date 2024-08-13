@@ -34,7 +34,7 @@ function MobileMenu({ menuItems, isDesktop }) {
                 <SearchBar />
                 <div className="clear10" />
                 {menuItems.map((item, i) => (
-                    <React.Fragment key={i}>
+                    <span key={i} className="navbar-section">
                         {item.children.length ? 
                             <>
                                 <span className="navbar-item-label">{item.title}</span>
@@ -47,7 +47,7 @@ function MobileMenu({ menuItems, isDesktop }) {
                             {item.title}
                         </Link>
                         }
-                    </React.Fragment>
+                    </span>
                 ))}
                 <StylePicker isDesktop={isDesktop}/>
                 <div className="col-sm-2" id="navbar-extras">
@@ -66,7 +66,6 @@ function MobileMenu({ menuItems, isDesktop }) {
                     </Link>
                 </div>
                 <div className="clear20" />
-                <br></br>
                 <div className="clear20" />
             </Burger>
         </div>
