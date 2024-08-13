@@ -7,6 +7,12 @@
     RewriteCond %{REQUEST_FILENAME} !-l
     RewriteRule ^api/(.*)$ api/api.php?request=$1 [QSA,NC,L]
 
+    # for php_examples
+    RewriteCond %{REQUEST_FILENAME} !-f [OR]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ - [QSA,NC,L]
+    RewriteRule /php_examples/(.*)$ /index.php [L]
+
     # for main area
     RewriteBase /
     RewriteRule ^index\.php$ - [L]
