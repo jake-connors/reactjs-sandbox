@@ -31,6 +31,7 @@ function MobileMenu({ menuItems, isDesktop }) {
                 isOpen={menuIsOpen}
                 onStateChange={onStateChange}
             >
+                <StylePicker isDesktop={isDesktop}/>
                 <SearchBar />
                 <div className="clear10" />
                 {menuItems.map((item, i) => (
@@ -49,7 +50,6 @@ function MobileMenu({ menuItems, isDesktop }) {
                         }
                     </span>
                 ))}
-                <StylePicker isDesktop={isDesktop}/>
                 <div className="col-sm-2" id="navbar-extras">
                     <Link to="/about" onClick={handleCloseMenu}>
                         <i className="fa fa-info-circle"></i>About
