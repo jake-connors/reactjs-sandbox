@@ -32,7 +32,8 @@ function App({ dispatch, user_info }) {
     return (
         <Router>
             <Navbar />
-            <div id="app-container" className={"container " + user_info.style}>
+            <div id="app-container-wrapper" className={user_info.style}>
+                <div id="app-container" className="container">
                 <Routes>
                     <Route path="/" exact Component={Main} />
                     <Route path="/about" exact Component={About} />
@@ -44,6 +45,7 @@ function App({ dispatch, user_info }) {
                     <Route path="/php_examples/excel" exact Component={Excel} />
                     <Route path="/other" exact Component={Other} />
                 </Routes>
+                </div>
             </div>
         </Router>
     );
