@@ -7,16 +7,16 @@ function create_notification(msg, text_class = "", time_to_hide = 5000) {
     div.className = text_class;
 
     msgbox.appendChild(div);
-    msgbox.className = "notification_msgbox enter";
+    msgbox.className = "notification-msgbox enter";
 
     document.body.appendChild(msgbox);
 
     setTimeout(() => {
-        msgbox.className = "notification_msgbox active";
+        msgbox.className = "notification-msgbox active";
     }, 100);
 
     setTimeout(() => {
-        msgbox.className = "notification_msgbox leave";
+        msgbox.className = "notification-msgbox leave";
     }, time_to_hide);
 }
 

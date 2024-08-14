@@ -34,8 +34,8 @@ function PopupNotify() {
     }
 
     return (
-        <div className="form-group">
-            <label>Popup Notify</label>
+        <div className="row form-group">
+            <label className="js-examples col-sm-12">Popup Notify</label>
             <select
                 className="form-select"
                 value={activeOption.id ?? ""}

@@ -1,6 +1,7 @@
 import Typeahead from "../components/js_examples/Typeahead";
 import PopupNotify from "../components/js_examples/PopupNotify";
 import DragAndDrop from "../components/js_examples/DragAndDrop";
+import Popper from "../components/js_examples/Popper";
 
 function JsExamples() {
     return (
@@ -26,14 +27,6 @@ function JsExamples() {
                 <Table />
             </div>
         </div>
-    );
-}
-
-function Popper() {
-    return (
-        <>
-            <label>Popper</label>
-        </>
     );
 }
 
