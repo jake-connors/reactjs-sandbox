@@ -65,7 +65,12 @@ function Popper() {
     );
 }
 
-function EventPopper() {
+function EventPopper({
+    handleOpen,
+    handleClose,
+    handleRefElemClick,
+    handleClickOutside,
+}) {
     const myRef = useRef(null);
 
     function togglePopper() {
