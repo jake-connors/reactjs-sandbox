@@ -152,9 +152,6 @@ function NestedPopper() {
                         popperPlacement="right"
                         popperTrigger="hover"
                         popperChild={ref2}
-                        popperModifiers={[
-                            { name: "offset", options: { offset: [10, 30] } },
-                        ]}
                         portalId="portal"
                     >
                         sub value

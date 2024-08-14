@@ -16,6 +16,7 @@ function PopperHelper(
         onClose = null, // function called when popper closes
         onRefElemClick = null, // function called when the reference element is clicked
         onClickOutside = null, // function called when click outside of popper occurs
+        popperChild = null,
     },
     ref
 ) {
@@ -119,6 +120,12 @@ function PopperHelper(
                 onMouseEnter={
                     popperTrigger === "hover"
                         ? () => {
+                              if (
+                                  popperChild !== null &&
+                                  popperChild.current !== null &&
+                                  popperChild.current.isOpen()
+                              )
+                                  popperChild.current.close();
                               if (onRefElemClick !== null) {
                                   onRefElemClick(true);
                               }
