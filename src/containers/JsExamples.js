@@ -1,4 +1,4 @@
-import Typeahead from "../components/js_examples/Typeahead";
+import Typeaheads from "../components/js_examples/Typeaheads";
 import PopupNotify from "../components/js_examples/PopupNotify";
 import DragAndDrop from "../components/js_examples/DragAndDrop";
 import Popper from "../components/js_examples/Popper";
@@ -11,7 +11,7 @@ function JsExamples() {
             </div>
             <div className="row">
                 <div className="col-sm-6">
-                    <Typeahead />
+                    <Typeaheads />
                 </div>
                 <div className="col-sm-6">
                     <DragAndDrop />

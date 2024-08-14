@@ -47,20 +47,20 @@ function Popper() {
                     <br />
                     <NestedPopper />
                 </div>
-            </div>
-            <small>
-                <p>
-                    The first popper is:{" "}
-                    {openStatus === true ? "OPEN" : "CLOSED"}
-                </p>
-                {refClickStatus}
-                {windowClickStatus === true && (
+                <small>
                     <p>
-                        The first popper was closed by clicking in the window
-                        outside of it.
+                        The first popper is:{" "}
+                        {openStatus === true ? "OPEN" : "CLOSED"}
                     </p>
-                )}
-            </small>
+                    {refClickStatus}
+                    {windowClickStatus === true && (
+                        <p>
+                            The first popper was closed by clicking in the window
+                            outside of it.
+                        </p>
+                    )}
+                </small>
+            </div>
         </div>
     );
 }
