@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+// import ReactTable from "react-table";
 import { get_users, submit_user } from "../../api/user";
+// import columns from "./TableColumns";
 
 function Table({ tableRef }) {
 
@@ -28,11 +30,14 @@ function Table({ tableRef }) {
         let resp = await submit_user(postObj);
         console.log('resp : ' , resp);
     }
+
+    // const cols = useMemo(() => columns(), []);
+    // const table = useTable();
     
     return (
         <div id="table-container" className="row form-group">
-            <label className="js-examples col-sm-12">Table - React Table w/ data from `users` SQL table</label>
-            <h3>{!isEditMode ? "Add " : "Edit " }User:</h3>
+            <h4 className="col-sm-12">Table - React Table w/ data from `users` SQL table</h4>
+            <label style={{ fontSize: "18px" }}>{!isEditMode ? "Add " : "Edit " }User:</label>
             <div id="add-edit-box" className="row" ref={tableRef}>
                 <div className="col-sm-12">
                     <div className="form-group">
@@ -53,12 +58,19 @@ function Table({ tableRef }) {
                             value={details}
                         />
                     </div>
-                    <button className="btn btn-primary" onClick={handleSubmit}>{!isEditMode ? "Submit" : "Edit"}</button>
+                    <button className="form-control btn btn-primary" onClick={handleSubmit} style={{ marginTop: "10px" }}>
+                        {!isEditMode ? "Submit" : "Edit"}
+                    </button>
                 </div>
             </div>
             <div id="table-display" className="row">
-                {allUsers.length && 
-                    <span onClick={() => {setIsEditMode(true);}}>..table (temp click)</span>
+                {allUsers.length > 0 && 
+                    <>
+                    <button onClick={() => {setIsEditMode(true);}}>..table (temp click)</button>
+                    {/* <ReactTable
+                        data={allUsers}
+                    /> */}
+                    </>
                 }
             </div>
         </div>

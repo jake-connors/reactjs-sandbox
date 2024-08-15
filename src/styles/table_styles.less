@@ -1,0 +1,268 @@
+.react-table-container {
+    /* These styles are suggested for the table fill all available space in its containing element */
+    display: block;
+    // min-height: 200px;
+    border: 1px solid #ddd;
+    border-spacing: 0;
+    position: relative;
+
+    .loading-table-data {
+        position: absolute;
+        font-weight: bold;
+        top: 5px;
+        left: 5px;
+    }
+    .loading-table-data:after {
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: bottom;
+        -webkit-animation: ellipsis steps(4, end) 1000ms infinite;
+        animation: ellipsis steps(4, end) 1000ms infinite;
+        content: "\2026"; /* ascii code for the ellipsis character */
+        width: 0px;
+    }
+
+    .react-table {
+        font-size: 85%;
+
+        .tfoot {
+            border-top: 2px solid #ddd;
+        }
+
+        .tr-highlight {
+            .td,
+            .td-sorted {
+                background: #fff2e4;
+            }
+        }
+
+        .th,
+        .td {
+            margin: 0;
+            padding: 6px;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            flex: 0 0 auto;
+
+            /* In this example we use an absolutely position resizer,
+   so this is required. */
+            position: relative;
+            display: flex;
+            // align-items: center; // use this to vertically align -- could add as a option
+
+            .td-no-wrap {
+                white-space: nowrap;
+            }
+
+            .td-no-wrap,
+            .td-wrap {
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .resizer {
+                right: 0px;
+                background: #ddd;
+                width: 1px;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                z-index: 1;
+                /* prevents from scrolling while dragging on touch devices */
+                touch-action: none;
+
+                &.isResizing {
+                    background: red;
+                }
+            }
+            .titleFilterContainer {
+                flex-direction: column;
+                width: 100%;
+                -webkit-user-select: none; /* Safari */
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* IE10+/Edge */
+                user-select: none; /* Standard */
+                .columnTitle {
+                    font-weight: bold;
+                    .sort-icons {
+                        margin-left: 5px;
+                    }
+                }
+                .columnTitle.sort-active-title {
+                    text-decoration: underline;
+                    text-decoration-thickness: 3px;
+                    text-decoration-color: #fd9827;
+                }
+                .filterContainer {
+                    margin-top: 5px;
+                    .filter {
+                        background-size: 18px 18px;
+                        color: #fd9827;
+                        font-weight: 700;
+                        font-size: 16px;
+                        border-color: rgb(223, 223, 223);
+                        height: 26px;
+                        padding: 5px 5px;
+                    }
+                    .filter:focus,
+                    .filter:not([value=""]) {
+                        background: #fff;
+                    }
+                }
+            }
+            .sort-inactive {
+                color: #999;
+            }
+            .sort-active {
+                color: #fd9827;
+            }
+        }
+        .th {
+            align-items: flex-end;
+            white-space: normal;
+        }
+        .sticky-left {
+            position: sticky !important;
+            z-index: 50;
+            left: 0;
+            background: #fff;
+        }
+
+        .parentHeader {
+            font-size: 115%;
+        }
+    }
+    .react-table-pagination {
+        padding: 4px 15px;
+        font-size: 75%;
+        background: #eaeaea;
+        position: sticky;
+        left: 0;
+        .btn {
+            padding: 3px 8px;
+        }
+        input,
+        select {
+            background: #f7f7f7;
+            font-size: 14px;
+            line-height: 24px;
+        }
+    }
+}
+
+.react-table-container-horizontal-scroll {
+    /* These styles are required for a horizontaly scrollable table overflow */
+    overflow: auto;
+}
+
+.react-table-tight {
+    .react-table {
+        font-size: 80%;
+        color: #333;
+        .th,
+        .td {
+            padding: 5px 4px;
+        }
+    }
+}
+
+.react-table-small {
+    .react-table {
+        font-size: 78%;
+    }
+}
+
+.react-table-striped {
+    .react-table {
+        .tbody {
+            .tr:nth-child(even) {
+                .td {
+                    background: rgb(240, 240, 240);
+                }
+            }
+            .tr-highlight {
+                .td {
+                    background: #fff2e4 !important;
+                }
+            }
+        }
+    }
+}
+
+.react-table-borderless {
+    border: 0;
+    .react-table {
+        .th,
+        .td {
+            border: 0;
+            .resizer {
+                background: #fff;
+            }
+        }
+    }
+}
+
+.react-table-vertical-borderless {
+    border: 0;
+    .react-table {
+        .th,
+        .td {
+            border-left: 0;
+            border-right: 0;
+            .resizer {
+                background: #fff;
+            }
+        }
+    }
+}
+
+.react-table-sort-column {
+    .react-table {
+        .th-sorted,
+        .td-sorted {
+            background-color: #fff2e4;
+        }
+        .tbody {
+            .tr:nth-child(even) {
+                .td-sorted {
+                    background-color: #f1e5d9;
+                }
+            }
+        }
+    }
+}
+
+.react-table-highlight-row {
+    .react-table {
+        .tbody {
+            .tr:hover {
+                .td {
+                    background: rgb(228, 228, 228);
+                }
+            }
+            .tr-highlight:hover {
+                .td {
+                    background: #fff2e4;
+                }
+            }
+        }
+    }
+}
+
+.react-table-is-loading {
+    .react-table {
+        opacity: 0.5;
+    }
+}
+
+.react-table-header-gray {
+    border: 1px solid #eaeaea;
+    .react-table {
+        .thead {
+            .th {
+                background: #eaeaea;
+            }
+        }
+    }
+}
