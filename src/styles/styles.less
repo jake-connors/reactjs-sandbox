@@ -58,20 +58,22 @@ label.js-examples {
 }
 
 // popper
-#popper-container-inner {
-    width: 600px;
-    height: 400px;
-    overflow-y: scroll;
-    border: 2px solid #999;
-    border-radius: 10px;
-    text-align: left;
-    margin: 5px 0;
-    overscroll-behavior: contain;
-    position: relative;
-}
-#popper-content {
-    height: 1200px;
-    padding: 200px 20px;
+#popper-container-wrapper {
+    #popper-container {
+        width: 400px;
+        height: 350px;
+        overflow-y: scroll;
+        border: 2px solid #999;
+        border-radius: 10px;
+        text-align: left;
+        margin: 5px 0;
+        overscroll-behavior: contain;
+        position: relative;
+    }
+    #popper-content {
+        height: 260px;
+        padding: 50px 20px 50px 20px;
+    }
 }
 .popper-basic {
     padding: 20px;

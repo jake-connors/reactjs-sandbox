@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
-function Typeaheads() {
+function Typeaheads({ scrollToTable }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [activeIndex, setActiveIndex] = useState(-1);
@@ -100,7 +100,11 @@ function Typeaheads() {
                 ))}
             </div>
             <div className="col-sm-12">
-                <label className="col-sm-12">Async Typeahead</label>
+                <label className="col-sm-12" style={{ marginTop: "5px" }}>Async Typeahead
+                    <button className="btn btn-primary" onClick={scrollToTable} style={{ marginLeft: "15px", fontSize: "12px" }}>Edit</button>
+                </label>
+                <label className="col-sm-12" style={{ marginBottom: "5px" }}>
+                    <small style={{ fontSize: "12px" }}>(Database `users` lookup + autocomplete)</small></label>
                 <input type="text" readonly />
             </div>
         </div>

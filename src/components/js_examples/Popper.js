@@ -30,9 +30,9 @@ function Popper() {
     }
 
     return (
-        <div id="popper-container-outer" className="row form-group">
+        <div id="popper-container-wrapper" className="row form-group">
             <label className="js-examples col-sm-12">Popper</label>
-            <div id="popper-container-inner">
+            <div id="popper-container">
                 <div id="popper-content">
                     <EventPopper
                         handleOpen={handleOpen}

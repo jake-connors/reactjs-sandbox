@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import { setUserInfo } from "../../redux/actions";
-import { save_user_info_cookie } from "../../api/api";
+import { save_user_info_cookie } from "../../api/user";
 
 function StylePicker({ isDesktop, dispatch, user_info }) {
 

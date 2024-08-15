@@ -12,7 +12,7 @@ import Email from "./containers/php_examples/Email";
 import Excel from "./containers/php_examples/Excel";
 import Other from "./containers/Other";
 import { setUserInfo } from "./redux/actions/";
-import { get_user_info_cookie } from "./api/api";
+import { get_user_info_cookie } from "./api/user";
 
 function App({ dispatch, user_info }) {
 
