@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import Typeaheads from "../components/js_examples/Typeaheads";
 import PopupNotify from "../components/js_examples/PopupNotify";
 import DragAndDrop from "../components/js_examples/DragAndDrop";
@@ -6,6 +6,8 @@ import Popper from "../components/js_examples/Popper";
 import Table from "../components/js_examples/Table";
 
 function JsExamples() {
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const tableRef = useRef(null);
 
@@ -24,6 +26,8 @@ function JsExamples() {
                 <div className="col-sm-6">
                     <Typeaheads 
                         scrollToTable={scrollToTable}
+                        isLoading={isLoading}
+                        setIsLoading={setIsLoading}
                     />
                 </div>
                 <div className="col-sm-6">
@@ -40,6 +44,8 @@ function JsExamples() {
             <div className="row">
                 <Table 
                     tableRef={tableRef}
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
                 />
             </div>
         </div>

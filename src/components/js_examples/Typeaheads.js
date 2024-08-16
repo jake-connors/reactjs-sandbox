@@ -3,7 +3,7 @@ import { Typeahead, AsyncTypeahead } from "react-bootstrap-typeahead";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { autocomplete } from "../../api/general";
 
-function Typeaheads({ scrollToTable }) {
+function Typeaheads({ scrollToTable, isLoading, setIsLoading }) {
     
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [searchTextNormal, setSearchTextNormal] = useState("");
@@ -11,7 +11,6 @@ function Typeaheads({ scrollToTable }) {
     const [activeIndex, setActiveIndex] = useState(-1);
     const [typeaheadOptions, setTypeaheadOptions] = useState([]);
     const [typeaheadNormalNotFound, setTypeaheadNormalNotFound] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
 
     const typeaheadRefNormal = useRef(null);
@@ -128,17 +127,46 @@ function Typeaheads({ scrollToTable }) {
             </div>
             <div className="col-sm-12">
                 <label className="col-sm-12" style={{ marginTop: "5px" }}>Async Typeahead
-                    <button className="btn btn-primary" onClick={scrollToTable} style={{ marginLeft: "15px", fontSize: "12px" }}>Edit</button>
+                    <button className="btn btn-primary" onClick={scrollToTable} style={{ marginLeft: "15px", fontSize: "12px" }}>Edit `Users`</button>
                 </label>
                 <label className="col-sm-12" style={{ marginBottom: "5px" }}>
                     <small style={{ fontSize: "12px" }}>
                         <span>(Database `users` lookup + autocomplete)</span>
                     </small>
                 </label>
-                <span className="col-sm-2">Dropdown for "options"</span>
+                <div className="col-sm-12 form-group">
+                    <span className="radio-inline" style={{ fontWeight: "bold", paddingLeft: "5px" }}>Search by:</span>
+                    <label className="radio-inline">
+                        <input 
+                            type="radio"
+                            value="username"
+                            onChange={() => handleRadioSearchBy("username")}
+                            disabled={isLoading}
+                        />
+                        <span>Username</span>
+                    </label>
+                    <label className="radio-inline">
+                        <input 
+                            type="radio"
+                            value="details"
+                            onChange={() => handleRadioSearchBy("details")}
+                            disabled={isLoading}
+                        />
+                        <span>Details</span>
+                    </label>
+                    <label className="radio-inline">
+                        <input 
+                            type="radio"
+                            value="username_and_details"
+                            onChange={() => handleRadioSearchBy("username_and_details")}
+                            disabled={isLoading}
+                        />
+                        <span>Both</span>
+                    </label>
+                </div>
                 <AsyncTypeahead
                     id={"typeahead-async"}
-                    className={"col-sm-10"}
+                    className={"col-sm-12"}
                     ref={typeaheadRefAsync}
                     labelKey={"username"}
                     placeholder={"Search Users..."}
