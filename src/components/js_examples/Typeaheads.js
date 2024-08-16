@@ -12,6 +12,7 @@ function Typeaheads({ scrollToTable, isLoading, setIsLoading }) {
     const [typeaheadOptions, setTypeaheadOptions] = useState([]);
     const [typeaheadNormalNotFound, setTypeaheadNormalNotFound] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
+    const [searchBy, setSearchBy] = useState("");
 
     const typeaheadRefNormal = useRef(null);
     const typeaheadRefAsync = useRef(null);
@@ -91,11 +92,23 @@ function Typeaheads({ scrollToTable, isLoading, setIsLoading }) {
 
     async function handleAutocomplete(q, onEnterPress) {
         setIsLoading(true);
-        let resp = await autocomplete(q, "users");
+        let getObj = {
+            mode: "users",
+            q,
+            searchBy
+        };
+        let resp = await autocomplete(getObj);
         console.log('resp ' , resp);
         console.log('on enter press ' , onEnterPress);
         setSearchResults(resp.data.results);
         setIsLoading(false);
+    }
+
+    function handleRadioSearchBy(value) {
+        setSearchBy(value);
+        setSearchTextAsync("");
+        typeaheadRefAsync.current.clear();
+        typeaheadRefAsync.current.focus();
     }
 
     return (
@@ -134,34 +147,37 @@ function Typeaheads({ scrollToTable, isLoading, setIsLoading }) {
                         <span>(Database `users` lookup + autocomplete)</span>
                     </small>
                 </label>
-                <div className="col-sm-12 form-group">
-                    <span className="radio-inline" style={{ fontWeight: "bold", paddingLeft: "5px" }}>Search by:</span>
-                    <label className="radio-inline">
+                <div className="col-sm-12 form-group" style={{ marginBottom: "10px" }}>
+                    <span className="radio-inline" style={{ fontWeight: "bold", paddingLeft: "5px", marginRight: "10px" }}>Search by:</span>
+                    <label className="radio-inline" style={{ marginRight: "8px" }}>
                         <input 
                             type="radio"
                             value="username"
                             onChange={() => handleRadioSearchBy("username")}
                             disabled={isLoading}
+                            style={{ marginRight: "5px" }}
                         />
                         <span>Username</span>
                     </label>
-                    <label className="radio-inline">
+                    <label className="radio-inline" style={{ marginRight: "8px" }}>
                         <input 
                             type="radio"
                             value="details"
                             onChange={() => handleRadioSearchBy("details")}
                             disabled={isLoading}
+                            style={{ marginRight: "5px" }}
                         />
                         <span>Details</span>
                     </label>
-                    <label className="radio-inline">
+                    <label className="radio-inline" style={{ marginRight: "8px" }}>
                         <input 
                             type="radio"
-                            value="username_and_details"
+                            value="username_or_details"
                             onChange={() => handleRadioSearchBy("username_and_details")}
                             disabled={isLoading}
+                            style={{ marginRight: "5px" }}
                         />
-                        <span>Both</span>
+                        <span>Username or Details</span>
                     </label>
                 </div>
                 <AsyncTypeahead

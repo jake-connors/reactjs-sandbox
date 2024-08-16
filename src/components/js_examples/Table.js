@@ -30,18 +30,24 @@ function Table({ tableRef, isLoading, setIsLoading }) {
     }
 
     async function handleSubmit() {
+        // validate submit
         let valid = true;
         if (username.trim() === "") {
             setUsernameRequired(true);
             valid = false;
+        } else {
+            setUsernameRequired(false);
         }
         if (details.trim() === "") {
             setDetailsRequired(true);
             valid = false;
+        } else {
+            setDetailsRequired(true);
         }
         if (!valid) {
             return;
         }
+
         setIsLoading(true);
         let postObj = {
             username,
@@ -58,7 +64,6 @@ function Table({ tableRef, isLoading, setIsLoading }) {
         setUsername("");
         setDetails("");
         setIsEditMode(false);
-        setUsernameRequired(false);
         setDetailsRequired(false);
         setIsLoading(false);
     }
@@ -77,9 +82,7 @@ function Table({ tableRef, isLoading, setIsLoading }) {
             setUsername(tempUsername);
             setDetails(tempDetails);
         }
-        if (detailsRef.current) {
-            detailsRef.current.focus();
-        }
+        detailsRef.current.focus();
     }
 
     async function handleDeleteUser(userId) {
