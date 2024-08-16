@@ -11,6 +11,7 @@ class User_User extends API_Endpoint
     public function postFunc()
     {
         $mode = $this->args["mode"];
+        $result = 0;
         if ($mode === "submitUser") {
             $result = Utils\User::saveUser($this->args["username"], $this->args["details"], $this->args["isEditMode"]);
         } else if ($mode === "saveUserInfo") {

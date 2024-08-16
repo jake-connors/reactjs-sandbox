@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import PopupNotifyHelper from "../PopupNotifyHelper";
 
 function PopupNotify() {
+    
     const [activeOption, setActiveOption] = useState({});
+    
     const popupNotifyOptions = [
         { id: 1, display: "Primary", popupClassName: "text-primary", buttonClassName: "btn btn-outline-primary" },
         { id: 2, display: "Success", popupClassName: "text-success", buttonClassName: "btn btn-outline-success" },

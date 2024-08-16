@@ -3,6 +3,7 @@ import { Typeahead } from "react-bootstrap-typeahead";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 function Typeaheads({ scrollToTable }) {
+    
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [activeIndex, setActiveIndex] = useState(-1);
@@ -95,7 +96,7 @@ function Typeaheads({ scrollToTable }) {
                 {selectedOptions.map((opt, i) => (
                     <div key={i}>
                         <span>{opt.value}</span>
-                        <button className="btn btn-danger" onClick={() => {handleDeleteSelectedOption(opt);}}>X</button>
+                        <button className="btn btn-danger" onClick={() => handleDeleteSelectedOption(opt)}>X</button>
                     </div>
                 ))}
             </div>
@@ -104,8 +105,9 @@ function Typeaheads({ scrollToTable }) {
                     <button className="btn btn-primary" onClick={scrollToTable} style={{ marginLeft: "15px", fontSize: "12px" }}>Edit</button>
                 </label>
                 <label className="col-sm-12" style={{ marginBottom: "5px" }}>
-                    <small style={{ fontSize: "12px" }}>(Database `users` lookup + autocomplete)</small></label>
-                <input type="text" readonly />
+                    <small style={{ fontSize: "12px" }}>(Database `users` lookup + autocomplete)</small>
+                </label>
+                <input type="text" readOnly />
             </div>
         </div>
     );

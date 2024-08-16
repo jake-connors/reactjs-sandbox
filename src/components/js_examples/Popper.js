@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import PopperHelper from "../PopperHelper";
 
 function Popper() {
+    
     const [refClickStatus, setRefClickStatus] = useState("");
     const [windowClickStatus, setWindowClickStatus] = useState(false);
     const [openStatus, setOpenStatus] = useState(false);

@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-// import ReactTable from "react-table";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { get_users, submit_user } from "../../api/user";
-// import columns from "./TableColumns";
+import { useDefaultTable, RenderDefaultTable } from "../ReactTableHelper";
+import columns from "./TableColumns";
+import PopupNotifyHelper from "../PopupNotifyHelper";
 
 function Table({ tableRef }) {
 
@@ -9,6 +10,8 @@ function Table({ tableRef }) {
     const [username, setUsername] = useState("");
     const [details, setDetails] = useState("");
     const [allUsers, setAllUsers] = useState([]);
+
+    const detailsRef = useRef(null);
 
     useEffect(() => {
         initUsersTable();
@@ -29,10 +32,52 @@ function Table({ tableRef }) {
         };
         let resp = await submit_user(postObj);
         console.log('resp : ' , resp);
+        if (resp.data.success) {
+            let notifyMsg = isEditMode ? "Edit" : "Add";
+            notifyMsg += " Success!";
+            PopupNotifyHelper.create_notification(notifyMsg, "text-success");
+        }
     }
 
-    // const cols = useMemo(() => columns(), []);
-    // const table = useTable();
+    function handleEditUser(userId) {
+        setIsEditMode(true);
+        let tempUsername = "";
+        let tempDetails = "";
+        allUsers.forEach((user) => {
+            if (user.id == userId) {
+                tempUsername = user.username;
+                tempDetails = user.details;
+            }
+        });
+        if (tempUsername !== "") {
+            setUsername(tempUsername);
+            setDetails(tempDetails);
+        }
+        if (detailsRef.current) {
+            detailsRef.current.focus();
+        }
+    }
+
+    async function handleDeleteUser(userId) {
+        let resp = await delete_user(userId);
+        console.log('resp : ' , resp);
+        if (resp.data.success) {
+            PopupNotifyHelper.create_notification("Delete Success!", "text-success");
+        }
+    }
+
+    const cols = columns({
+        handleEditUser,
+        handleDeleteUser
+    });
+    const table = useDefaultTable({
+        data: useMemo(() => allUsers, [allUsers]),
+        columns: useMemo(() => cols, [allUsers]),
+        initialState: {
+            pageSize: 25
+        },
+    });
+
     
     return (
         <div id="table-container" className="row form-group">
@@ -47,6 +92,7 @@ function Table({ tableRef }) {
                             className="form-control" 
                             onChange={setUsername}
                             value={username}
+                            readOnly={isEditMode}
                         />
                     </div>
                     <div className="form-group">
@@ -56,6 +102,7 @@ function Table({ tableRef }) {
                             className="form-control" 
                             onChange={setDetails}
                             value={details}
+                            ref={detailsRef}
                         />
                     </div>
                     <button className="form-control btn btn-primary" onClick={handleSubmit} style={{ marginTop: "10px" }}>
@@ -65,14 +112,14 @@ function Table({ tableRef }) {
             </div>
             <div id="table-display" className="row">
                 {allUsers.length > 0 && 
-                    <>
-                    <button onClick={() => {setIsEditMode(true);}}>..table (temp click)</button>
-                    {/* <ReactTable
-                        data={allUsers}
-                    /> */}
-                    </>
+                    <RenderDefaultTable
+                        table={table}
+                        paginate={true}
+                        className="react-table-vertical-borderless"
+                    />
                 }
             </div>
+            <div className="clear10"></div>
         </div>
     );
 }
