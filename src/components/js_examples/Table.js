@@ -86,35 +86,37 @@ function Table({ tableRef }) {
     return (
         <div id="table-container" className="row form-group">
             <h4 className="col-sm-12">Table - React Table w/ data from `users` SQL table</h4>
-            <label style={{ fontSize: "18px" }}>{!isEditMode ? "Add " : "Edit " }User:</label>
-            <div id="add-edit-box" className="row" ref={tableRef}>
-                <div className="col-sm-12">
-                    <div className="form-group">
-                        <label>Username:</label>
-                        <input 
-                            type="text"
-                            className="form-control" 
-                            onChange={() => setUsername(e.target.value)}
-                            value={username}
-                            readOnly={isEditMode}
-                        />
+            <div className="row">
+                <div id="add-edit-box" className="col-sm-12">
+                    <label style={{ fontSize: "18px" }}>{!isEditMode ? "Add " : "Edit " }User:</label>
+                    <div className="col-sm-12">
+                        <div className="form-group">
+                            <label>Username:</label>
+                            <input 
+                                type="text"
+                                className="form-control" 
+                                onChange={(e) => setUsername(e.target.value)}
+                                value={username}
+                                readOnly={isEditMode}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Details:</label>
+                            <input 
+                                type="text"
+                                className="form-control" 
+                                onChange={(e) => setDetails(e.target.value)}
+                                value={details}
+                                ref={detailsRef}
+                            />
+                        </div>
+                        <button className="form-control btn btn-primary" onClick={handleSubmit} style={{ marginTop: "10px" }}>
+                            {!isEditMode ? "Submit" : "Edit"}
+                        </button>
                     </div>
-                    <div className="form-group">
-                        <label>Details:</label>
-                        <input 
-                            type="text"
-                            className="form-control" 
-                            onChange={() => setDetails(e.target.value)}
-                            value={details}
-                            ref={detailsRef}
-                        />
-                    </div>
-                    <button className="form-control btn btn-primary" onClick={handleSubmit} style={{ marginTop: "10px" }}>
-                        {!isEditMode ? "Submit" : "Edit"}
-                    </button>
                 </div>
             </div>
-            <div id="table-display" className="row">
+            <div id="table-display" className="row" ref={tableRef}>
                 {allUsers.length > 0 && 
                     <RenderDefaultTable
                         table={table}
