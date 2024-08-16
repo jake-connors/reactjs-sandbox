@@ -19,7 +19,7 @@ export function get_users() {
     var getObj = {
         mode: "getUsers"
     };
-    return go.get("/api/user/user", getObj);
+    return go.get("/api/user/user", { params: getObj });
 }
 
 export function submit_user(postObj) {

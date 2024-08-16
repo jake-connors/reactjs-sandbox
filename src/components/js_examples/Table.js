@@ -19,6 +19,7 @@ function Table({ tableRef }) {
 
     async function initUsersTable() {
         let resp = await get_users();
+        console.log('resp all users ', resp);
         if (resp.data.success) {
             setAllUsers(resp.data.users);
         }
@@ -37,6 +38,9 @@ function Table({ tableRef }) {
             notifyMsg += " Success!";
             PopupNotifyHelper.create_notification(notifyMsg, "text-success");
         }
+        setUsername("");
+        setDetails("");
+        setIsEditMode(false);
     }
 
     function handleEditUser(userId) {
@@ -90,7 +94,7 @@ function Table({ tableRef }) {
                         <input 
                             type="text"
                             className="form-control" 
-                            onChange={setUsername}
+                            onChange={() => setUsername(e.target.value)}
                             value={username}
                             readOnly={isEditMode}
                         />
@@ -100,7 +104,7 @@ function Table({ tableRef }) {
                         <input 
                             type="text"
                             className="form-control" 
-                            onChange={setDetails}
+                            onChange={() => setDetails(e.target.value)}
                             value={details}
                             ref={detailsRef}
                         />
