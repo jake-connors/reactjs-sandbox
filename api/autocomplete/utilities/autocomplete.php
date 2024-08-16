@@ -51,6 +51,7 @@ class Autocomplete
         ";
         $results = dbi_query($sql, $params);
         $this->results = $results;
+        return $this->results;
     }
 
 }
