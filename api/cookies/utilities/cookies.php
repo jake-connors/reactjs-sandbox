@@ -4,13 +4,18 @@ namespace Cookies\Utilities;
 
 class Cookies {
 
-    public static function getAllCookies(): array {
+    public static function getUserCookies(): array {
         $cookies = dbi_query("SELECT * FROM cookies");
         $all_cookies = [];
         foreach ($cookies as $cookie) {
             $cookie_name = $cookie["name"];
             $all_cookies[$cookie_name] = self::_getCookie($cookie_name, json_decode($cookie["default_json"], 1));
         }
+        return $all_cookies;
+    }
+
+    public static function getAllCookies(): array {
+        $all_cookies = dbi_query("SELECT * FROM cookies");
         return $all_cookies;
     }
 
@@ -31,7 +36,8 @@ class Cookies {
     public static function allowAllCookies(): array {
         $all_cookies = self::getAllCookies();
         $allowed_cookies = [];
-        foreach ($all_cookies as $cookie_name => $cookie_value) {
+        foreach ($all_cookies as $cookie) {
+            $cookie_name = $cookie["name"];
             if ($cookie_name !== "allowed_cookies") {
                 $allowed_cookies[] = $cookie_name;
             }

@@ -1,8 +1,15 @@
 import go from "./go";
 
-export function get_cookies() {
+export function get_all_cookies() {
     var getObj = {
-        mode: "getCookies"
+        mode: "getAllCookies"
+    };
+    return go.get("/api/cookies/cookies", { params: getObj });
+}
+
+export function get_user_cookies() {
+    var getObj = {
+        mode: "getUserCookies"
     };
     return go.get("/api/cookies/cookies", { params: getObj });
 }

@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import CookiesPopup from "../components/CookiesPopup";
 import { setUserInfo } from "../redux/actions";
 
 function Settings({ user_info, dispatch }) {
@@ -22,9 +21,6 @@ function Settings({ user_info, dispatch }) {
                     <button className="btn btn-primary" onClick={handleShowCookiesPopup}>Show Cookies Popup</button>
                 </div>
             </div>
-            {user_info.show_cookies_popup != undefined && user_info.show_cookies_popup && (
-                <CookiesPopup />
-            )}
         </div>
     );
 }

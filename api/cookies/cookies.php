@@ -27,10 +27,12 @@ class Cookies_Cookies extends API_Endpoint
     public function getFunc()
     {
         $mode = $this->args["mode"];
-        if ($mode === "getCookies") {
+        if ($mode === "getUserCookies") {
+            $cookies = Utils\Cookies::getUserCookies();
+        } else if ($mode === "getAllCookies") {
             $cookies = Utils\Cookies::getAllCookies();
-            echo json_encode(["success" => 1, "cookies" => $cookies]);
         }
+        echo json_encode(["success" => 1, "cookies" => $cookies]);
     }
 }
 

@@ -13,7 +13,7 @@ import Excel from "./containers/php_examples/Excel";
 import Other from "./containers/Other";
 import CookiesPopup from "./components/CookiesPopup";
 import { setUserInfo } from "./redux/actions/";
-import { get_cookies } from "./api/cookies";
+import { get_user_cookies } from "./api/cookies";
 
 function App({ dispatch, user_info }) {
 
@@ -24,7 +24,7 @@ function App({ dispatch, user_info }) {
     }, []);
 
     async function init() {
-        let resp = await get_cookies();
+        let resp = await get_user_cookies();
         console.log('resp : ', resp);
         let cookies = resp.data.cookies;
         let userInfo = {

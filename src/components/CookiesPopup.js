@@ -1,12 +1,21 @@
 import { connect } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { setUserInfo } from "../redux/actions";
-import { allow_all_cookies } from "../api/cookies";
+import { allow_all_cookies, get_all_cookies } from "../api/cookies";
 import Modal from "react-modal";
 
 function CookiesPopup({ user_info, dispatch }) {
 
     const [showCookieSettingsModal, setShowCookieSettingsModal] = useState(false);
+
+    useEffect(() => {
+        getAllCookies();
+    }, []);
+
+    async function getAllCookies() {
+        let resp = await get_all_cookies();
+        console.log("resp , ", resp);
+    }
 
     async function handleAllowAllCookies() {
         let newUserInfo = {
