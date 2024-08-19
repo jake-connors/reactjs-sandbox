@@ -23,6 +23,5 @@ export function get_users() {
 }
 
 export function submit_user(postObj) {
-    postObj.mode = "submitUser";
     return go.post("/api/user/user", postObj);
 }

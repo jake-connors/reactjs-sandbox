@@ -16,10 +16,10 @@ function Table({ tableRef, isLoading, setIsLoading }) {
     const detailsRef = useRef(null);
 
     useEffect(() => {
-        initUsersTable();
+        getUsersTableData();
     }, []);
 
-    async function initUsersTable() {
+    async function getUsersTableData() {
         setIsLoading(true);
         let resp = await get_users();
         console.log('resp all users ', resp);
@@ -42,7 +42,7 @@ function Table({ tableRef, isLoading, setIsLoading }) {
             setDetailsRequired(true);
             valid = false;
         } else {
-            setDetailsRequired(true);
+            setDetailsRequired(false);
         }
         if (!valid) {
             return;
@@ -50,9 +50,9 @@ function Table({ tableRef, isLoading, setIsLoading }) {
 
         setIsLoading(true);
         let postObj = {
+            mode: isEditMode ? "editUser" : "saveUser",
             username,
             details,
-            isEditMode
         };
         let resp = await submit_user(postObj);
         console.log('resp : ' , resp);
@@ -60,11 +60,11 @@ function Table({ tableRef, isLoading, setIsLoading }) {
             let notifyMsg = isEditMode ? "Edit" : "Add";
             notifyMsg += " Success!";
             PopupNotifyHelper.create_notification(notifyMsg, "text-success");
+            getUsersTableData();
         }
         setUsername("");
         setDetails("");
         setIsEditMode(false);
-        setDetailsRequired(false);
         setIsLoading(false);
     }
 
@@ -87,10 +87,15 @@ function Table({ tableRef, isLoading, setIsLoading }) {
 
     async function handleDeleteUser(userId) {
         setIsLoading(true);
-        let resp = await delete_user(userId);
+        let postObj = {
+            mode: "deleteUser",
+            userId
+        };
+        let resp = await submit_user(postObj);
         console.log('resp : ' , resp);
         if (resp.data.success) {
             PopupNotifyHelper.create_notification("Delete Success!", "text-success");
+            getUsersTableData();
         }
         setIsLoading(false);
     }
@@ -150,7 +155,7 @@ function Table({ tableRef, isLoading, setIsLoading }) {
                     <RenderDefaultTable
                         table={table}
                         paginate={true}
-                        className="react-table-vertical-borderless"
+                        className="react-table-tight"
                     />
                 }
             </div>

@@ -12,8 +12,12 @@ class User_User extends API_Endpoint
     {
         $mode = $this->args["mode"];
         $result = 0;
-        if ($mode === "submitUser") {
-            $result = Utils\User::saveUser($this->args["username"], $this->args["details"], $this->args["isEditMode"]);
+        if ($mode === "saveUser") {
+            $result = Utils\User::saveUser($this->args["username"], $this->args["details"]);
+        } else if ($mode === "editUser") {
+            $result = Utils\User::editUser($this->args["username"], $this->args["details"]);  
+        } else if ($mode === "deleteUser") {
+            $result = Utils\User::deleteUser($this->args["userId"]);
         } else if ($mode === "saveUserInfo") {
             $result = Utils\UserInfoCookie::saveUserInfoCookie($this->args["newUserInfo"]);
         }

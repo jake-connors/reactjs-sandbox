@@ -8,14 +8,15 @@ function columns({ handleEditUser, handleDeleteUser }) {
             width: 150,
         },
         {
-            Header: "Username",
-            accessor: "username",
+            Header: "Details",
+            accessor: "details",
             width: 150,
         },
         {
             Header: "Edit",
-            accessor: "id",
+            accessor: "",
             width: 150,
+            style: { textAlign: "center" },
             Cell: (info) => {
                 const row = info.row.original;
                 return (
@@ -27,8 +28,9 @@ function columns({ handleEditUser, handleDeleteUser }) {
         },
         {
             Header: "Delete",
-            accessor: "id",
+            accessor: "",
             width: 150,
+            style: { textAlign: "center" },
             Cell: (info) => {
                 const row = info.row.original;
                 return (
