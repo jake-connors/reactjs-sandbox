@@ -161,8 +161,8 @@ label.js-examples {
     padding: 10px;
 }
 
-// settings
-@keyframes settings-cookies-ani {
+// cookies-popup
+@keyframes cookies-popup-ani {
     0% {
         -webkit-transform: translateY(100%);
         transform: translateY(100%);
@@ -172,10 +172,21 @@ label.js-examples {
         transform: translateY(0);
     }
 }
-#settings-cookies {
-    animation: settings-cookies-ani 0.3s ease;
+#cookies-popup {
+    animation: cookies-popup-ani 0.6s ease;
     position: fixed;
     bottom: 0;
+    left: 0;
     background-color: #333;
     color: #ddd;
+    padding: 25px 30px;
+
+    button#cookie-settings {
+        margin-right: 10px;
+        background-color: unset;
+        box-shadow: inherit;
+        border: 0;
+        text-transform: none;
+        text-decoration: underline;
+    }
 }

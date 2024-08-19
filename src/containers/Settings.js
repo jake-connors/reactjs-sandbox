@@ -1,40 +1,38 @@
-import { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import CookiesPopup from "../components/CookiesPopup";
+import { setUserInfo } from "../redux/actions";
 
-function Settings() {
+function Settings({ user_info, dispatch }) {
 
-    const [showCookieSettings, setShowCookieSettings] = useState(false);
-
-    useEffect(() => {
-        initCookieSettingsPopup();
-    }, []);
-    
-    function initCookieSettingsPopup() {
-        setShowCookieSettings(true);
-    }
-
-    function handleCookiesLearnMore() {
-        console.log('cookies learn more');
-    }
-
-    function handleAllowAllCookies() {
-        console.log('allowing all cookies');
+    function handleShowCookiesPopup() {
+        let newUserInfo = {
+            ...user_info,
+            show_cookies_popup: true
+        };
+        dispatch(setUserInfo(newUserInfo));
     }
     
     return (
-        <div className="row">
-            <h2 className="col-sm-12">Settings</h2>
-            {showCookieSettings && (
-                <div id="settings-cookies">
-                    <h4>About cookies on this site</h4>
-                    <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content. <span style={{ textDecoration: "underline" }} onClick={handleCookiesLearnMore}>Learn more</span></span>
-                    <div>
-                        <span>Cookie settings</span>
-                        <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
-                    </div>
+        <div id="settings-container">
+            <div className="row">
+                <h2 className="col-sm-12">Settings</h2>
+            </div>
+            <div className="row">
+                <div className="col-sm-12">
+                    <button className="btn btn-primary" onClick={handleShowCookiesPopup}>Show Cookies Popup</button>
                 </div>
+            </div>
+            {user_info.show_cookies_popup != undefined && user_info.show_cookies_popup && (
+                <CookiesPopup />
             )}
         </div>
     );
 }
 
-export default Settings;
+function mapStateToProps(state) {
+    return {
+        user_info: state.user_info
+    }
+} 
+
+export default connect(mapStateToProps)(Settings);

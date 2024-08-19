@@ -8,6 +8,11 @@
 - web hosting w/ Hostinger 
     - CI / CD w/ git
 
+to do : 
+- deny user access to dist/ files + non user files
+- define cookies in database
+- search bar in navbar
+
 ## Deploying to Hostinger
 ### `npm run build`
 

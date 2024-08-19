@@ -1,14 +1,13 @@
 function user_info(state = [], action) {
-    console.log('user info , action : ' , action);
     switch (action.type) {
         case "SET_USER_INFO":
-            var userInfo = {
+            var new_user_info = {
                 ...state
             };
             for (const [key, value] of Object.entries(action.userInfo)) {
-                userInfo[key] = value;
+                new_user_info[key] = value;
             }
-            return userInfo;
+            return new_user_info;
         default:
             return state;
         }

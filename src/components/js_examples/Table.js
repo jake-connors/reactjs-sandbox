@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from "react";
-import { get_users, submit_user } from "../../api/user";
+import { get_users, submit_user } from "../../api/users";
 import { useDefaultTable, RenderDefaultTable } from "../ReactTableHelper";
 import columns from "./TableColumns";
 import PopupNotifyHelper from "../PopupNotifyHelper";

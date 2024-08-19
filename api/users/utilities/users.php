@@ -1,8 +1,8 @@
 <?php
 
-namespace User\Utilities;
+namespace Users\Utilities;
 
-class User {
+class Users {
 
     public static function getUsers(): array {
         $users = dbi_query("SELECT * FROM users");

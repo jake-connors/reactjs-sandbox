@@ -11,8 +11,9 @@ import JsExamples from "./containers/JsExamples";
 import Email from "./containers/php_examples/Email";
 import Excel from "./containers/php_examples/Excel";
 import Other from "./containers/Other";
+import CookiesPopup from "./components/CookiesPopup";
 import { setUserInfo } from "./redux/actions/";
-import { get_user_info_cookie } from "./api/user";
+import { get_cookies } from "./api/cookies";
 
 function App({ dispatch, user_info }) {
 
@@ -23,9 +24,13 @@ function App({ dispatch, user_info }) {
     }, []);
 
     async function init() {
-        let resp = await get_user_info_cookie();
+        let resp = await get_cookies();
         console.log('resp : ', resp);
-        let userInfo = resp.data.user_info_cookie;
+        let cookies = resp.data.cookies;
+        let userInfo = {
+            style: cookies.site_style.style,
+            allowed_cookies: cookies.allowed_cookies
+        };
         dispatch(setUserInfo(userInfo));
     }
 
@@ -45,6 +50,9 @@ function App({ dispatch, user_info }) {
                     <Route path="/php_examples/excel" exact Component={Excel} />
                     <Route path="/other" exact Component={Other} />
                 </Routes>
+                {user_info.show_cookies_popup != undefined && user_info.show_cookies_popup && (
+                    <CookiesPopup />
+                )}
                 </div>
             </div>
         </Router>
