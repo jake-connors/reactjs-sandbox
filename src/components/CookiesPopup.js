@@ -23,7 +23,7 @@ function CookiesPopup({ user_info, dispatch }) {
 
     const modalStyles = {
         content: {
-            background: rgba(0,0,0,.5),
+            background: "#00000080",
             position: "fixed",
             top: "0",
             left: "0",
