@@ -172,21 +172,29 @@ label.js-examples {
         transform: translateY(0);
     }
 }
-#cookies-popup {
-    animation: cookies-popup-ani 0.6s ease;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background-color: #333;
-    color: #ddd;
-    padding: 25px 30px;
-
-    button#cookie-settings {
-        margin-right: 10px;
-        background-color: unset;
-        box-shadow: inherit;
-        border: 0;
-        text-transform: none;
-        text-decoration: underline;
+#cookies-popup-container {
+    #cookies-popup {
+        animation: cookies-popup-ani 0.6s ease;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #333;
+        color: #ddd;
+        padding: 25px 30px;
+        
+        button#cookie-settings {
+            margin-right: 10px;
+            background-color: unset;
+            box-shadow: inherit;
+            border: 0;
+            text-transform: none;
+            text-decoration: underline;
+        }
     }
+}
+
+// react-modal
+.ReactModal__Overlay {
+    z-index: 1000000;
 }

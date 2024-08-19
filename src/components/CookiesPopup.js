@@ -25,17 +25,18 @@ function CookiesPopup({ user_info, dispatch }) {
         content: {
             background: "#00000080",
             position: "fixed",
+            width: "700px",
             top: "0",
             left: "0",
             right: "0",
             bottom: "0",
-            zIndex: 100000,
-            borderRadius: "32px"
+            borderRadius: "32px",
+            transform: "translate(50%)"
         }
     };
     
     return (
-        <>
+        <div id="cookies-popup-container">
             <div id="cookies-popup">
                 <h4>About cookies on this site</h4>
                 <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
@@ -50,7 +51,7 @@ function CookiesPopup({ user_info, dispatch }) {
             >
                 <span>content here</span>
             </Modal>
-        </>
+        </div>
     );
 }
 

@@ -32,7 +32,9 @@ class Cookies {
         $all_cookies = self::getAllCookies();
         $allowed_cookies = [];
         foreach ($all_cookies as $cookie_name => $cookie_value) {
-            $allowed_cookies[] = $cookie_name;
+            if ($cookie_name !== "allowed_cookies") {
+                $allowed_cookies[] = $cookie_name;
+            }
         }
         self::saveCookie("allowed_cookies", $allowed_cookies);
         return $allowed_cookies;
