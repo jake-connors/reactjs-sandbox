@@ -20,26 +20,25 @@
     height: 0;
 }
 .slider {
-    position: absolute;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     background-color: #ccc;
     transition: .4s;
     -webkit-transition: .4s;
 }
 .slider:before {
-    position: absolute;
+    display: inline-block;
+    position: relative;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 23px;
+    width: 23px;
     left: 4px;
-    bottom: 4px;
+    bottom: -4px;
     background-color: white;
-    transition: .6s;
-    -webkit-transition: .6s;
+    transition: .4s;
+    -webkit-transition: .4s;
 }
 input:checked + .slider {
     background-color: #2196F3;
@@ -236,13 +235,18 @@ input:checked + .slider:before {
             text-decoration: underline;
         }
     }
-    #cookie-settings-modal {
-        position: fixed;
-        top: 0;
-        width: 700px;
-        transform: translate(-50%);
-        -webkit-transform: translate(-50%);
-    }
+}
+#cookie-settings-modal {
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    width: 700px;
+    padding: 25px;
+    background-color: #999;
+    border-radius: 16px;
+    transform: translate(-50%);
+    -webkit-transform: translate(-50%);
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.2);
 }
 
 // react-modal

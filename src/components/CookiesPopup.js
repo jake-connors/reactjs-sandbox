@@ -74,10 +74,7 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
             background: "#00000080",
             position: "fixed",
             inset: "0",
-            width: "700px",
-            borderRadius: "32px",
             zIndex: 1000001,
-            transform: "translate(-50%)"
         }
     };
     
@@ -96,10 +93,14 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
                 style={modalStyles}
             >
                 <div id="cookie-settings-modal">
-                    <h4>About cookies on this site</h4>
-                    <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
-                    <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
-                    <button className="btn btn-light" onClick={handleDenyAllCookies}>DENY ALL</button>
+                    <div className="row">
+                        <h4>About cookies on this site</h4>
+                        <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
+                    </div>
+                    <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+                        <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
+                        <button className="btn btn-light" onClick={handleDenyAllCookies} style={{ marginLeft: "15px" }}>DENY ALL</button>
+                    </div>
                     {allCookies.length > 0 && allCookies.filter((c) => c.require_consent).map((cookie, i) => (
                         <ModalCookie 
                             key={i}
@@ -108,7 +109,9 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
                             handleToggleCookie={handleToggleCookie}
                         />
                     ))}
-                    <button className="btn btn-success" onClick={handleSaveCookieSettings}>SAVE SETTINGS</button>
+                    <div style={{ marginTop: "10px" }}>
+                        <button className="btn btn-success" onClick={handleSaveCookieSettings}>SAVE SETTINGS</button>
+                    </div>
                 </div>
             </Modal>
         </div>
@@ -117,17 +120,22 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
 
 function ModalCookie({ cookie, isChecked, handleToggleCookie }) {
     return (
-        <div>
-            <label className="toggle-switch">
-                <input 
-                    type="checkbox" 
-                    checked={isChecked}
-                    onChange={() => handleToggleCookie(cookie.name, isChecked)}
-                />
-                <span className="slider round"></span>
-            </label>
-            <span>{cookie.display_name}</span>
-        </div>
+        <>
+            <div className="row">
+                <label className="toggle-switch col-sm-2">
+                    <input 
+                        type="checkbox" 
+                        checked={isChecked}
+                        onChange={() => handleToggleCookie(cookie.name, isChecked)}
+                    />
+                    <span className="slider round"></span>
+                </label>
+                <span className="col-sm-10">{cookie.display_name}</span>
+            </div>
+            <div className="row">
+                <span className="offset-2 col-sm-10">{cookie.display_info}</span>
+            </div>
+        </>
     );
 }
 
