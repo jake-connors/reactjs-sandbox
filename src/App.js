@@ -54,7 +54,7 @@ function App({ dispatch, user_info }) {
                     <Route path="/php_examples/excel" exact Component={Excel} />
                     <Route path="/other" exact Component={Other} />
                 </Routes>
-                {user_info.show_cookies_popup != undefined && user_info.show_cookies_popup && (
+                {allCookies.length > 0 && user_info.show_cookies_popup != undefined && user_info.show_cookies_popup && (
                     <CookiesPopup allCookies={allCookies} />
                 )}
                 </div>

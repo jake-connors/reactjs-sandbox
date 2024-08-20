@@ -95,7 +95,7 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
                 <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
                 <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
                 <button className="btn btn-light" onClick={handleDenyAllCookies}>DENY ALL</button>
-                {allCookies.filter((c) => c.require_consent).map((cookie, i) => (
+                {allCookies.length > 0 && allCookies.filter((c) => c.require_consent).map((cookie, i) => (
                     <ModalCookie 
                         key={i}
                         cookie={cookie}

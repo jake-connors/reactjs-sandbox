@@ -1,9 +1,10 @@
 function Other() {
 
     return (
-        <>
-        <span>Other</span>
-        </>
+        <div className="row">
+            <h2 className="col-sm-12">Other</h2>
+            <span>...</span>
+        </div>
     );
 }
 
