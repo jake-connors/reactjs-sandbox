@@ -1,21 +1,13 @@
 import { connect } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { setUserInfo } from "../redux/actions";
-import { allow_all_cookies, get_all_cookies } from "../api/cookies";
+import { allow_all_cookies, deny_all_cookies, save_cookie_settings } from "../api/cookies";
 import Modal from "react-modal";
 
-function CookiesPopup({ user_info, dispatch }) {
+function CookiesPopup({ user_info, dispatch, allCookies }) {
 
     const [showCookieSettingsModal, setShowCookieSettingsModal] = useState(false);
-
-    useEffect(() => {
-        getAllCookies();
-    }, []);
-
-    async function getAllCookies() {
-        let resp = await get_all_cookies();
-        console.log("resp , ", resp);
-    }
+    const [localAllowedCookies, setLocalAllowedCookies] = useState([...user_info.allowed_cookies]);
 
     async function handleAllowAllCookies() {
         let newUserInfo = {
@@ -28,6 +20,35 @@ function CookiesPopup({ user_info, dispatch }) {
             newUserInfo.allowed_cookies = resp.data.allowed_cookies;
         }
         dispatch(setUserInfo(newUserInfo));
+    }
+
+    async function handleDenyAllCookies() {
+        let resp = await deny_all_cookies();
+        console.log('resp ' , resp);
+    }
+
+    async function handleSaveCookieSettings() {
+        let cookiesWithSettings = [];
+        for (let cookie of allCookies.filter((c) => c.require_consent)) {
+            if (localAllowedCookies.some((c) => c === cookie.name)) {
+                cookie.clear = false;
+            } else {
+                cookie.clear = true;
+            }
+            cookiesWithSettings.push(cookie);
+        }
+        let resp = await save_cookie_settings(cookiesWithSettings);
+        console.log('resp ' , resp);
+    }
+
+    function handleToggleCookie(cookieName, isChecked) {
+        if (isChecked) {
+            var newLocalAllowedCookies = [...localAllowedCookies].filter((c) => c !== cookieName);
+        } else {
+            var newLocalAllowedCookies = [...localAllowedCookies];
+            newLocalAllowedCookies.push(cookieName);
+        }
+        setLocalAllowedCookies(newLocalAllowedCookies);
     }
 
     const modalStyles = {
@@ -58,8 +79,36 @@ function CookiesPopup({ user_info, dispatch }) {
                 isOpen={showCookieSettingsModal}
                 style={modalStyles}
             >
-                <span>content here</span>
+                <h4>About cookies on this site</h4>
+                <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
+                <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
+                <button className="btn btn-light" onClick={handleDenyAllCookies}>DENY ALL</button>
+                {allCookies.filter((c) => c.require_consent).map((cookie, i) => (
+                    <ModalCookie 
+                        key={i}
+                        cookie={cookie}
+                        isChecked={localAllowedCookies.some((c) => c === cookie.name)}
+                        handleToggleCookie={handleToggleCookie}
+                    />
+                ))}
+                <button className="btn btn-success" onClick={handleSaveCookieSettings}>SAVE SETTINGS</button>
             </Modal>
+        </div>
+    );
+}
+
+function ModalCookie({ cookie, isChecked, handleToggleCookie }) {
+    return (
+        <div>
+            <label className="toggle-switch">
+                <input 
+                    type="checkbox" 
+                    checked={isChecked}
+                    onChange={() => handleToggleCookie(cookie.name, isChecked)}
+                />
+                <span className="slider round"></span>
+            </label>
+            <span>{cookie.display_name}</span>
         </div>
     );
 }

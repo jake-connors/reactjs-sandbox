@@ -24,10 +24,14 @@ class Cookies {
         return $cookie;
     } 
 
-    public static function saveCookie(string $cookie_name, array $cookie_data): int {
+    public static function saveCookie(string $cookie_name, array $cookie_data, bool $clear_cookie = false): int {
         $cookie_data = json_encode($cookie_data);
+        $expires = time() + 60*60*24*365; // expires in a year
+        if ($clear_cookie) {
+            $expires *= -1;
+        }
         $cookie_options = [
-            "expires" => time() + 60*60*24*365, // expires in a year
+            "expires" => $expires
         ];
         setcookie($cookie_name, $cookie_data, $cookie_options);
         return 1;
@@ -44,6 +48,27 @@ class Cookies {
         }
         self::saveCookie("allowed_cookies", $allowed_cookies);
         return $allowed_cookies;
+    }
+
+    public static function denyAllCookies(): int {
+        $all_cookies = self::getAllCookies();
+        foreach ($all_cookies as $cookie) {
+            self::saveCookie($cookie["name"], [], true);
+            self::removeAllowedCookie($cookie["name"]);
+        }
+        return 1;
+    }
+
+    public static function saveCookieSettings(array $cookies): int {
+        foreach ($cookies as $cookie) {
+            if ($cookie["clear"]) {
+                self::saveCookie($cookie["name"], [], true);
+                self::removeAllowedCookie($cookie["name"]);
+            } else {
+                self::saveAllowedCookie($cookie["name"]);
+            }
+        }
+        return 1;
     }
 
     public static function saveAllowedCookie(string $cookie_name): int {

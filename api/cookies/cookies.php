@@ -20,6 +20,11 @@ class Cookies_Cookies extends API_Endpoint
         } else if ($mode === "allowAllCookies") {
             $allowed_cookies = Utils\Cookies::allowAllCookies();
             $ret = ["success" => 1, "allowed_cookies" => $allowed_cookies];
+        } else if ($mode === "denyAllCookies") {
+            $result = Utils\Cookies::denyAllCookies();
+            $ret = ["success" => $result];
+        } else if ($mode === "saveCookieSettings") {
+            $result = Utils\Cookies::saveCookieSettings($this->args["cookies"]);
         }
         echo json_encode($ret);
     }
@@ -27,12 +32,11 @@ class Cookies_Cookies extends API_Endpoint
     public function getFunc()
     {
         $mode = $this->args["mode"];
-        if ($mode === "getUserCookies") {
-            $cookies = Utils\Cookies::getUserCookies();
-        } else if ($mode === "getAllCookies") {
-            $cookies = Utils\Cookies::getAllCookies();
+        if ($mode === "getAllCookies") {
+            $all_cookies = Utils\Cookies::getAllCookies();
+            $user_cookies = Utils\Cookies::getUserCookies();
+            echo json_encode(["success" => 1, "cookies" => $all_cookies, "user_cookies" => $user_cookies]);
         }
-        echo json_encode(["success" => 1, "cookies" => $cookies]);
     }
 }
 

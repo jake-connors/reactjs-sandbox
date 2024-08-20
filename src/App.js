@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from "./containers/Navbar";
 import Main from "./containers/Main";
@@ -13,9 +13,11 @@ import Excel from "./containers/php_examples/Excel";
 import Other from "./containers/Other";
 import CookiesPopup from "./components/CookiesPopup";
 import { setUserInfo } from "./redux/actions/";
-import { get_user_cookies } from "./api/cookies";
+import { get_all_cookies } from "./api/cookies";
 
 function App({ dispatch, user_info }) {
+
+    const [allCookies, setAllCookies] = useState([]);
 
     useEffect(() => {
         // console.clear();
@@ -24,14 +26,16 @@ function App({ dispatch, user_info }) {
     }, []);
 
     async function init() {
-        let resp = await get_user_cookies();
+        let resp = await get_all_cookies();
         console.log('resp : ', resp);
-        let cookies = resp.data.cookies;
+        let user_cookies = resp.data.user_cookies;
         let userInfo = {
-            style: cookies.site_style.style,
-            allowed_cookies: cookies.allowed_cookies
+            style: user_cookies.site_style.style,
+            allowed_cookies: user_cookies.allowed_cookies,
+            show_cookies_popup: true
         };
         dispatch(setUserInfo(userInfo));
+        setAllCookies(resp.data.all_cookies);
     }
 
     return (
@@ -51,7 +55,7 @@ function App({ dispatch, user_info }) {
                     <Route path="/other" exact Component={Other} />
                 </Routes>
                 {user_info.show_cookies_popup != undefined && user_info.show_cookies_popup && (
-                    <CookiesPopup />
+                    <CookiesPopup allCookies={allCookies} />
                 )}
                 </div>
             </div>
