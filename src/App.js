@@ -8,8 +8,14 @@ import Documentation from "./containers/Documentation";
 import Settings from "./containers/Settings";
 import Contact from "./containers/Contact";
 import JsExamples from "./containers/JsExamples";
-import Email from "./containers/php_examples/Email";
-import Excel from "./containers/php_examples/Excel";
+import TypeaheadTable from "./components/js_examples/TypeaheadTable";
+import DragDrop from "./components/js_examples/DragDrop";
+import Popper from "./components/js_examples/Popper";
+import PhpExamples from "./containers/PhpExamples";
+import Email from "./components/php_examples/Email";
+import Excel from "./components/php_examples/Excel";
+import PythonExamples from "./containers/PythonExamples";
+import ArtificialIntel from "./components/python_examples/ArtificialIntel";
 import Other from "./containers/Other";
 import CookiesPopup from "./components/CookiesPopup";
 import { setUserInfo } from "./redux/actions/";
@@ -50,9 +56,15 @@ function App({ dispatch, user_info }) {
                     <Route path="/settings" exact Component={Settings} />
                     <Route path="/contact" exact Component={Contact} />
                     <Route path="/js_examples" exact Component={JsExamples} />
-                    <Route path="/php_examples/email" exact Component={Email} />
-                    <Route path="/php_examples/excel" exact Component={Excel} />
-                    <Route path="/other" exact Component={Other} />
+                    <Route path="/js_examples/typeahead_table" Component={TypeaheadTable} />
+                    <Route path="/js_examples/drag_drop" Component={DragDrop} />
+                    <Route path="/js_examples/popper" Component={Popper} />
+                    <Route path="/php_examples" exact Component={PhpExamples} />
+                    <Route path="/php_examples/email" Component={Email} />
+                    <Route path="/php_examples/excel" Component={Excel} />
+                    <Route path="/python_examples" exact Component={PythonExamples} />
+                    <Route path="/python_examples/ai" Component={ArtificialIntel} />
+                    <Route path="/other" Component={Other} />
                 </Routes>
                 {allCookies.length > 0 && user_info.show_cookies_popup != undefined && user_info.show_cookies_popup && (
                     <CookiesPopup allCookies={allCookies} />

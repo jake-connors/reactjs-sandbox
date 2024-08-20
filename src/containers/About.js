@@ -1,9 +1,9 @@
 function About() {
 
     return (
-        <>
-        <span>About me...</span>
-        </>
+        <div className="row">
+            <h2 className="col-sm-12">About me...</h2>
+        </div>
     );
 }
 

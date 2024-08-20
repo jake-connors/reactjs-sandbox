@@ -14,7 +14,7 @@ class Cookies {
         $user_cookies = [];
         foreach ($cookies as $cookie) {
             $cookie_name = $cookie["name"];
-            $user_cookies[$cookie_name] = self::_getCookie($cookie_name);
+            $user_cookies[$cookie_name] = self::_getCookie($cookie);
         }
         return $user_cookies;
     }

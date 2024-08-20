@@ -36,8 +36,7 @@ function PopupNotify() {
     }
 
     return (
-        <div className="row form-group">
-            <label className="js-examples col-sm-12">Popup Notify</label>
+        <>
             <select
                 className="form-select"
                 value={activeOption.id ?? ""}
@@ -48,7 +47,7 @@ function PopupNotify() {
                 ))}
             </select>
             <button className={"form-control btn btn-" + activeOption.buttonClassName} onClick={handlePopupNotify}>Test</button>
-        </div>
+        </>
     );
 }
 export default PopupNotify;

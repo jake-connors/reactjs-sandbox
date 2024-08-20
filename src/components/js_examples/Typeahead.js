@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Typeahead, AsyncTypeahead } from "react-bootstrap-typeahead";
+import { Typeahead as NormalTypeahead, AsyncTypeahead } from "react-bootstrap-typeahead";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { autocomplete } from "../../api/general";
 
-function Typeaheads({ scrollToTable, isLoading, setIsLoading }) {
+function Typeahead({ scrollToTable, isLoading, setIsLoading }) {
     
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [searchTextNormal, setSearchTextNormal] = useState("");
@@ -112,9 +112,8 @@ function Typeaheads({ scrollToTable, isLoading, setIsLoading }) {
     }
 
     return (
-        <div id="typeahead-container" className="row form-group">
-            <label className="js-examples col-sm-12">Typeahead</label>
-            <Typeahead
+        <div>
+            <NormalTypeahead
                 id="typeahead-normal"
                 className="col-sm-12"
                 labelKey={"value"}
@@ -220,4 +219,4 @@ function AsyncTypeaheadMenuItem({ user }) {
     );
 }
 
-export default Typeaheads;
+export default Typeahead;

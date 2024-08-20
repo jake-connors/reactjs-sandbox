@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
 
-function JsExamples() {
-    
+function PhpExamples() {
     return (
         <div>
             <div className="row">
-                <h2 className="col-sm-12">JS Examples</h2>
+                <h2 className="col-sm-12">PHP Examples</h2>
             </div>
             <div className="row">
                 <div className="col-sm-12">
                     <span>info about page...</span>
-                    <Link to={"/js_examples/typeahead_table"}>
+                    <Link to={"/php_examples/email"}>
                         {"Typeaheads and Tables"}
                     </Link>
                 </div>
@@ -18,16 +17,8 @@ function JsExamples() {
             <div className="row">
                 <div className="col-sm-12">
                     <span>info...</span>
-                    <Link to={"/js_examples/drag_drop"}>
-                        {"Drag & Drop"}
-                    </Link>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-sm-12">
-                    <span>...info</span>
-                    <Link to={"/js_examples/poppers"}>
-                        {"Poppers"}
+                    <Link to={"/php_examples/excel"}>
+                        {"Excel"}
                     </Link>
                 </div>
             </div>
@@ -36,4 +27,4 @@ function JsExamples() {
     );
 }
 
-export default JsExamples;
+export default PhpExamples;

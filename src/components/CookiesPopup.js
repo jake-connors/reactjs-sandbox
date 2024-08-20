@@ -7,7 +7,7 @@ import Modal from "react-modal";
 function CookiesPopup({ user_info, dispatch, allCookies }) {
 
     const [showCookieSettingsModal, setShowCookieSettingsModal] = useState(false);
-    const [localAllowedCookies, setLocalAllowedCookies] = useState([...user_info.allowed_cookies]);
+    const [localAllowedCookies, setLocalAllowedCookies] = useState([...user_info.cookie_settings.allowed_cookies]);
 
     async function handleAllowAllCookies() {
         let newUserInfo = {

@@ -1,4 +1,3 @@
-
 function columns({ handleEditUser, handleDeleteUser }) {
     
     const columns = [

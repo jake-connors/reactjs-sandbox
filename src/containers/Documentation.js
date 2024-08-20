@@ -1,9 +1,9 @@
 function Documentation() {
 
     return (
-        <>
-        <span>Documentation</span>
-        </>
+        <div className="row">
+            <h2 className="col-sm-12">Documentation</h2>
+        </div>
     );
 }
 

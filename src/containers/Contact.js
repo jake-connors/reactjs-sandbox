@@ -1,9 +1,9 @@
 function Contact() {
 
     return (
-        <>
-        <span>Contact</span>
-        </>
+        <div className="row">
+            <h2 className="col-sm-12">Contact</h2>
+        </div>
     );
 }
 

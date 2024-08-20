@@ -8,11 +8,23 @@
     RewriteRule ^api/(.*)$ api/api.php?request=$1 [QSA,NC,L]
     
     RewriteBase /
+    # for js_examples
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+    RewriteRule ^js_examples/(.*)$ /index.php?orig_path=$1 [QSA,NC,L] [L]
+
     # for php_examples
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-l
     RewriteRule ^php_examples/(.*)$ /index.php?orig_path=$1 [QSA,NC,L] [L]
+
+    # for python_examples
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+    RewriteRule ^python_examples/(.*)$ /index.php?orig_path=$1 [QSA,NC,L] [L]
     
     # for main area
     RewriteRule ^index\.php$ - [L]

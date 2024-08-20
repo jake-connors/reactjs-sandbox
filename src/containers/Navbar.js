@@ -19,23 +19,25 @@ function Navbar({ user_info }) {
 
     function updateMedia() {
         const desktopMinSize = 991;
-        // console.log('is desktop ? ', window.innerWidth > desktopMinSize);
-        // console.log('window.innerWidth: ', window.innerWidth);
-        // setIsDesktop(true);
         setIsDesktop(window.innerWidth > desktopMinSize);
     }
 
-    // useEffect(() => {
-    //     setIsDesktop(true);
-    // }, []);
-
-    const backendChildren = [
-        { title: "Email", url: "/php_examples/email" },
-        { title: "Excel", url: "/php_examples/excel" },
+    const jsChildren = [
+        { title: "Typeahead & Table", subpath: "/js_examples/typeahead_table", display_order: 1 },
+        { title: "Drag & Drop", subpath: "/js_examples/drag_drop", display_order: 2 },
+        { title: "Poppers", subpath: "js_examples/popper", display_order: 3 }
+    ];
+    const phpChildren = [
+        { title: "Email", url: "/php_examples/email", display_order: 1 },
+        { title: "Excel", url: "/php_examples/excel", display_order: 1 }
+    ];
+    const pythonChildren = [
+        { title: "AI", url: "/python/ai", display_order: 1 }
     ];
     const navbarItems = [
-        { title: "Javascript", url: "js_examples", children: [] },
-        { title: "PHP", url: "", children: backendChildren },
+        { title: "Javascript", url: "", children: [jsChildren] },
+        { title: "PHP", url: "", children: phpChildren },
+        { title: "Python", url: "", children: pythonChildren },
         { title: "Other", url: "other", children: [] },
     ];
 

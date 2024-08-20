@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-function DragAndDrop() {
+function DragDrop() {
     
     const [draggableItems1, setDraggableItems1] = useState([]);
     const [draggableItems2, setDraggableItems2] = useState([]);
@@ -64,10 +64,9 @@ function DragAndDrop() {
     }
 
     return (
-        <div id="drag-and-drop-container" className="row form-group">
-            <label className="js-examples col-sm-12">DragAndDrop
-                <button className="btn btn-primary" onClick={initDraggableLists} style={{ marginLeft: "15px", fontSize: "12px" }}>Reset</button>
-            </label>
+        <div id="drag-drop-container" className="row form-group">
+            <h4 className="js-examples col-sm-12">Drag And Drop</h4>
+            <button className="col-sm-12 btn btn-primary" onClick={initDraggableLists} style={{ marginLeft: "15px", fontSize: "12px" }}>Reset</button>
             <DragDropContext onDragEnd={onDragEnd} onDragStart={() => setIsDragging(true)}>
                 <div className="col-sm-6">
                 <Droppable droppableId="1">
@@ -159,4 +158,4 @@ function DragAndDrop() {
         </div>
     );
 }
-export default DragAndDrop;
+export default DragDrop;

@@ -5,8 +5,8 @@ function Email() {
     }
 
     return (
-        <div className="row">
-            <h2 className="col-sm-12">Email</h2>
+        <div className="row form-group">
+            <h4 className="php-examples col-sm-12">Email</h4>
             <div className="row">
                 <div id="email-form" className="col-sm-12">
                     <label style={{ fontSize: "18px" }}>Send an email:</label>

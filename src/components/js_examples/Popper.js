@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
-import PopperHelper from "../PopperHelper";
+import PopperHelper from "../../components/PopperHelper";
+import PopupNotify from "./PopupNotify";
 
 function Popper() {
     
@@ -31,36 +32,42 @@ function Popper() {
     }
 
     return (
-        <div id="popper-container-wrapper" className="row form-group">
-            <label className="js-examples col-sm-12">Popper</label>
-            <div id="popper-container">
-                <div id="popper-content">
-                    <EventPopper
-                        handleOpen={handleOpen}
-                        handleClose={handleClose}
-                        handleRefElemClick={handleRefElemClick}
-                        handleClickOutside={handleClickOutside}
-                    />
-                    <br />
-                    <br />
-                    <PortalPopper />
-                    <br />
-                    <br />
-                    <NestedPopper />
-                </div>
-                <small>
-                    <p>
-                        The first popper is:{" "}
-                        {openStatus === true ? "OPEN" : "CLOSED"}
-                    </p>
-                    {refClickStatus}
-                    {windowClickStatus === true && (
+        <div id="popper-container">
+            <div id="popper-example-container-wrapper">
+                <h4 className="js-examples col-sm-12">Popper</h4>
+                <div id="popper-example-container">
+                    <div id="popper-example-content">
+                        <EventPopper
+                            handleOpen={handleOpen}
+                            handleClose={handleClose}
+                            handleRefElemClick={handleRefElemClick}
+                            handleClickOutside={handleClickOutside}
+                        />
+                        <br />
+                        <br />
+                        <PortalPopper />
+                        <br />
+                        <br />
+                        <NestedPopper />
+                    </div>
+                    <small>
                         <p>
-                            The first popper was closed by clicking in the window
-                            outside of it.
+                            The first popper is:{" "}
+                            {openStatus === true ? "OPEN" : "CLOSED"}
                         </p>
-                    )}
-                </small>
+                        {refClickStatus}
+                        {windowClickStatus === true && (
+                            <p>
+                                The first popper was closed by clicking in the window
+                                outside of it.
+                            </p>
+                        )}
+                    </small>
+                </div>
+            </div>
+            <div id="popup-notify-container" className="row form-group">
+                <h4 className="js-examples col-sm-12">Popup Notify</h4>
+                <PopupNotify />
             </div>
         </div>
     );
