@@ -9,9 +9,10 @@
     - CI / CD w/ git
 
 to do : 
-- deny user access to dist/ files + non user files
-- define cookies in database
-- search bar in navbar
+- deny user access to dist/ files + non user files (w/ .htaccess)
+- remove search bar in navbar
+- add more "themes" to each style-picker style
+- add documentation (both display on screen (maybe use an api/lib) and document the API/ backend functions)
 
 ## Deploying to Hostinger
 ### `npm run build`

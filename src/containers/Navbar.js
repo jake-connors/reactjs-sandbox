@@ -35,14 +35,14 @@ function Navbar({ user_info }) {
         { title: "AI", url: "/python/ai", display_order: 1 }
     ];
     const navbarItems = [
-        { title: "Javascript", url: "", children: [jsChildren] },
+        { title: "Javascript", url: "", children: jsChildren },
         { title: "PHP", url: "", children: phpChildren },
         { title: "Python", url: "", children: pythonChildren },
         { title: "Other", url: "other", children: [] },
     ];
 
     return (
-        <div id="navbar-all" className={user_info.style}>
+        <div id="navbar-all" className={user_info.site_style}>
         {isDesktop && (
             <div id="navbar-desktop" className="container-fluid">
                 <div className="row" id="navbar-upper">

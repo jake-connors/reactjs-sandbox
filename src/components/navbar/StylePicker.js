@@ -22,7 +22,7 @@ function StylePicker({ isDesktop, dispatch, user_info }) {
             site_style: className
         };
         dispatch(setUserInfo(newUserInfo));
-        if (user_info.allowed_cookies.some((cookie) => cookie === "site_style")) {
+        if (user_info.cookie_settings.allowed_cookies.some((cookie) => cookie === "site_style")) {
             // if user allows the "style" cookie then save it
             let cookieName = "site_style";
             let cookieData = {
@@ -38,7 +38,7 @@ function StylePicker({ isDesktop, dispatch, user_info }) {
         {isDesktop ? 
             <>
             {styleOptions.map((option, i) => (
-                <span key={i} className={`style-picker-option ${option.className} ${user_info.style == option.className ? " active" : ""}`} 
+                <span key={i} className={`style-picker-option ${option.className} ${user_info.site_style == option.className ? " active" : ""}`} 
                     onClick={() => handleStyleClicked(option.className)}
                 >
                     <span className="style-picker-option-primary"></span>
@@ -48,7 +48,7 @@ function StylePicker({ isDesktop, dispatch, user_info }) {
         : 
             <>
             {styleOptions.map((option, i) => (
-                <span key={i} className={`style-picker-option ${option.className} ${user_info.style == option.className ? " active" : ""}`} 
+                <span key={i} className={`style-picker-option ${option.className} ${user_info.site_style == option.className ? " active" : ""}`} 
                     onClick={() => handleStyleClicked(option.className)}
                 >
                     <span className="style-picker-option-primary"></span>
