@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { useState } from "react";
 import { setUserInfo } from "../redux/actions";
-import { allow_all_cookies, deny_all_cookies, save_cookie_settings } from "../api/cookies";
+import { allow_all_cookies, deny_all_cookies, save_user_cookie_settings } from "../api/cookies";
 import Modal from "react-modal";
 
 function CookiesPopup({ user_info, dispatch, allCookies }) {
@@ -12,28 +12,40 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
     async function handleAllowAllCookies() {
         let newUserInfo = {
             ...user_info,
+            cookie_settings: {
+                allowed_cookies: [...allCookies],
+                allow_all: true,
+                deny_all: false
+            },
             show_cookies_popup: false
         };
-        let resp = await allow_all_cookies();
-        console.log('resp ; ' , resp);
-        if (resp.data.success) {
-            newUserInfo.allowed_cookies = resp.data.allowed_cookies;
-        }
         dispatch(setUserInfo(newUserInfo));
+        let resp = await allow_all_cookies();
+        console.log('resp ,, ' , resp);
     }
 
     async function handleDenyAllCookies() {
-        let resp = await deny_all_cookies();
-        console.log('resp ' , resp);
         let newUserInfo = {
             ...user_info,
-            allowed_cookies: [],
+            cookie_settings: {
+                allowed_cookies: [],
+                allow_all: false,
+                deny_all: true
+            },
             show_cookies_popup: false,
         };
         dispatch(setUserInfo(newUserInfo));
+        let resp = await deny_all_cookies();
+        console.log('resp ' , resp);
     }
 
     async function handleSaveCookieSettings() {
+        let newUserInfo = {
+            ...user_info,
+            allowed_cookies: [...localAllowedCookies],
+            show_cookies_popup: false,
+        };
+        dispatch(setUserInfo(newUserInfo));
         let cookiesWithSettings = [];
         for (let cookie of allCookies.filter((c) => c.require_consent)) {
             if (localAllowedCookies.some((c) => c === cookie.name)) {
@@ -43,14 +55,8 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
             }
             cookiesWithSettings.push(cookie);
         }
-        let resp = await save_cookie_settings(cookiesWithSettings);
+        let resp = await save_user_cookie_settings(cookiesWithSettings);
         console.log('resp ' , resp);
-        let newUserInfo = {
-            ...user_info,
-            allowed_cookies: [...localAllowedCookies],
-            show_cookies_popup: false,
-        };
-        dispatch(setUserInfo(newUserInfo));
     }
 
     function handleToggleCookie(cookieName, isChecked) {
@@ -67,13 +73,11 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
         content: {
             background: "#00000080",
             position: "fixed",
+            inset: "0",
             width: "700px",
-            top: "0",
-            left: "0",
-            right: "0",
-            bottom: "0",
             borderRadius: "32px",
-            transform: "translate(50%)"
+            zIndex: 1000001,
+            transform: "translate(-50%)"
         }
     };
     
@@ -83,7 +87,7 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
                 <h4>About cookies on this site</h4>
                 <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
                 <div style={{ marginTop: "10px" }}>
-                    <button id="cookie-settings" onClick={() => setShowCookieSettingsModal(true)}>Cookie settings</button>
+                    <button id="cookie-settings-button" onClick={() => setShowCookieSettingsModal(true)}>Cookie settings</button>
                     <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
                 </div>
             </div>
@@ -91,19 +95,21 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
                 isOpen={showCookieSettingsModal}
                 style={modalStyles}
             >
-                <h4>About cookies on this site</h4>
-                <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
-                <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
-                <button className="btn btn-light" onClick={handleDenyAllCookies}>DENY ALL</button>
-                {allCookies.length > 0 && allCookies.filter((c) => c.require_consent).map((cookie, i) => (
-                    <ModalCookie 
-                        key={i}
-                        cookie={cookie}
-                        isChecked={localAllowedCookies.some((c) => c === cookie.name)}
-                        handleToggleCookie={handleToggleCookie}
-                    />
-                ))}
-                <button className="btn btn-success" onClick={handleSaveCookieSettings}>SAVE SETTINGS</button>
+                <div id="cookie-settings-modal">
+                    <h4>About cookies on this site</h4>
+                    <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
+                    <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
+                    <button className="btn btn-light" onClick={handleDenyAllCookies}>DENY ALL</button>
+                    {allCookies.length > 0 && allCookies.filter((c) => c.require_consent).map((cookie, i) => (
+                        <ModalCookie 
+                            key={i}
+                            cookie={cookie}
+                            isChecked={localAllowedCookies.some((c) => c === cookie.name)}
+                            handleToggleCookie={handleToggleCookie}
+                        />
+                    ))}
+                    <button className="btn btn-success" onClick={handleSaveCookieSettings}>SAVE SETTINGS</button>
+                </div>
             </Modal>
         </div>
     );

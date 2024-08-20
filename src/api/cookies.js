@@ -16,9 +16,9 @@ export function save_cookie(cookieName, cookieData) {
     return go.post("/api/cookies/cookies", postObj);
 }
 
-export function save_cookie_settings(cookies) {
+export function save_user_cookie_settings(cookies) {
     var postObj = {
-        mode: "saveCookieSettings",
+        mode: "saveUserCookieSettings",
         cookies
     };
     return go.post("/api/cookies/cookies", postObj);

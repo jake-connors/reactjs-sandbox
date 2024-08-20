@@ -2,7 +2,11 @@
 const initial = {
     user_info: {
         site_style: "",
-        allowed_cookies: [],
+        cookie_settings: {
+            allowed_cookies: [],
+            allow_all: false,
+            deny_all: false
+        },
         show_cookies_popup: true
     }
 };

@@ -38,8 +38,8 @@
     left: 4px;
     bottom: 4px;
     background-color: white;
-    transition: .4s;
-    -webkit-transition: .4s;
+    transition: .6s;
+    -webkit-transition: .6s;
 }
 input:checked + .slider {
     background-color: #2196F3;
@@ -227,7 +227,7 @@ label.js-examples {
         color: #ddd;
         padding: 25px 30px;
         
-        button#cookie-settings {
+        #cookie-settings-button {
             margin-right: 10px;
             background-color: unset;
             box-shadow: inherit;
@@ -235,6 +235,13 @@ label.js-examples {
             text-transform: none;
             text-decoration: underline;
         }
+    }
+    #cookie-settings-modal {
+        position: fixed;
+        top: 0;
+        width: 700px;
+        transform: translate(-50%);
+        -webkit-transform: translate(-50%);
     }
 }
 

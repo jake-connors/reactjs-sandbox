@@ -30,8 +30,8 @@ function App({ dispatch, user_info }) {
         console.log('resp : ', resp);
         let user_cookies = resp.data.user_cookies;
         let userInfo = {
-            style: user_cookies.site_style.style,
-            allowed_cookies: user_cookies.allowed_cookies,
+            site_style: user_cookies.site_style.style,
+            cookie_settings: user_cookies.user_cookie_settings,
             show_cookies_popup: true
         };
         dispatch(setUserInfo(userInfo));
@@ -41,7 +41,7 @@ function App({ dispatch, user_info }) {
     return (
         <Router>
             <Navbar />
-            <div id="app-container-wrapper" className={user_info.style}>
+            <div id="app-container-wrapper" className={user_info.site_style}>
                 <div id="app-container" className="container">
                 <Routes>
                     <Route path="/" exact Component={Main} />

@@ -6,7 +6,6 @@ use Cookies\Utilities as Utils;
 
 class Cookies_Cookies extends API_Endpoint
 {
-    
     public function postFunc()
     {
         $mode = $this->args["mode"];
@@ -18,13 +17,14 @@ class Cookies_Cookies extends API_Endpoint
             $result = Utils\Cookies::saveCookie($cookieName, $cookieData);
             $ret = ["success" => $result];
         } else if ($mode === "allowAllCookies") {
-            $allowed_cookies = Utils\Cookies::allowAllCookies();
-            $ret = ["success" => 1, "allowed_cookies" => $allowed_cookies];
+            $result = Utils\Cookies::allowAllCookies();
+            $ret = ["success" => $result];
         } else if ($mode === "denyAllCookies") {
             $result = Utils\Cookies::denyAllCookies();
             $ret = ["success" => $result];
-        } else if ($mode === "saveCookieSettings") {
-            $result = Utils\Cookies::saveCookieSettings($this->args["cookies"]);
+        } else if ($mode === "saveUserCookieSettings") {
+            $result = Utils\Cookies::saveUserCookieSettings($this->args["cookies"]);
+            $ret = ["success" => $result];
         }
         echo json_encode($ret);
     }
@@ -35,7 +35,7 @@ class Cookies_Cookies extends API_Endpoint
         if ($mode === "getAllCookies") {
             $all_cookies = Utils\Cookies::getAllCookies();
             $user_cookies = Utils\Cookies::getUserCookies();
-            echo json_encode(["success" => 1, "cookies" => $all_cookies, "user_cookies" => $user_cookies]);
+            echo json_encode(["success" => 1, "all_cookies" => $all_cookies, "user_cookies" => $user_cookies]);
         }
     }
 }

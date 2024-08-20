@@ -4,23 +4,25 @@ namespace Cookies\Utilities;
 
 class Cookies {
 
-    public static function getUserCookies(): array {
-        $cookies = dbi_query("SELECT * FROM cookies");
-        $all_cookies = [];
-        foreach ($cookies as $cookie) {
-            $cookie_name = $cookie["name"];
-            $all_cookies[$cookie_name] = self::_getCookie($cookie_name, json_decode($cookie["default_json"], 1));
-        }
-        return $all_cookies;
-    }
-
     public static function getAllCookies(): array {
         $all_cookies = dbi_query("SELECT * FROM cookies");
         return $all_cookies;
     }
 
-    private static function _getCookie(string $cookie_name, mixed $default_value): array {
-        $cookie = isset($_COOKIE[$cookie_name]) ? json_decode($_COOKIE[$cookie_name], 1) : $default_value;
+    public static function getUserCookies(): array {
+        $cookies = dbi_query("SELECT * FROM cookies");
+        $user_cookies = [];
+        foreach ($cookies as $cookie) {
+            $cookie_name = $cookie["name"];
+            $user_cookies[$cookie_name] = self::_getCookie($cookie_name);
+        }
+        return $user_cookies;
+    }
+
+    private static function _getCookie(array $cookie): array {
+        $cookie_name = $cookie["name"];
+        $cookie = isset($_COOKIE[$cookie_name]) ? $_COOKIE[$cookie_name] : $cookie["default_json"];
+        $cookie = json_decode($cookie, 1);
         return $cookie;
     } 
 
@@ -37,61 +39,50 @@ class Cookies {
         return 1;
     }
 
-    public static function allowAllCookies(): array {
-        $all_cookies = self::getAllCookies();
+    public static function allowAllCookies(): int {
+        $all_cookies = dbi_query("SELECT * FROM cookies WHERE require_consent");
         $allowed_cookies = [];
         foreach ($all_cookies as $cookie) {
-            $cookie_name = $cookie["name"];
-            if ($cookie_name !== "allowed_cookies") {
-                $allowed_cookies[] = $cookie_name;
-            }
+            $allowed_cookies[] = $cookie["name"];
         }
-        self::saveCookie("allowed_cookies", $allowed_cookies);
-        return $allowed_cookies;
+        $user_cookie_settings = [
+            "allowed_cookies" => $allowed_cookies,
+            "allow_all" => true,
+            "deny_all" => false,
+        ];
+        self::saveCookie("user_cookie_settings", $user_cookie_settings);
+        return 1;
     }
 
     public static function denyAllCookies(): int {
-        $all_cookies = self::getAllCookies();
+        $all_cookies = dbi_query("SELECT * FROM cookies WHERE require_consent");
         foreach ($all_cookies as $cookie) {
             self::saveCookie($cookie["name"], [], true);
-            self::removeAllowedCookie($cookie["name"]);
         }
+        $user_cookie_settings = [
+            "allowed_cookies" => [],
+            "allow_all" => false,
+            "deny_all" => true,
+        ];
+        self::saveCookie("user_cookie_settings", $user_cookie_settings);
         return 1;
     }
 
-    public static function saveCookieSettings(array $cookies): int {
+    public static function saveUserCookieSettings(array $cookies): int {
+        $allowed_cookies = [];
         foreach ($cookies as $cookie) {
             if ($cookie["clear"]) {
                 self::saveCookie($cookie["name"], [], true);
-                self::removeAllowedCookie($cookie["name"]);
             } else {
-                self::saveAllowedCookie($cookie["name"]);
+                $allowed_cookies[] = $cookie["name"];
             }
         }
-        return 1;
-    }
-
-    public static function saveAllowedCookie(string $cookie_name): int {
-        $allowed_cookies = self::_getCookie("allowed_cookies", []);        
-        if (!in_array($cookie_name, $allowed_cookies)) {
-            $allowed_cookies[] = $cookie_name;
-            $cookie_data = json_encode($allowed_cookies);
-            $cookie_options = [
-                "expires" => time() + 60*60*24*365, // expires in a year
-            ];
-            setcookie("allowed_cookies", $cookie_data, $cookie_options);
-        }
-        return 1;
-    }
-
-    public static function removeAllowedCookie(string $cookie_name): int {
-        $allowed_cookies = self::_getCookie("allowed_cookies", []);        
-        $new_allowed_cookies = [];
-        foreach ($allowed_cookies as $cookie) {
-            if ($cookie !== $cookie_name) {
-                $new_allowed_cookies[] = $cookie;
-            }
-        }
+        $user_cookie_settings = [
+            "allowed_cookies" => $allowed_cookies,
+            "allow_all" => false,
+            "deny_all" => false
+        ];
+        self::saveCookie("user_cookie_settings", $user_cookie_settings);
         return 1;
     }
 }
