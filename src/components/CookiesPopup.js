@@ -25,6 +25,12 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
     async function handleDenyAllCookies() {
         let resp = await deny_all_cookies();
         console.log('resp ' , resp);
+        let newUserInfo = {
+            ...user_info,
+            allowed_cookies: [],
+            show_cookies_popup: false,
+        };
+        dispatch(setUserInfo(newUserInfo));
     }
 
     async function handleSaveCookieSettings() {
@@ -39,6 +45,12 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
         }
         let resp = await save_cookie_settings(cookiesWithSettings);
         console.log('resp ' , resp);
+        let newUserInfo = {
+            ...user_info,
+            allowed_cookies: [...localAllowedCookies],
+            show_cookies_popup: false,
+        };
+        dispatch(setUserInfo(newUserInfo));
     }
 
     function handleToggleCookie(cookieName, isChecked) {
