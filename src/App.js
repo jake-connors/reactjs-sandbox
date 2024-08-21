@@ -38,7 +38,7 @@ function App({ dispatch, user_info }) {
         let userInfo = {
             site_style: user_cookies.site_style.style,
             cookie_settings: user_cookies.user_cookie_settings,
-            show_cookies_popup: true
+            show_cookies_popup: user_cookies.user_cookie_settings.expires == -1
         };
         dispatch(setUserInfo(userInfo));
         setAllCookies(resp.data.all_cookies);

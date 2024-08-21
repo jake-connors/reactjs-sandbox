@@ -17,14 +17,14 @@ class Cookies_Cookies extends API_Endpoint
             $result = Utils\Cookies::saveCookie($cookieName, $cookieData);
             $ret = ["success" => $result];
         } else if ($mode === "allowAllCookies") {
-            $result = Utils\Cookies::allowAllCookies();
-            $ret = ["success" => $result];
+            $userCookieSettings = Utils\Cookies::allowAllCookies();
+            $ret = ["success" => 1, "user_cookie_settings" => $userCookieSettings];
         } else if ($mode === "denyAllCookies") {
-            $result = Utils\Cookies::denyAllCookies();
-            $ret = ["success" => $result];
+            $userCookieSettings = Utils\Cookies::denyAllCookies();
+            $ret = ["success" => 1, "user_cookie_settings" => $userCookieSettings];
         } else if ($mode === "saveUserCookieSettings") {
-            $result = Utils\Cookies::saveUserCookieSettings($this->args["cookies"]);
-            $ret = ["success" => $result];
+            $userCookieSettings = Utils\Cookies::saveUserCookieSettings($this->args["cookies"]);
+            $ret = ["success" => 1, "user_cookie_settings" => $userCookieSettings];
         }
         echo json_encode($ret);
     }

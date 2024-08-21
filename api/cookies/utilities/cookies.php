@@ -30,16 +30,17 @@ class Cookies {
         $cookie_data = json_encode($cookie_data);
         $expires = time() + 60*60*24*365; // expires in a year
         if ($clear_cookie) {
-            $expires *= -1;
+            $expires = 1;
         }
         $cookie_options = [
-            "expires" => $expires
+            "expires" => $expires,
+            "samesite" => "None"
         ];
         setcookie($cookie_name, $cookie_data, $cookie_options);
         return 1;
     }
 
-    public static function allowAllCookies(): int {
+    public static function allowAllCookies(): array {
         $all_cookies = dbi_query("SELECT * FROM cookies WHERE require_consent");
         $allowed_cookies = [];
         foreach ($all_cookies as $cookie) {
@@ -49,12 +50,13 @@ class Cookies {
             "allowed_cookies" => $allowed_cookies,
             "allow_all" => true,
             "deny_all" => false,
+            "expires" => time() + 60*60*24*365 // expires in a year
         ];
         self::saveCookie("user_cookie_settings", $user_cookie_settings);
-        return 1;
+        return $user_cookie_settings;
     }
 
-    public static function denyAllCookies(): int {
+    public static function denyAllCookies(): array {
         $all_cookies = dbi_query("SELECT * FROM cookies WHERE require_consent");
         foreach ($all_cookies as $cookie) {
             self::saveCookie($cookie["name"], [], true);
@@ -63,12 +65,13 @@ class Cookies {
             "allowed_cookies" => [],
             "allow_all" => false,
             "deny_all" => true,
+            "expires" => time() + 60*60*24*365 // expires in a year
         ];
         self::saveCookie("user_cookie_settings", $user_cookie_settings);
-        return 1;
+        return $user_cookie_settings;
     }
 
-    public static function saveUserCookieSettings(array $cookies): int {
+    public static function saveUserCookieSettings(array $cookies): array {
         $allowed_cookies = [];
         foreach ($cookies as $cookie) {
             if ($cookie["clear"]) {
@@ -80,10 +83,11 @@ class Cookies {
         $user_cookie_settings = [
             "allowed_cookies" => $allowed_cookies,
             "allow_all" => false,
-            "deny_all" => false
+            "deny_all" => false,
+            "expires" => time() + 60*60*24*365 // expires in a year
         ];
         self::saveCookie("user_cookie_settings", $user_cookie_settings);
-        return 1;
+        return $user_cookie_settings;
     }
 }
 

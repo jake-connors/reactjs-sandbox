@@ -10,42 +10,33 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
     const [localAllowedCookies, setLocalAllowedCookies] = useState([...user_info.cookie_settings.allowed_cookies]);
 
     async function handleAllowAllCookies() {
-        let newUserInfo = {
-            ...user_info,
-            cookie_settings: {
-                allowed_cookies: [...allCookies],
-                allow_all: true,
-                deny_all: false
-            },
-            show_cookies_popup: false
-        };
-        dispatch(setUserInfo(newUserInfo));
         let resp = await allow_all_cookies();
-        console.log('resp ,, ' , resp);
+        if (resp.data.success) {
+            let newCookieSettings = resp.data.user_cookie_settings;
+            let newUserInfo = {
+                ...user_info,
+                cookie_settings: newCookieSettings,
+                show_cookies_popup: false
+            };
+            dispatch(setUserInfo(newUserInfo));
+        }
     }
 
     async function handleDenyAllCookies() {
-        let newUserInfo = {
-            ...user_info,
-            cookie_settings: {
-                allowed_cookies: [],
-                allow_all: false,
-                deny_all: true
-            },
-            show_cookies_popup: false,
-        };
-        dispatch(setUserInfo(newUserInfo));
         let resp = await deny_all_cookies();
-        console.log('resp ' , resp);
+        if (resp.data.success) {
+            let newCookieSettings = resp.data.user_cookie_settings;
+            let newUserInfo = {
+                ...user_info,
+                cookie_settings: newCookieSettings,
+                show_cookies_popup: false
+            };
+            dispatch(setUserInfo(newUserInfo));
+        }
     }
 
     async function handleSaveCookieSettings() {
-        let newUserInfo = {
-            ...user_info,
-            allowed_cookies: [...localAllowedCookies],
-            show_cookies_popup: false,
-        };
-        dispatch(setUserInfo(newUserInfo));
+        console.log('local allowed cookies ' , [...localAllowedCookies]);
         let cookiesWithSettings = [];
         for (let cookie of allCookies.filter((c) => c.require_consent)) {
             if (localAllowedCookies.some((c) => c === cookie.name)) {
@@ -56,7 +47,15 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
             cookiesWithSettings.push(cookie);
         }
         let resp = await save_user_cookie_settings(cookiesWithSettings);
-        console.log('resp ' , resp);
+        if (resp.data.success) {
+            let newCookieSettings = resp.data.user_cookie_settings;
+            let newUserInfo = {
+                ...user_info,
+                cookie_settings: newCookieSettings,
+                show_cookies_popup: false,
+            };
+            dispatch(setUserInfo(newUserInfo));
+        }
     }
 
     function handleToggleCookie(cookieName, isChecked) {
@@ -66,6 +65,7 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
             var newLocalAllowedCookies = [...localAllowedCookies];
             newLocalAllowedCookies.push(cookieName);
         }
+        console.log('setting ... ' , newLocalAllowedCookies);
         setLocalAllowedCookies(newLocalAllowedCookies);
     }
 
