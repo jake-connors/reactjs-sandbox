@@ -69,7 +69,6 @@ function App({ dispatch, user_info }) {
                     {allCookies.length > 0 && user_info.show_cookies_popup != undefined && user_info.show_cookies_popup && (
                         <CookiesPopup allCookies={allCookies} />
                     )}
-                    <div className="clear20"></div>
                 </div>
             </div>
         </Router>

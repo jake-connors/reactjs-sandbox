@@ -12,7 +12,7 @@ function Typeahead({ scrollToTable, isLoading, setIsLoading }) {
     const [typeaheadOptions, setTypeaheadOptions] = useState([]);
     const [typeaheadNormalNotFound, setTypeaheadNormalNotFound] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
-    const [searchBy, setSearchBy] = useState("");
+    const [searchBy, setSearchBy] = useState("username");
 
     const typeaheadRefNormal = useRef(null);
     const typeaheadRefAsync = useRef(null);
@@ -76,11 +76,12 @@ function Typeahead({ scrollToTable, isLoading, setIsLoading }) {
     }
 
     function handleDeleteSelectedOption(option) {
-        console.log('del opt ' , option);
         let newSelectedOptions = selectedOptions.filter((opt) => opt.id != option.id);
         setSelectedOptions(newSelectedOptions);
         let newTypeaheadOptions = [...typeaheadOptions, option];
         setTypeaheadOptions(newTypeaheadOptions);
+        typeaheadRefNormal.current.clear();
+        typeaheadRefNormal.current.focus();
     }
 
     function renderTypeaheadNormalNotFound() {
@@ -112,7 +113,8 @@ function Typeahead({ scrollToTable, isLoading, setIsLoading }) {
     }
 
     return (
-        <div>
+        <div id="typeahead-container" className="row form-group">
+            <h4 className="js-examples col-sm-12">Normal Typeahead</h4>
             <NormalTypeahead
                 id="typeahead-normal"
                 className="col-sm-12"
@@ -137,10 +139,11 @@ function Typeahead({ scrollToTable, isLoading, setIsLoading }) {
                     </div>
                 ))}
             </div>
+            <div className="clear10"></div>
             <div className="col-sm-12">
-                <label className="col-sm-12" style={{ marginTop: "5px" }}>Async Typeahead
+                <h4 className="js-examples col-sm-12">Async Typeahead
                     <button className="btn btn-primary" onClick={scrollToTable} style={{ marginLeft: "15px", fontSize: "12px" }}>Edit `Users`</button>
-                </label>
+                </h4>
                 <label className="col-sm-12" style={{ marginBottom: "5px" }}>
                     <small style={{ fontSize: "12px" }}>
                         <span>(Database `users` lookup + autocomplete)</span>
@@ -152,6 +155,7 @@ function Typeahead({ scrollToTable, isLoading, setIsLoading }) {
                         <input 
                             type="radio"
                             value="username"
+                            checked={searchBy === "username"}
                             onChange={() => handleRadioSearchBy("username")}
                             disabled={isLoading}
                             style={{ marginRight: "5px" }}
@@ -162,6 +166,7 @@ function Typeahead({ scrollToTable, isLoading, setIsLoading }) {
                         <input 
                             type="radio"
                             value="details"
+                            checked={searchBy === "details"}
                             onChange={() => handleRadioSearchBy("details")}
                             disabled={isLoading}
                             style={{ marginRight: "5px" }}
@@ -172,6 +177,7 @@ function Typeahead({ scrollToTable, isLoading, setIsLoading }) {
                         <input 
                             type="radio"
                             value="username_or_details"
+                            checked={searchBy === "username_or_details"}
                             onChange={() => handleRadioSearchBy("username_and_details")}
                             disabled={isLoading}
                             style={{ marginRight: "5px" }}
@@ -206,6 +212,7 @@ function Typeahead({ scrollToTable, isLoading, setIsLoading }) {
                 <div className="col-sm-12" id="output-async">
                     <p>output here...</p>
                 </div>
+                {isLoading && <span>is loading...</span>}
             </div>
         </div>
     );

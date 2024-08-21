@@ -77,14 +77,16 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
     
     return (
         <div id="cookies-popup-container">
-            <div id="cookies-popup">
-                <h4>About cookies on this site</h4>
-                <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
-                <div style={{ marginTop: "10px" }}>
-                    <button id="cookie-settings-button" onClick={() => setShowCookieSettingsModal(true)}>Cookie settings</button>
-                    <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
-                </div>
-            </div>
+            <AboutCookiesBanner
+                setShowCookieSettingsModal={setShowCookieSettingsModal}
+                handleAllowAllCookies={handleAllowAllCookies}
+                hideVisibility={false}
+            />
+            <AboutCookiesBanner
+                setShowCookieSettingsModal={setShowCookieSettingsModal}
+                handleAllowAllCookies={handleAllowAllCookies}
+                hideVisibility={true}
+            />
             <Modal
                 isOpen={showCookieSettingsModal}
                 style={modalStyles}
@@ -111,6 +113,19 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
                     </div>
                 </div>
             </Modal>
+        </div>
+    );
+}
+
+function AboutCookiesBanner({ setShowCookieSettingsModal, handleAllowAllCookies, hideVisibility }) {
+    return (
+        <div id={hideVisibility ? "cookies-popup-hide-visibility" : "cookies-popup"}>
+            <h4>About cookies on this site</h4>
+            <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
+            <div style={{ marginTop: "10px" }}>
+                <button className="cookie-settings-button" onClick={() => setShowCookieSettingsModal(true)}>Cookie settings</button>
+                <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
+            </div>
         </div>
     );
 }

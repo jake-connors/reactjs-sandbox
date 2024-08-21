@@ -8,23 +8,22 @@ function JsExamples() {
                 <h2 className="js-examples col-sm-12">JS Examples</h2>
             </div>
             <div className="row">
-                <div className="col-6 col-md-4">
+                <div className="example-card col-6 col-md-4">
                     <Link to={"/js_examples/typeahead_table"}>
                         {"Typeaheads and Tables"}
                     </Link>
                 </div>
-                <div className="col-6 col-md-4">
+                <div className="example-card col-6 col-md-4">
                     <Link to={"/js_examples/drag_drop"}>
                         {"Drag & Drop"}
                     </Link>
                 </div>
-                <div className="col-6 col-md-4">
+                <div className="example-card col-6 col-md-4">
                     <Link to={"/js_examples/poppers"}>
                         {"Poppers"}
                     </Link>
                 </div>
             </div>
-            <div className="clear20"></div>
         </div>
     );
 }

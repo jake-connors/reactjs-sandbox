@@ -7,14 +7,12 @@ function PythonExamples() {
                 <h2 className="python-examples col-sm-12">PHP Examples</h2>
             </div>
             <div className="row">
-                <div className="col-sm-12">
-                    <span>info about page...</span>
+                <div className="example-card col-sm-6">
                     <Link to={"/python/ai"}>
                         {"Artificial Intelligence"}
                     </Link>
                 </div>
             </div>
-            <div className="clear20"></div>
         </div>
     );
 }

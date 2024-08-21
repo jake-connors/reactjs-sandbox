@@ -35,7 +35,7 @@ class Autocomplete
     private function _getUsers() {
         $params = [
             "limit" => $_GET["limit"],
-            "search_str" => $_REQUEST["q"]
+            "search_str" => "%" . $_REQUEST["q"] . "%"
         ];
         $where = " username LIKE ?:search_str ";
         if (isset($_REQUEST["detailsOnly"])) {

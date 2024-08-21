@@ -113,8 +113,9 @@ function Table({ tableRef, isLoading, setIsLoading }) {
     });
 
     return (
-        <>
-            <div className="row">
+        <div id="table-container" className="row form-group">
+            <h4 className="col-sm-12">Table - React Table w/ data from `users` SQL table</h4>
+            <div className="row form-group">
                 <div id="add-edit-box" className="col-sm-12">
                     <label style={{ fontSize: "18px" }}>{!isEditMode ? "Add " : "Edit " }User:</label>
                     <div className="col-sm-12">
@@ -158,7 +159,7 @@ function Table({ tableRef, isLoading, setIsLoading }) {
                     />
                 }
             </div>
-        </>
+        </div>
     );
 }
 
