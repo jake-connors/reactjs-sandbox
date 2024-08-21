@@ -4,7 +4,7 @@ function PhpExamples() {
     return (
         <div>
             <div className="row">
-                <h2 className="col-sm-12">PHP Examples</h2>
+                <h2 className="php-examples col-sm-12">PHP Examples</h2>
             </div>
             <div className="row">
                 <div className="col-sm-12">

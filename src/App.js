@@ -49,26 +49,27 @@ function App({ dispatch, user_info }) {
             <Navbar />
             <div id="app-container-wrapper" className={user_info.site_style}>
                 <div id="app-container" className="container">
-                <Routes>
-                    <Route path="/" exact Component={Main} />
-                    <Route path="/about" exact Component={About} />
-                    <Route path="/documentation" exact Component={Documentation} />
-                    <Route path="/settings" exact Component={Settings} />
-                    <Route path="/contact" exact Component={Contact} />
-                    <Route path="/js_examples" exact Component={JsExamples} />
-                    <Route path="/js_examples/typeahead_table" Component={TypeaheadTable} />
-                    <Route path="/js_examples/drag_drop" Component={DragDrop} />
-                    <Route path="/js_examples/popper" Component={Popper} />
-                    <Route path="/php_examples" exact Component={PhpExamples} />
-                    <Route path="/php_examples/email" Component={Email} />
-                    <Route path="/php_examples/excel" Component={Excel} />
-                    <Route path="/python_examples" exact Component={PythonExamples} />
-                    <Route path="/python_examples/ai" Component={ArtificialIntel} />
-                    <Route path="/other" Component={Other} />
-                </Routes>
-                {allCookies.length > 0 && user_info.show_cookies_popup != undefined && user_info.show_cookies_popup && (
-                    <CookiesPopup allCookies={allCookies} />
-                )}
+                    <Routes>
+                        <Route path="/" exact Component={Main} />
+                        <Route path="/about" exact Component={About} />
+                        <Route path="/documentation" exact Component={Documentation} />
+                        <Route path="/settings" exact Component={Settings} />
+                        <Route path="/contact" exact Component={Contact} />
+                        <Route path="/js_examples" exact Component={JsExamples} />
+                        <Route path="/js_examples/typeahead_table" Component={TypeaheadTable} />
+                        <Route path="/js_examples/drag_drop" Component={DragDrop} />
+                        <Route path="/js_examples/popper" Component={Popper} />
+                        <Route path="/php_examples" exact Component={PhpExamples} />
+                        <Route path="/php_examples/email" Component={Email} />
+                        <Route path="/php_examples/excel" Component={Excel} />
+                        <Route path="/python_examples" exact Component={PythonExamples} />
+                        <Route path="/python_examples/ai" Component={ArtificialIntel} />
+                        <Route path="/other" Component={Other} />
+                    </Routes>
+                    {allCookies.length > 0 && user_info.show_cookies_popup != undefined && user_info.show_cookies_popup && (
+                        <CookiesPopup allCookies={allCookies} />
+                    )}
+                    <div className="clear20"></div>
                 </div>
             </div>
         </Router>

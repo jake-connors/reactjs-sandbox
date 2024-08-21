@@ -74,10 +74,10 @@ class Cookies {
     public static function saveUserCookieSettings(array $cookies): array {
         $allowed_cookies = [];
         foreach ($cookies as $cookie) {
-            if ($cookie["clear"]) {
-                self::saveCookie($cookie["name"], [], true);
-            } else {
+            if ($cookie["allowed"]) {
                 $allowed_cookies[] = $cookie["name"];
+            } else {
+                self::saveCookie($cookie["name"], [], true);
             }
         }
         $user_cookie_settings = [

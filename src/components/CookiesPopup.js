@@ -36,13 +36,12 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
     }
 
     async function handleSaveCookieSettings() {
-        console.log('local allowed cookies ' , [...localAllowedCookies]);
         let cookiesWithSettings = [];
         for (let cookie of allCookies.filter((c) => c.require_consent)) {
             if (localAllowedCookies.some((c) => c === cookie.name)) {
-                cookie.clear = false;
+                cookie.allowed = 1;
             } else {
-                cookie.clear = true;
+                cookie.allowed = 0;
             }
             cookiesWithSettings.push(cookie);
         }
@@ -65,7 +64,6 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
             var newLocalAllowedCookies = [...localAllowedCookies];
             newLocalAllowedCookies.push(cookieName);
         }
-        console.log('setting ... ' , newLocalAllowedCookies);
         setLocalAllowedCookies(newLocalAllowedCookies);
     }
 
@@ -74,7 +72,6 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
             background: "#00000080",
             position: "fixed",
             inset: "0",
-            zIndex: 1000001,
         }
     };
     

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useRef } from "react";
 import PopperHelper from "../PopperHelper";
 
-function NavbarItem({ title, url, children }) {
+function NavbarItem({ title, subpath, children }) {
     
     const ref = useRef(null);
 
@@ -28,7 +28,7 @@ function NavbarItem({ title, url, children }) {
                         <ul>
                             {children.map((child, i) => (
                                 <li key={i}>
-                                    <Link to={child.url} onClick={() => ref.current.close()}>
+                                    <Link to={child.subpath} onClick={() => ref.current.close()}>
                                         {child.title}
                                     </Link>
                                 </li>
@@ -37,7 +37,7 @@ function NavbarItem({ title, url, children }) {
                     </PopperHelper>
                 </>
             :
-            <Link className="navbar-item-nochild" to={url}>
+            <Link className="navbar-item-nochild" to={subpath}>
                 {title}
             </Link>
         }

@@ -38,13 +38,13 @@ function MobileMenu({ menuItems, isDesktop }) {
                     <span key={i} className="navbar-section">
                         {item.children.length ? 
                             <>
-                                <span className="navbar-item-label">{item.title}</span>
+                                <Link to={item.subpath} className="navbar-item-label" onClick={handleCloseMenu}>{item.title}</Link>
                                 {item.children.map((child, ii) => (
-                                    <Link key={ii} to={child.url} className="navbar-item-child" onClick={handleCloseMenu}>{child.title}</Link>
+                                    <Link key={ii} to={child.subpath} className="navbar-item-child" onClick={handleCloseMenu}>{child.title}</Link>
                                 ))}
                             </>
                         :
-                        <Link to={item.url} className="navbar-item-nochild" onClick={handleCloseMenu}>
+                        <Link to={item.subpath} className="navbar-item-nochild" onClick={handleCloseMenu}>
                             {item.title}
                         </Link>
                         }

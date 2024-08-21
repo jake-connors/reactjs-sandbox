@@ -23,22 +23,25 @@ function Navbar({ user_info }) {
     }
 
     const jsChildren = [
-        { title: "Typeahead & Table", subpath: "/js_examples/typeahead_table", display_order: 1 },
-        { title: "Drag & Drop", subpath: "/js_examples/drag_drop", display_order: 2 },
-        { title: "Poppers", subpath: "js_examples/popper", display_order: 3 }
+        { title: "All Examples", subpath: "/js_examples", display_order: 1 },
+        { title: "Typeahead & Table", subpath: "/js_examples/typeahead_table", display_order: 2 },
+        { title: "Drag & Drop", subpath: "/js_examples/drag_drop", display_order: 3 },
+        { title: "Poppers", subpath: "/js_examples/popper", display_order: 4 }
     ];
     const phpChildren = [
-        { title: "Email", url: "/php_examples/email", display_order: 1 },
-        { title: "Excel", url: "/php_examples/excel", display_order: 1 }
+        { title: "All Examples", subpath: "/php_examples", display_order: 1 },
+        { title: "Email", subpath: "/php_examples/email", display_order: 2 },
+        { title: "Excel", subpath: "/php_examples/excel", display_order: 3 }
     ];
     const pythonChildren = [
-        { title: "AI", url: "/python/ai", display_order: 1 }
+        { title: "All Examples", subpath: "/python", display_order: 1 },
+        { title: "AI", subpath: "/python/ai", display_order: 2 }
     ];
     const navbarItems = [
-        { title: "Javascript", url: "", children: jsChildren },
-        { title: "PHP", url: "", children: phpChildren },
-        { title: "Python", url: "", children: pythonChildren },
-        { title: "Other", url: "other", children: [] },
+        { title: "Javascript", subpath: "/js_examples", children: jsChildren },
+        { title: "PHP", subpath: "/php_examples", children: phpChildren },
+        { title: "Python", subpath: "/python_examples", children: pythonChildren },
+        { title: "Other", subpath: "other", children: [] },
     ];
 
     return (
@@ -79,7 +82,7 @@ function Navbar({ user_info }) {
                         <NavbarItem 
                             key={i}
                             title={item.title}
-                            url={item.url}
+                            subpath={item.subpath}
                             children={item.children}
                         />
                     ))}

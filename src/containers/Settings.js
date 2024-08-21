@@ -21,6 +21,8 @@ function Settings({ user_info, dispatch }) {
                     <button className="btn btn-primary" onClick={handleShowCookiesPopup}>Show Cookies Popup</button>
                 </div>
             </div>
+            <div className="clear10"></div>
+            <div className="clear20"></div>
         </div>
     );
 }

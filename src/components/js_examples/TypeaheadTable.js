@@ -15,7 +15,7 @@ function TypeaheadTable() {
     }
 
     return (
-        <div id="typeahead-table-container">
+        <div id="typeahead-table-container" className="row form-group">
             <h4 className="js-examples col-sm-12">Typeaheads And Tables</h4>
             <div id="typeaheads-container" className="row form-group">
                 <h4 className="js-examples col-sm-12">Typeaheads</h4>
