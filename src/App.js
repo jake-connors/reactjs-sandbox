@@ -37,8 +37,9 @@ function App({ dispatch, user_info }) {
         let user_cookies = resp.data.user_cookies;
         let userInfo = {
             site_style: user_cookies.site_style.style,
-            cookie_settings: user_cookies.user_cookie_settings,
-            show_cookies_popup: user_cookies.user_cookie_settings.expires == -1
+            ip: user_cookies.ip,
+            cookie_settings: user_cookies.cookie_settings,
+            show_cookies_popup: user_cookies.cookie_settings.expires == -1
         };
         dispatch(setUserInfo(userInfo));
         setAllCookies(resp.data.all_cookies);
@@ -66,7 +67,7 @@ function App({ dispatch, user_info }) {
                         <Route path="/python_examples/ai" Component={ArtificialIntel} />
                         <Route path="/other" Component={Other} />
                     </Routes>
-                    {allCookies.length > 0 && user_info.show_cookies_popup != undefined && user_info.show_cookies_popup && (
+                    {allCookies.length > 0 && user_info.show_cookies_popup != undefined && (
                         <CookiesPopup allCookies={allCookies} />
                     )}
                 </div>

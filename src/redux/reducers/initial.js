@@ -2,6 +2,10 @@
 const initial = {
     user_info: {
         site_style: "",
+        ip: {
+            ip_address: "",
+            display_location: ""
+        },
         cookie_settings: {
             allowed_cookies: [],
             allow_all: false,

@@ -12,7 +12,7 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
     async function handleAllowAllCookies() {
         let resp = await allow_all_cookies();
         if (resp.data.success) {
-            let newCookieSettings = resp.data.user_cookie_settings;
+            let newCookieSettings = resp.data.cookie_settings;
             let newUserInfo = {
                 ...user_info,
                 cookie_settings: newCookieSettings,
@@ -25,7 +25,7 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
     async function handleDenyAllCookies() {
         let resp = await deny_all_cookies();
         if (resp.data.success) {
-            let newCookieSettings = resp.data.user_cookie_settings;
+            let newCookieSettings = resp.data.cookie_settings;
             let newUserInfo = {
                 ...user_info,
                 cookie_settings: newCookieSettings,
@@ -47,7 +47,7 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
         }
         let resp = await save_user_cookie_settings(cookiesWithSettings);
         if (resp.data.success) {
-            let newCookieSettings = resp.data.user_cookie_settings;
+            let newCookieSettings = resp.data.cookie_settings;
             let newUserInfo = {
                 ...user_info,
                 cookie_settings: newCookieSettings,
@@ -76,50 +76,57 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
     };
     
     return (
-        <div id="cookies-popup-container">
-            <AboutCookiesBanner
-                setShowCookieSettingsModal={setShowCookieSettingsModal}
-                handleAllowAllCookies={handleAllowAllCookies}
-                hideVisibility={false}
-            />
-            <AboutCookiesBanner
-                setShowCookieSettingsModal={setShowCookieSettingsModal}
-                handleAllowAllCookies={handleAllowAllCookies}
-                hideVisibility={true}
-            />
-            <Modal
-                isOpen={showCookieSettingsModal}
-                style={modalStyles}
-            >
-                <div id="cookie-settings-modal">
-                    <div className="row">
-                        <h4>About cookies on this site</h4>
-                        <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
+        <>
+        {user_info.show_cookies_popup && (
+            <div id="cookies-popup-container">
+                <AboutCookiesBanner
+                    setShowCookieSettingsModal={setShowCookieSettingsModal}
+                    handleAllowAllCookies={handleAllowAllCookies}
+                    hideVisibility={false}
+                />
+                <AboutCookiesBanner
+                    setShowCookieSettingsModal={setShowCookieSettingsModal}
+                    handleAllowAllCookies={handleAllowAllCookies}
+                    hideVisibility={true}
+                />
+                <Modal
+                    isOpen={showCookieSettingsModal}
+                    style={modalStyles}
+                >
+                    <div id="cookie-settings-modal">
+                        <div className="row">
+                            <h4>About cookies on this site</h4>
+                            <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
+                        </div>
+                        <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+                            <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
+                            <button className="btn btn-light" onClick={handleDenyAllCookies} style={{ marginLeft: "15px" }}>DENY ALL</button>
+                        </div>
+                        {allCookies.length > 0 && allCookies.filter((c) => c.require_consent).map((cookie, i) => (
+                            <ModalCookie 
+                                key={i}
+                                cookie={cookie}
+                                isChecked={localAllowedCookies.some((c) => c === cookie.name)}
+                                handleToggleCookie={handleToggleCookie}
+                            />
+                        ))}
+                        <div style={{ marginTop: "10px" }}>
+                            <button className="btn btn-success" onClick={handleSaveCookieSettings}>SAVE SETTINGS</button>
+                        </div>
                     </div>
-                    <div style={{ marginTop: "10px", marginBottom: "10px" }}>
-                        <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
-                        <button className="btn btn-light" onClick={handleDenyAllCookies} style={{ marginLeft: "15px" }}>DENY ALL</button>
-                    </div>
-                    {allCookies.length > 0 && allCookies.filter((c) => c.require_consent).map((cookie, i) => (
-                        <ModalCookie 
-                            key={i}
-                            cookie={cookie}
-                            isChecked={localAllowedCookies.some((c) => c === cookie.name)}
-                            handleToggleCookie={handleToggleCookie}
-                        />
-                    ))}
-                    <div style={{ marginTop: "10px" }}>
-                        <button className="btn btn-success" onClick={handleSaveCookieSettings}>SAVE SETTINGS</button>
-                    </div>
-                </div>
-            </Modal>
-        </div>
+                </Modal>
+            </div>
+        )}
+        </>
     );
 }
 
 function AboutCookiesBanner({ setShowCookieSettingsModal, handleAllowAllCookies, hideVisibility }) {
     return (
-        <div id={hideVisibility ? "cookies-popup-hide-visibility" : "cookies-popup"}>
+        <div 
+            id={hideVisibility ? "cookies-popup-hide-visibility" : "cookies-popup"} 
+            className={user_info.show_cookies_popup ? "show-cookies-popup" : "hide-cookies-popup"} 
+        >
             <h4>About cookies on this site</h4>
             <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
             <div style={{ marginTop: "10px" }}>

@@ -1,6 +1,6 @@
 <?php
-require_once "api.abstract.class.php";
-require_once "api.endpoint.class.php";
+require_once "./api.abstract.class.php";
+require_once "./api.endpoint.class.php";
 
 class API extends API_ABSTRACT
 {

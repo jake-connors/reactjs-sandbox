@@ -18,13 +18,13 @@ class Cookies_Cookies extends API_Endpoint
             $ret = ["success" => $result];
         } else if ($mode === "allowAllCookies") {
             $userCookieSettings = Utils\Cookies::allowAllCookies();
-            $ret = ["success" => 1, "user_cookie_settings" => $userCookieSettings];
+            $ret = ["success" => 1, "cookie_settings" => $userCookieSettings];
         } else if ($mode === "denyAllCookies") {
             $userCookieSettings = Utils\Cookies::denyAllCookies();
-            $ret = ["success" => 1, "user_cookie_settings" => $userCookieSettings];
+            $ret = ["success" => 1, "cookie_settings" => $userCookieSettings];
         } else if ($mode === "saveUserCookieSettings") {
             $userCookieSettings = Utils\Cookies::saveUserCookieSettings($this->args["cookies"]);
-            $ret = ["success" => 1, "user_cookie_settings" => $userCookieSettings];
+            $ret = ["success" => 1, "cookie_settings" => $userCookieSettings];
         }
         echo json_encode($ret);
     }
@@ -35,6 +35,8 @@ class Cookies_Cookies extends API_Endpoint
         if ($mode === "getAllCookies") {
             $all_cookies = Utils\Cookies::getAllCookies();
             $user_cookies = Utils\Cookies::getUserCookies();
+            $user_ip_cookie = Utils\Cookies::getUserIpAddress($user_cookies);
+            $user_cookies["ip"] = $user_ip_cookie;
             echo json_encode(["success" => 1, "all_cookies" => $all_cookies, "user_cookies" => $user_cookies]);
         }
     }

@@ -1,6 +1,7 @@
 <?php
-
 namespace Cookies\Utilities;
+
+require_once __DIR__ . "/ip_lookup.php";
 
 class Cookies {
 
@@ -19,6 +20,26 @@ class Cookies {
         return $user_cookies;
     }
 
+    public static function getUserIpAddress(array $user_cookies): array {
+        $ip = [
+            "ip_address" => "",
+            "display_location" => ""
+        ];
+        $user_cookie_settings = $user_cookies["cookie_settings"] ?? [];
+        $allowed_cookies = $user_cookie_settings["allowed_cookies"] ?? [];
+        $user_cookie_settings_expires = $user_cookie_settings["expires"] ?? -1;
+        $allowed_to_get_ip = $user_cookie_settings_expires == -1;
+        foreach ($allowed_cookies as $cookie) {
+            if ($cookie === "ip_address") {
+                $allowed_to_get_ip = true;
+            }
+        }
+        if ($allowed_to_get_ip) {
+            $ip = \IpLookup::getIpAndLocation();
+        }
+        return $ip;
+    }
+    
     private static function _getCookie(array $cookie): array {
         $cookie_name = $cookie["name"];
         $cookie = isset($_COOKIE[$cookie_name]) ? $_COOKIE[$cookie_name] : $cookie["default_json"];
@@ -52,7 +73,7 @@ class Cookies {
             "deny_all" => false,
             "expires" => time() + 60*60*24*365 // expires in a year
         ];
-        self::saveCookie("user_cookie_settings", $user_cookie_settings);
+        self::saveCookie("cookie_settings", $user_cookie_settings);
         return $user_cookie_settings;
     }
 
@@ -67,7 +88,7 @@ class Cookies {
             "deny_all" => true,
             "expires" => time() + 60*60*24*365 // expires in a year
         ];
-        self::saveCookie("user_cookie_settings", $user_cookie_settings);
+        self::saveCookie("cookie_settings", $user_cookie_settings);
         return $user_cookie_settings;
     }
 
@@ -86,7 +107,7 @@ class Cookies {
             "deny_all" => false,
             "expires" => time() + 60*60*24*365 // expires in a year
         ];
-        self::saveCookie("user_cookie_settings", $user_cookie_settings);
+        self::saveCookie("cookie_settings", $user_cookie_settings);
         return $user_cookie_settings;
     }
 }
