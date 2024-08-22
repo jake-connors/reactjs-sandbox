@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { slide as Burger } from "react-burger-menu";
-import SearchBar from "./SearchBar";
+import Location from "./Location";
 import StylePicker from "./StylePicker";
 
 
@@ -32,7 +32,7 @@ function MobileMenu({ menuItems, isDesktop }) {
                 onStateChange={onStateChange}
             >
                 <StylePicker isDesktop={isDesktop}/>
-                <SearchBar />
+                <Location />
                 <div className="clear10" />
                 {menuItems.map((item, i) => (
                     <span key={i} className="navbar-section">

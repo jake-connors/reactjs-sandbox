@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavbarItem from "../components/navbar/NavbarItem";
-import SearchBar from "../components/navbar/SearchBar";
+import Location from "../components/navbar/Location";
 import MobileMenu from "../components/navbar/MobileMenu";
 import StylePicker from "../components/navbar/StylePicker";
 
@@ -59,7 +59,7 @@ function Navbar({ user_info }) {
                         </Link>
                     </div>
                     <div className="col-sm-8">
-                        <SearchBar />
+                        <Location />
                     </div>
                     <div className="col-sm-2" id="navbar-extras">
                         <Link to="/about">
@@ -124,6 +124,6 @@ function mapStateToProps(state) {
     return {
         user_info: state.user_info
     }
-} 
+}
 
 export default connect(mapStateToProps)(Navbar);

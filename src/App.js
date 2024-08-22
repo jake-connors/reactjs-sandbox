@@ -25,6 +25,14 @@ function App({ dispatch, user_info }) {
 
     const [allCookies, setAllCookies] = useState([]);
 
+    /*
+        to do : 
+        - deny user access to dist/ files + non user files (w/ .htaccess)
+        - add more "themes" to each style-picker style
+            - add more custom "themes" for buttons & transition effects, etc.
+        - add documentation (both display on screen (maybe use an api/lib) and document the API/ backend functions)
+    */
+
     useEffect(() => {
         // console.clear();
         // console.log('app loaded v4.0');

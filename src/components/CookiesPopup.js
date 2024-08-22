@@ -80,11 +80,13 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
         {user_info.show_cookies_popup && (
             <div id="cookies-popup-container">
                 <AboutCookiesBanner
+                    showBanner={user_info.show_cookies_popup}
                     setShowCookieSettingsModal={setShowCookieSettingsModal}
                     handleAllowAllCookies={handleAllowAllCookies}
                     hideVisibility={false}
                 />
                 <AboutCookiesBanner
+                    showBanner={user_info.show_cookies_popup}
                     setShowCookieSettingsModal={setShowCookieSettingsModal}
                     handleAllowAllCookies={handleAllowAllCookies}
                     hideVisibility={true}
@@ -121,11 +123,11 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
     );
 }
 
-function AboutCookiesBanner({ setShowCookieSettingsModal, handleAllowAllCookies, hideVisibility }) {
+function AboutCookiesBanner({ showBanner, setShowCookieSettingsModal, handleAllowAllCookies, hideVisibility }) {
     return (
         <div 
             id={hideVisibility ? "cookies-popup-hide-visibility" : "cookies-popup"} 
-            className={user_info.show_cookies_popup ? "show-cookies-popup" : "hide-cookies-popup"} 
+            className={showBanner ? "show-cookies-popup" : "hide-cookies-popup"} 
         >
             <h4>About cookies on this site</h4>
             <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>

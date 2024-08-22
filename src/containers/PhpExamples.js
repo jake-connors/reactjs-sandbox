@@ -9,7 +9,7 @@ function PhpExamples() {
             <div className="row">
                 <div className="example-card col-6">
                     <Link to={"/php_examples/email"}>
-                        {"Typeaheads and Tables"}
+                        {"Email"}
                     </Link>
                 </div>
                 <div className="example-card col-sm-6">
