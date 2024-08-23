@@ -45,7 +45,7 @@ function App({ dispatch, user_info }) {
         let user_cookies = resp.data.user_cookies;
         let userInfo = {
             site_style: user_cookies.site_style.style,
-            ip: user_cookies.ip,
+            ip: user_cookies.ip_address,
             cookie_settings: user_cookies.cookie_settings,
             show_cookies_popup: user_cookies.cookie_settings.expires == -1
         };

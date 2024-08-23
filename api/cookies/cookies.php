@@ -36,7 +36,7 @@ class Cookies_Cookies extends API_Endpoint
             $all_cookies = Utils\Cookies::getAllCookies();
             $user_cookies = Utils\Cookies::getUserCookies();
             $user_ip_cookie = Utils\Cookies::getUserIpAddress($user_cookies);
-            $user_cookies["ip"] = $user_ip_cookie;
+            $user_cookies["ip_address"] = $user_ip_cookie;
             echo json_encode(["success" => 1, "all_cookies" => $all_cookies, "user_cookies" => $user_cookies]);
         }
     }

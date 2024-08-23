@@ -31,8 +31,9 @@ function MobileMenu({ menuItems, isDesktop }) {
                 isOpen={menuIsOpen}
                 onStateChange={onStateChange}
             >
-                <StylePicker isDesktop={isDesktop}/>
                 <Location />
+                <div className="clear5"></div>
+                <StylePicker isDesktop={isDesktop}/>
                 <div className="clear10" />
                 {menuItems.map((item, i) => (
                     <span key={i} className="navbar-section">

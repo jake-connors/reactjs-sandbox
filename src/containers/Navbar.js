@@ -50,13 +50,15 @@ function Navbar({ user_info }) {
             <div id="navbar-desktop" className="container-fluid">
                 <div className="row" id="navbar-upper">
                     <div className="col-sm-2">
-                        <Link
-                            to="/"
-                            title="Click to view Home"
-                            id="logo-link"
-                        >
-                            <img src="/assets/logo.svg" />
-                        </Link>
+                        <div className="vertical-middle">
+                            <Link
+                                to="/"
+                                title="Click to view Home"
+                                id="logo-link"
+                            >
+                                <img src="/assets/logo.svg" />
+                            </Link>
+                        </div>
                     </div>
                     <div className="col-sm-8">
                         <Location />
@@ -92,20 +94,22 @@ function Navbar({ user_info }) {
         )}
         {!isDesktop && (
             <div id="navbar-mobile" className="container-fluid">
-                <div className="row">
+                <div className="row" style={{ height: "50px" }}>
                     <div className="col-xs-8">
-                        <Link
-                            to="/"
-                            title="Click to view Home"
-                            id="logo-link-mobile"
-                        >
-                            <img 
-                                src="/assets/logo.svg" 
-                                alt="IMG NOT FOUND" 
-                                viewBox="0 0 134 36"
-                                preserveAspectRatio="xMinYMin meet"
-                            />
-                        </Link>
+                        <div className="vertical-middle">
+                            <Link
+                                to="/"
+                                title="Click to view Home"
+                                id="logo-link-mobile"
+                            >
+                                <img 
+                                    src="/assets/logo.svg" 
+                                    alt="IMG NOT FOUND" 
+                                    viewBox="0 0 134 36"
+                                    preserveAspectRatio="xMinYMin meet"
+                                />
+                            </Link>
+                        </div>
                     </div>
                     <div className="col-xs-4">
                         <MobileMenu 

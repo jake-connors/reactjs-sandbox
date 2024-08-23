@@ -20,6 +20,7 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
             };
             dispatch(setUserInfo(newUserInfo));
         }
+        setShowCookieSettingsModal(false);
     }
 
     async function handleDenyAllCookies() {
@@ -33,6 +34,7 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
             };
             dispatch(setUserInfo(newUserInfo));
         }
+        setShowCookieSettingsModal(false);
     }
 
     async function handleSaveCookieSettings() {
@@ -55,6 +57,7 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
             };
             dispatch(setUserInfo(newUserInfo));
         }
+        setShowCookieSettingsModal(false);
     }
 
     function handleToggleCookie(cookieName, isChecked) {
@@ -100,7 +103,7 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
                             <h4>About cookies on this site</h4>
                             <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
                         </div>
-                        <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+                        <div style={{ marginTop: "10px", marginBottom: "25px" }}>
                             <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
                             <button className="btn btn-light" onClick={handleDenyAllCookies} style={{ marginLeft: "15px" }}>DENY ALL</button>
                         </div>
@@ -126,8 +129,7 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
 function AboutCookiesBanner({ showBanner, setShowCookieSettingsModal, handleAllowAllCookies, hideVisibility }) {
     return (
         <div 
-            id={hideVisibility ? "cookies-popup-hide-visibility" : "cookies-popup"} 
-            className={showBanner ? "show-cookies-popup" : "hide-cookies-popup"} 
+            id={showBanner ? "cookies-popup-show" : "cookies-popup-hide"} 
         >
             <h4>About cookies on this site</h4>
             <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
@@ -141,7 +143,7 @@ function AboutCookiesBanner({ showBanner, setShowCookieSettingsModal, handleAllo
 
 function ModalCookie({ cookie, isChecked, handleToggleCookie }) {
     return (
-        <>
+        <div style={{ marginBottom: "25px" }}>
             <div className="row">
                 <label className="toggle-switch col-sm-2">
                     <input 
@@ -156,7 +158,7 @@ function ModalCookie({ cookie, isChecked, handleToggleCookie }) {
             <div className="row">
                 <span className="offset-2 col-sm-10">{cookie.display_info}</span>
             </div>
-        </>
+        </div>
     );
 }
 
