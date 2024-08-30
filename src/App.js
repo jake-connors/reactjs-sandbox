@@ -35,11 +35,11 @@ function App({ dispatch, user_info }) {
 
     useEffect(() => {
         // console.clear();
-        // console.log('app loaded v4.0');
-        init();
-    }, []);
+        console.log('app loaded v4.1');
+        getAllCookies();
+    }, [user_info.cookie_settings]);
 
-    async function init() {
+    async function getAllCookies() {
         let resp = await get_all_cookies();
         console.log('resp : ', resp);
         let user_cookies = resp.data.user_cookies;

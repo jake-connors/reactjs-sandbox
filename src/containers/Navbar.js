@@ -61,12 +61,7 @@ function Navbar({ user_info }) {
                         </div>
                     </div>
                     <div className="col-sm-8" style={{ paddingBottom: "20px" }}>
-                        {user_info.ip != undefined && user_info.ip.ip_address != undefined && user_info.ip.ip_address !== "" && (
-                            <Location
-                                isDesktop={true}
-                                displayLocation={user_info.ip.display_location}
-                            />
-                        )}
+                        <Location isDesktop={true} />
                     </div>
                     <div className="col-sm-2" id="navbar-extras">
                         <Link to="/about">

@@ -31,12 +31,7 @@ function MobileMenu({ menuItems, isDesktop }) {
                 isOpen={menuIsOpen}
                 onStateChange={onStateChange}
             >
-                {user_info.ip != undefined && user_info.ip.ip_address != undefined && user_info.ip.ip_address !== "" && (
-                    <Location
-                        isDesktop={false}
-                        displayLocation={user_info.ip.display_location}
-                    />
-                )}
+                <Location isDesktop={false} />
                 <div className="clear5"></div>
                 <StylePicker isDesktop={isDesktop}/>
                 <div className="clear10" />
