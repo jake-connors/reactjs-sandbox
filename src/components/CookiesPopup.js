@@ -86,13 +86,6 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
                     showBanner={user_info.show_cookies_popup}
                     setShowCookieSettingsModal={setShowCookieSettingsModal}
                     handleAllowAllCookies={handleAllowAllCookies}
-                    hideVisibility={false}
-                />
-                <AboutCookiesBanner
-                    showBanner={user_info.show_cookies_popup}
-                    setShowCookieSettingsModal={setShowCookieSettingsModal}
-                    handleAllowAllCookies={handleAllowAllCookies}
-                    hideVisibility={true}
                 />
                 <Modal
                     isOpen={showCookieSettingsModal}
@@ -126,7 +119,7 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
     );
 }
 
-function AboutCookiesBanner({ showBanner, setShowCookieSettingsModal, handleAllowAllCookies, hideVisibility }) {
+function AboutCookiesBanner({ showBanner, setShowCookieSettingsModal, handleAllowAllCookies }) {
     return (
         <div 
             id={showBanner ? "cookies-popup-show" : "cookies-popup-hide"} 

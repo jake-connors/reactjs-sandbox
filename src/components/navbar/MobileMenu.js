@@ -31,7 +31,7 @@ function MobileMenu({ menuItems, isDesktop }) {
                 isOpen={menuIsOpen}
                 onStateChange={onStateChange}
             >
-                <Location />
+                <Location isDesktop={false} />
                 <div className="clear5"></div>
                 <StylePicker isDesktop={isDesktop}/>
                 <div className="clear10" />

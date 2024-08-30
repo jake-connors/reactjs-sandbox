@@ -50,7 +50,7 @@ function Navbar({ user_info }) {
             <div id="navbar-desktop" className="container-fluid">
                 <div className="row" id="navbar-upper">
                     <div className="col-sm-2">
-                        <div className="vertical-middle">
+                        <div className="vertical-middle" style={{ paddingBottom: "20px" }}>
                             <Link
                                 to="/"
                                 title="Click to view Home"
@@ -60,8 +60,8 @@ function Navbar({ user_info }) {
                             </Link>
                         </div>
                     </div>
-                    <div className="col-sm-8">
-                        <Location />
+                    <div className="col-sm-8" style={{ paddingBottom: "20px" }}>
+                        <Location isDesktop={true} />
                     </div>
                     <div className="col-sm-2" id="navbar-extras">
                         <Link to="/about">

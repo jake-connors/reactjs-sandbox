@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
 
-function Location({ user_info }) {
+function Location({ user_info, isDesktop }) {
 
     const showLocation = user_info.ip != undefined && user_info.ip.ip_address != undefined && user_info.ip.ip_address !== "";
     
     return (
         <>
         {showLocation && (
-            <div id="location-container" className="vertical-middle">
+            <div id="location-container" className={isDesktop ? "vertical-middle" : ""}>
                 <span>
                     <i className="fa fa-location-dot" style={{ marginRight: "5px" }}></i>Location: {user_info.ip.display_location}
                 </span>
