@@ -33,7 +33,7 @@ function Popper() {
 
     return (
         <div id="popper-container">
-            <div id="popper-example-container-wrapper">
+            <div id="popper-example-container-wrapper" className="row">
                 <h4 className="js-examples col-sm-12">Popper</h4>
                 <div id="popper-example-container">
                     <div id="popper-example-content">
@@ -65,7 +65,7 @@ function Popper() {
                     </small>
                 </div>
             </div>
-            <div id="popup-notify-container" className="row form-group">
+            <div id="popup-notify-container" className="row">
                 <h4 className="js-examples col-sm-12">Popup Notify</h4>
                 <PopupNotify />
             </div>

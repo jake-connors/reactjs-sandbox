@@ -27,6 +27,10 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
         let resp = await deny_all_cookies();
         if (resp.data.success) {
             let newCookieSettings = resp.data.cookie_settings;
+            // let newIp = {
+            //     ip_address: "",
+            //     display_location: "",
+            // };
             let newUserInfo = {
                 ...user_info,
                 cookie_settings: newCookieSettings,
@@ -79,43 +83,39 @@ function CookiesPopup({ user_info, dispatch, allCookies }) {
     };
     
     return (
-        <>
-        {user_info.show_cookies_popup && (
-            <div id="cookies-popup-container">
-                <AboutCookiesBanner
-                    showBanner={user_info.show_cookies_popup}
-                    setShowCookieSettingsModal={setShowCookieSettingsModal}
-                    handleAllowAllCookies={handleAllowAllCookies}
-                />
-                <Modal
-                    isOpen={showCookieSettingsModal}
-                    style={modalStyles}
-                >
-                    <div id="cookie-settings-modal">
-                        <div className="row">
-                            <h4>About cookies on this site</h4>
-                            <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
-                        </div>
-                        <div style={{ marginTop: "10px", marginBottom: "25px" }}>
-                            <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
-                            <button className="btn btn-light" onClick={handleDenyAllCookies} style={{ marginLeft: "15px" }}>DENY ALL</button>
-                        </div>
-                        {allCookies.length > 0 && allCookies.filter((c) => c.require_consent).map((cookie, i) => (
-                            <ModalCookie 
-                                key={i}
-                                cookie={cookie}
-                                isChecked={localAllowedCookies.some((c) => c === cookie.name)}
-                                handleToggleCookie={handleToggleCookie}
-                            />
-                        ))}
-                        <div style={{ marginTop: "10px" }}>
-                            <button className="btn btn-success" onClick={handleSaveCookieSettings}>SAVE SETTINGS</button>
-                        </div>
+        <div id="cookies-popup-container">
+            <AboutCookiesBanner
+                showBanner={user_info.show_cookies_popup ?? false}
+                setShowCookieSettingsModal={setShowCookieSettingsModal}
+                handleAllowAllCookies={handleAllowAllCookies}
+            />
+            <Modal
+                isOpen={showCookieSettingsModal}
+                style={modalStyles}
+            >
+                <div id="cookie-settings-modal">
+                    <div className="row">
+                        <h4>About cookies on this site</h4>
+                        <span>We use cookies to collect and analyze information on site performance, and usage to enhance and customize content.</span>
                     </div>
-                </Modal>
-            </div>
-        )}
-        </>
+                    <div style={{ marginTop: "10px", marginBottom: "25px" }}>
+                        <button className="btn btn-success" onClick={handleAllowAllCookies}>ALL ALL COOKIES</button>
+                        <button className="btn btn-light" onClick={handleDenyAllCookies} style={{ marginLeft: "15px" }}>DENY ALL</button>
+                    </div>
+                    {allCookies.length > 0 && allCookies.filter((c) => c.require_consent).map((cookie, i) => (
+                        <ModalCookie 
+                            key={i}
+                            cookie={cookie}
+                            isChecked={localAllowedCookies.some((c) => c === cookie.name)}
+                            handleToggleCookie={handleToggleCookie}
+                        />
+                    ))}
+                    <div style={{ marginTop: "10px" }}>
+                        <button className="btn btn-success" onClick={handleSaveCookieSettings}>SAVE SETTINGS</button>
+                    </div>
+                </div>
+            </Modal>
+        </div>
     );
 }
 

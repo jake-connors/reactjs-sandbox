@@ -19,7 +19,7 @@ function JsExamples() {
                     </Link>
                 </div>
                 <div className="example-card col-6 col-md-4">
-                    <Link to={"/js_examples/poppers"}>
+                    <Link to={"/js_examples/popper"}>
                         {"Poppers"}
                     </Link>
                 </div>
