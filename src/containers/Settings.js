@@ -2,6 +2,8 @@ import { connect } from "react-redux";
 import { setUserInfo } from "../redux/actions";
 
 function Settings({ user_info, dispatch }) {
+
+    console.log('user info (settings) ', user_info);
     
     function handleCookiesPopupButtons(showPopup) {
         let newUserInfo = {
