@@ -1,11 +1,5 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine On 
-
-    # for pathing to webroot
-    RewriteCond %{HTTP_HOST} ^jacobconnors.com$ [NC,OR]
-    RewriteCond %{HTTP_HOST} ^www.jacobconnors.com$
-    RewriteCond %{REQUEST_URI} !public_html/
-    RewriteRule (.*) public_html/$1 [L]
+    RewriteEngine On
 
     # for the API
     RewriteCond %{REQUEST_FILENAME} !-f

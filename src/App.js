@@ -35,7 +35,7 @@ function App({ dispatch, user_info }) {
 
     useEffect(() => {
         // console.clear();
-        console.log('app loaded v4.1');
+        console.log('app loaded v4.2');
         init();
     }, []);
 
