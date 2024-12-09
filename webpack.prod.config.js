@@ -6,7 +6,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 module.exports = {
     watch: false,
     mode: "production",
-    devtool: "source-map",
+    devtool: "hidden-nosources-source-map",
     entry: {
         index: ["./src/index.js"],
     },
@@ -28,7 +28,7 @@ module.exports = {
     ],
     output: {
         filename: "[name].bundle.js",
-        path: path.resolve(__dirname, "../build_prod/"),
+        path: path.resolve(__dirname, "../jcPortfolioProd/"),
         publicPath: "/",
     },
     module: {
