@@ -11,6 +11,3 @@ ReactJS, PHP, MySQL sandbox for coding
 - Hostinger web hosting 
     - Apache config
 - git source code & CI/CD integration
-
-## Notes
-- this repo used to be the source code for https://jacobconnors.com
